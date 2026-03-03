@@ -15,17 +15,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Saint",
+  title: "Saint - Relentless",
   description: "Sportswear and Gears for the Relentless",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
       <head>
         <link
           rel="apple-touch-icon"
@@ -46,9 +46,8 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={`${oswald.variable} ${inter.variable} antialiased`}>
-        {children}
-      </body>
+
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

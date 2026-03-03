@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  font-family: var(--font-heading), sans-serif;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,4 +17,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
   line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em; /* slight athletic feel */
 }

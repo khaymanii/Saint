@@ -4,27 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const slides = [
-  {
-    image: "/images/hero-sports.jpg",
-    headline: "RELENTLESS",
-    sub: "Pursuit of Greatness",
-    accent: "Elevate your game with the best gear for winners.",
-  },
-  {
-    image: "/images/hero-sports-2.jpg",
-    headline: "UNSTOPPABLE",
-    sub: "Train Like a Champion",
-    accent: "Premium performance wear built for the elite.",
-  },
-  {
-    image: "/images/hero-sports-3.jpg",
-    headline: "DOMINATE",
-    sub: "Every. Single. Day.",
-    accent: "Push beyond limits. Gear up and go harder.",
-  },
-];
+import { slides } from "@/data/heroSlides";
 
 const INTERVAL = 5000;
 
@@ -89,10 +69,6 @@ export function Hero() {
               : "animate-slide-in"
           }`}
       >
-        <span className="uppercase tracking-[0.3em] text-[#063c71] text-xs sm:text-sm font-semibold mb-4 drop-shadow">
-          New Collection 2026
-        </span>
-
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white mb-3 drop-shadow-xl leading-none tracking-tight">
           {slide.headline}
         </h1>
@@ -112,12 +88,6 @@ export function Hero() {
             className="px-8 py-3 bg-[#063c71] hover:bg-[#063c71] text-white font-bold uppercase tracking-widest text-sm rounded-none transition-all duration-200 shadow-lg"
           >
             Shop Now
-          </Link>
-          <Link
-            href="/explore"
-            className="px-8 py-3 border-2 border-white hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-sm rounded-none transition-all duration-200"
-          >
-            Explore
           </Link>
         </div>
       </div>

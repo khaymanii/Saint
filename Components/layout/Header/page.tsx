@@ -43,11 +43,8 @@ export function Header() {
           </div>
 
           {/* Logo */}
-          <Link
-            href="/"
-            className="font-heading text-2xl font-bold tracking-wide"
-          >
-            SAINT
+          <Link href="/">
+            <h1 className="text-2xl font-bold text-[#063c71]">SAINT</h1>
           </Link>
         </div>
 
@@ -67,10 +64,10 @@ export function Header() {
         {/* Right Section: Profile, Cart */}
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
+            <User className="h-10 w-10" />
           </Button>
           <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
+            <ShoppingCart className="h-10 w-10" />
           </Button>
         </div>
       </div>

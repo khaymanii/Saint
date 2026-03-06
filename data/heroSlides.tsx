@@ -1,5 +1,3 @@
-// data/heroSlides.ts
-
 export const slides = [
   {
     image: "/images/football1.jpg",

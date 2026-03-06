@@ -7,10 +7,10 @@ export function Category() {
     <section className="py-16 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold">
+          <h2 className="font-heading text-3xl md:text-4xl text-[#063c71] font-bold">
             Shop by Category
           </h2>
-          <p className="text-muted-foreground mt-2">
+          <p className="text-muted-foreground text-sm mt-2">
             Performance gear for every sport
           </p>
         </div>

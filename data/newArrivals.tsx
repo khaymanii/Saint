@@ -1,0 +1,58 @@
+export const newArrivals = [
+  {
+    id: 1,
+    name: "Relentless Basketball Jersey",
+    brand: "Saint SportX",
+    price: 79.99,
+    image: "/images/new-arrivals/basketball-jersey.jpg",
+  },
+  {
+    id: 2,
+    name: "SpeedX Running Shoes",
+    brand: "SprintPro",
+    price: 129.99,
+    image: "/images/new-arrivals/running-shoes.jpg",
+  },
+  {
+    id: 3,
+    name: "PowerFit Boxing Gloves",
+    brand: "Knockout",
+    price: 59.99,
+    image: "/images/new-arrivals/boxing-gloves.jpg",
+  },
+  {
+    id: 4,
+    name: "Elite Training Shorts",
+    brand: "Athleisure Co.",
+    price: 39.99,
+    image: "/images/new-arrivals/training-shorts.jpg",
+  },
+  {
+    id: 5,
+    name: "Pro Goalkeeper Gloves",
+    brand: "GoalieX",
+    price: 69.99,
+    image: "/images/new-arrivals/goalkeeper-gloves.jpg",
+  },
+  {
+    id: 6,
+    name: "SpeedRun Compression Tights",
+    brand: "SprintPro",
+    price: 49.99,
+    image: "/images/new-arrivals/compression-tights.jpg",
+  },
+  {
+    id: 7,
+    name: "Relentless Football Jersey",
+    brand: "Saint SportX",
+    price: 89.99,
+    image: "/images/new-arrivals/football-jersey.jpg",
+  },
+  {
+    id: 8,
+    name: "Pro Training Hoodie",
+    brand: "Athleisure Co.",
+    price: 59.99,
+    image: "/images/new-arrivals/training-hoodie.jpg",
+  },
+];

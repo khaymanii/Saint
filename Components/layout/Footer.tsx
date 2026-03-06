@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-[#063c71] text-white py-10">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Copyright */}
         <div>
@@ -23,28 +23,28 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedin className="h-6 w-6 hover:text-blue-500 transition" />
+            <FaLinkedin className="h-5 w-5 hover:text-blue-500 transition" />
           </Link>
           <Link
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter className="h-6 w-6 hover:text-blue-400 transition" />
+            <FaTwitter className="h-5 w-5 hover:text-blue-400 transition" />
           </Link>
           <Link
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaInstagram className="h-6 w-6 hover:text-pink-500 transition" />
+            <FaInstagram className="h-5 w-5 hover:text-pink-500 transition" />
           </Link>
           <Link
             href="https://www.tiktok.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTiktok className="h-6 w-6 hover:text-black transition" />
+            <FaTiktok className="h-5 w-5 hover:text-black transition" />
           </Link>
         </div>
       </div>

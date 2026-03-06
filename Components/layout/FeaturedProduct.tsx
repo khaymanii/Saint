@@ -13,7 +13,7 @@ export function FeaturedProduct() {
               Featured Products
             </h2>
             <p className="text-gray-500 mt-1 text-sm md:text-base">
-              Top gear chosen for performance
+              Push limits. Dominate every game.{" "}
             </p>
           </div>
 

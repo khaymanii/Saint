@@ -12,7 +12,7 @@ export function NewArrivals() {
               Relentless New Arrivals
             </h2>
             <p className="text-gray-500 mt-1 text-sm md:text-base">
-              Wears and Gears built to push limits. Be unstoppable.
+              Relentless wears and gears for those who dare to dominate.{" "}
             </p>
           </div>
 

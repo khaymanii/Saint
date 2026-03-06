@@ -10,9 +10,6 @@ export function Category() {
           <h2 className="font-heading text-3xl md:text-4xl text-[#063c71] font-bold">
             Shop by Category
           </h2>
-          <p className="text-muted-foreground text-sm mt-2">
-            Performance gear for every sport
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

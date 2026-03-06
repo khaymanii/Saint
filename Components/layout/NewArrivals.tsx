@@ -11,9 +11,6 @@ export function NewArrivals() {
             <h2 className="text-3xl font-heading font-bold text-[#063c71]">
               Relentless New Arrivals
             </h2>
-            <p className="text-gray-500 mt-1 text-sm md:text-base">
-              Relentless wears and gears for those who dare to dominate.{" "}
-            </p>
           </div>
 
           <button className="text-sm font-medium text-text-[#063c71] hover:underline">

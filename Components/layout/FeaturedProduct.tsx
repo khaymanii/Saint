@@ -12,9 +12,6 @@ export function FeaturedProduct() {
             <h2 className="text-3xl font-heading font-bold text-[#063c71]">
               Featured Products
             </h2>
-            <p className="text-gray-500 mt-1 text-sm md:text-base">
-              Push limits. Dominate every game.{" "}
-            </p>
           </div>
 
           {/* View All Button */}

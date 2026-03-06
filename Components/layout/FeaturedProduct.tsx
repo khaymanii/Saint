@@ -1,35 +1,37 @@
-import { ProductCard } from "../ProductCard/page";
-import { newArrivals } from "@/data/newArrivals";
+import { ProductCard } from "./ProductCard";
+import { product } from "@/data/product";
 
-export function NewArrivals() {
+export function FeaturedProduct() {
   return (
-    <section className="py-20 px-6 bg-gray-50">
+    <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10">
+          {/* Title & Subtitle */}
           <div className="mb-4 md:mb-0">
             <h2 className="text-3xl font-heading font-bold text-[#063c71]">
-              Relentless New Arrivals
+              Featured Products
             </h2>
             <p className="text-gray-500 mt-1 text-sm md:text-base">
-              Wears and Gears built to push limits. Be unstoppable.
+              Top gear chosen for performance
             </p>
           </div>
 
+          {/* View All Button */}
           <button className="text-sm font-medium text-text-[#063c71] hover:underline">
-            Shop All
+            View All
           </button>
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {newArrivals.map((item) => (
+          {product.map((product) => (
             <ProductCard
-              key={item.id}
-              name={item.name}
-              brand={item.brand}
-              price={item.price}
-              image={item.image}
+              key={product.id}
+              name={product.name}
+              brand={product.brand}
+              price={product.price}
+              image={product.image}
             />
           ))}
         </div>

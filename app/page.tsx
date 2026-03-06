@@ -1,7 +1,7 @@
-import { Hero } from "@/components/layout/Hero/page";
-import { Category } from "@/components/layout/Category/page";
-import { FeaturedProduct } from "@/components/layout/FeaturedProduct/page";
-import { NewArrivals } from "@/components/layout/NewArrivals/page";
+import { Hero } from "@/components/layout/Hero";
+import { Category } from "@/components/layout/Category";
+import { FeaturedProduct } from "@/components/layout/FeaturedProduct";
+import { NewArrivals } from "@/components/layout/NewArrivals";
 
 export default function Home() {
   return (

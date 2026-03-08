@@ -84,7 +84,7 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href="/shop"
-            className="px-8 py-3 bg-[#063c71] hover:bg-[#063c71] text-white font-bold uppercase tracking-widest text-sm rounded-none transition-all duration-200 shadow-lg"
+            className="px-8 py-3 bg-[#063c71] hover:bg-[#063c71] text-white font-bold uppercase tracking-widest text-sm rounded-md transition-all duration-200 shadow-lg"
           >
             Shop Now
           </Link>

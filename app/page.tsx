@@ -1,8 +1,8 @@
-import { Hero } from "@/components/layout/Hero";
-import { Category } from "@/components/layout/Category";
-import { FeaturedProduct } from "@/components/layout/FeaturedProduct";
-import { NewArrivals } from "@/components/layout/NewArrivals";
-import { Banner } from "@/components/layout/Banner";
+import { Hero } from "@/Components/layout/Hero";
+import { Category } from "@/Components/layout/Category";
+import { FeaturedProduct } from "@/Components/layout/FeaturedProduct";
+import { NewArrivals } from "@/Components/layout/NewArrivals";
+import { Banner } from "@/Components/layout/Banner";
 
 export default function Home() {
   return (

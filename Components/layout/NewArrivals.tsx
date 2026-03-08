@@ -8,7 +8,7 @@ export function NewArrivals() {
         {/* Section Title */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10">
           <div className="mb-4 md:mb-0">
-            <h2 className="text-3xl font-heading font-bold text-[#063c71]">
+            <h2 className="sm:text-3xl text-2xl font-bold text-[#063c71]">
               Relentless New Arrivals
             </h2>
           </div>

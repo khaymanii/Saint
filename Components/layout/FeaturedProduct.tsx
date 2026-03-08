@@ -9,7 +9,7 @@ export function FeaturedProduct() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10">
           {/* Title & Subtitle */}
           <div className="mb-4 md:mb-0">
-            <h2 className="text-3xl font-heading font-bold text-[#063c71]">
+            <h2 className="sm:text-3xl text-2xl font-bold text-[#063c71]">
               Featured Products
             </h2>
           </div>

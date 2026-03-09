@@ -4,7 +4,7 @@ export const SPORTS = [
   "Basketball",
   "Tennis",
   "Running",
-  "Swimming",
+  "NFL",
 ];
 
 export const FOOTBALL_SUBS = [

@@ -6,11 +6,11 @@ import { FcGoogle } from "react-icons/fc";
 export default function Login() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
-      <div className="w-full max-w-sm bg-white p-10 rounded-lg border shadow-sm">
+      <div className="w-full max-w-sm bg-white p-10 rounded-md border shadow-sm">
         {/* Logo / Brand */}
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-[#063c71]">SAINT</h1>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-xs text-gray-500 mt-2">
             Sportswear and Gears for the Relentless
           </p>
         </div>
@@ -22,7 +22,7 @@ export default function Login() {
         </button>
 
         {/* Small text */}
-        <p className="text-xs text-gray-400 text-center mt-6">
+        <p className="text-xs text-gray-400 text-center mt-8">
           By continuing you agree to Saint's{" "}
           <Link className="underline text-[#063c71]" href="/terms">
             Terms

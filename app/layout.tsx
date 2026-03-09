@@ -1,8 +1,11 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/Components/layout/Header";
 import { Footer } from "@/Components/layout/Footer";
+import { usePathname } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -10,7 +13,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Saint - Relentless",
   description: "Sportswear and Gears for the Relentless",
 };
@@ -20,6 +23,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  const hideLayout = pathname === "/login";
+
   return (
     <html lang="en" className={`${poppins.className}`}>
       <head>
@@ -44,9 +51,9 @@ export default function RootLayout({
       </head>
 
       <body className="antialiased flex flex-col min-h-screen">
-        <Header />
+        {!hideLayout && <Header />}
         <main className="grow">{children}</main>
-        <Footer />
+        {!hideLayout && <Footer />}
       </body>
     </html>
   );

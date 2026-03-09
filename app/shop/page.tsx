@@ -44,26 +44,25 @@ export default function Shop() {
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
-      {/* ── Hero Banner ── */}
-      <section className="relative w-full h-52 overflow-hidden">
+      <section className="relative w-full h-66 overflow-hidden">
         <Image
-          src="/images/football1.jpg"
+          src="/images/ball1.jpg"
           alt="Shop Banner"
           fill
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/35 flex flex-col items-center justify-center text-white">
           <p className="text-xs tracking-widest uppercase opacity-70 mb-2">
-            Home › Shop
+            Home • Shop
           </p>
-          <h1 className="text-4xl font-black tracking-tight">Shop</h1>
+          <h1 className="sm:text-3xl text-2xl font-black tracking-tight">
+            Shop
+          </h1>
           <p className="text-sm opacity-75 mt-1">Gear up for greatness.</p>
         </div>
       </section>
 
-      {/* ── Main Layout ── */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 flex gap-8">
-        {/* ── Sidebar ── */}
         <>
           {sidebarOpen && (
             <div
@@ -79,7 +78,6 @@ export default function Shop() {
               ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
             `}
           >
-            {/* Mobile close button */}
             <div className="flex items-center justify-between mb-6 md:hidden">
               <span className="font-bold text-gray-900 text-sm uppercase tracking-widest">
                 Filters
@@ -92,7 +90,6 @@ export default function Shop() {
               </button>
             </div>
 
-            {/* Sport / Category Filter */}
             <div className="mb-8">
               <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
                 Categories
@@ -118,7 +115,6 @@ export default function Shop() {
               </ul>
             </div>
 
-            {/* Football sub-filter — only shown when Football is active */}
             {selectedSport === "Football" && (
               <div className="mb-8">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
@@ -142,44 +138,15 @@ export default function Shop() {
                 </ul>
               </div>
             )}
-
-            {/* Price Filter */}
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
-                Price
-              </p>
-              <ul className="space-y-2">
-                {PRICE_RANGES.map((range, i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      id={`price-${i}`}
-                      name="price"
-                      checked={priceRange === i}
-                      onChange={() => setPriceRange(i)}
-                      className="accent-gray-900 cursor-pointer"
-                    />
-                    <label
-                      htmlFor={`price-${i}`}
-                      className="text-sm text-gray-500 cursor-pointer hover:text-gray-900 transition"
-                    >
-                      {range.label}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </aside>
         </>
 
-        {/* ── Product Grid ── */}
         <main className="flex-1 min-w-0">
-          {/* Toolbar */}
           <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="md:hidden flex items-center gap-2 text-sm font-medium text-gray-600 border border-gray-200 px-3 py-2 rounded-xl hover:bg-gray-50 transition"
+                className="md:hidden flex items-center gap-2 text-sm font-medium text-gray-600 border border-gray-200 px-3 py-2 rounded-md hover:bg-gray-50 transition"
               >
                 <SlidersHorizontal size={15} />
                 Filter
@@ -192,7 +159,6 @@ export default function Shop() {
               </span>
             </div>
 
-            {/* Sort dropdown */}
             <div className="relative">
               <select
                 value={sortBy}
@@ -210,7 +176,6 @@ export default function Shop() {
             </div>
           </div>
 
-          {/* Cards */}
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-32 text-gray-300">
               <svg

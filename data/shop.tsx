@@ -147,9 +147,4 @@ export const PRODUCTS = [
   },
 ];
 
-export const SORT_OPTIONS = [
-  "Featured",
-  "Price: Low to High",
-  "Price: High to Low",
-  "Newest",
-];
+export const SORT_OPTIONS = ["Featured", "Newest"];

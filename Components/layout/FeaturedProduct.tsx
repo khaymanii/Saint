@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ProductCard } from "./ProductCard";
 import { product } from "@/data/product";
 
@@ -13,11 +14,12 @@ export function FeaturedProduct() {
               Featured Products
             </h2>
           </div>
-
           {/* View All Button */}
-          <button className="text-sm font-medium text-text-[#063c71] hover:underline">
-            View All
-          </button>
+          <Link href="/shop">
+            <button className="text-sm font-medium text-text-[#063c71] hover:underline cursor-pointer">
+              View All
+            </button>
+          </Link>
         </div>
 
         {/* Products Grid */}

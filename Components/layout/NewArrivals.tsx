@@ -1,5 +1,6 @@
 import { ProductCard } from "./ProductCard";
 import { newArrivals } from "@/data/newArrivals";
+import Link from "next/link";
 
 export function NewArrivals() {
   return (
@@ -12,10 +13,11 @@ export function NewArrivals() {
               Relentless New Arrivals
             </h2>
           </div>
-
-          <button className="text-sm font-medium text-text-[#063c71] hover:underline">
-            Shop All
-          </button>
+          <Link href="/shop">
+            <button className="text-sm font-medium text-text-[#063c71] hover:underline">
+              Shop All
+            </button>
+          </Link>
         </div>
 
         {/* Products Grid */}

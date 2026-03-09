@@ -41,14 +41,14 @@ export function Banner() {
             <div className="flex gap-4 mt-8">
               <Link
                 href="/shop"
-                className="bg-white text-[#063c71] px-6 py-3 text-sm rounded-md font-semibold"
+                className="bg-white text-[#063c71] px-6 py-3 text-sm rounded-md font-semibold cursor-pointer"
               >
                 Shop Now
               </Link>
 
               <Link
-                href="/categories"
-                className="border border-white px-6 py-3 text-sm rounded-md hover:bg-white hover:text-[#063c71]"
+                href="/shop"
+                className="border border-white px-6 py-3 text-sm rounded-md hover:bg-white hover:text-[#063c71] cursor-pointer"
               >
                 Explore Gear
               </Link>

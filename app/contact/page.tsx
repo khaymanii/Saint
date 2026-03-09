@@ -108,7 +108,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* FEATURES BAR */}
       <Features />
     </main>
   );

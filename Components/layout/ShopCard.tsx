@@ -3,23 +3,24 @@
 import Image from "next/image";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { slugify } from "@/lib/slugify";
 
 interface ShopCardProps {
+  id: number;
   name: string;
   brand: string;
   price: number;
-  image: string;
+  image: string[];
 }
 
-export function ShopCard({ name, brand, price, image }: ShopCardProps) {
+export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
   return (
     <div className="group cursor-pointer border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-300">
       {/* Image */}
-      <Link href="/shop">
+      <Link href={`/shop/${slugify(name)}`}>
         <div className="relative w-full h-52 sm:h-64 lg:h-80 bg-gray-100 overflow-hidden">
-          {" "}
           <Image
-            src={image}
+            src={image[0]}
             alt={name}
             fill
             className="object-cover group-hover:scale-105 transition duration-300"
@@ -38,7 +39,6 @@ export function ShopCard({ name, brand, price, image }: ShopCardProps) {
           <p className="text-xs text-gray-500">{brand}</p>
         </div>
 
-        {/* Price & Add to Cart */}
         <div className="flex items-center justify-between mt-2">
           <div className="text-sm font-semibold text-gray-900">${price}</div>
 

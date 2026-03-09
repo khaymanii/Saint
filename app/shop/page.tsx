@@ -2,21 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { SlidersHorizontal, ChevronDown, X } from "lucide-react";
+import { SlidersHorizontal, X } from "lucide-react";
 import { ShopCard } from "@/Components/layout/ShopCard";
-import {
-  PRODUCTS,
-  PRICE_RANGES,
-  SPORTS,
-  FOOTBALL_SUBS,
-  SORT_OPTIONS,
-} from "@/data/shop";
+import { PRODUCTS, SPORTS, FOOTBALL_SUBS } from "@/data/shop";
 
 export default function Shop() {
   const [selectedSport, setSelectedSport] = useState("All Sports");
   const [footballSub, setFootballSub] = useState("All");
-  const [priceRange, setPriceRange] = useState(0);
-  const [sortBy, setSortBy] = useState("Featured");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const filtered = PRODUCTS.filter((p) => {
@@ -26,12 +18,8 @@ export default function Shop() {
       selectedSport !== "Football" ||
       footballSub === "All" ||
       p.sub === footballSub;
-    const range = PRICE_RANGES[priceRange];
-    const priceMatch = p.price >= range.min && p.price <= range.max;
-    return sportMatch && subMatch && priceMatch;
+    return sportMatch && subMatch;
   }).sort((a, b) => {
-    if (sortBy === "Price: Low to High") return a.price - b.price;
-    if (sortBy === "Price: High to Low") return b.price - a.price;
     return 0;
   });
 
@@ -91,7 +79,7 @@ export default function Shop() {
             </div>
 
             <div className="mb-8">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
+              <p className="text-base font-bold uppercase tracking-widest text-gray-400 mb-3">
                 Categories
               </p>
               <ul className="space-y-0.5">
@@ -104,7 +92,7 @@ export default function Shop() {
                       }}
                       className={`w-full text-left text-sm py-1.5 px-2 rounded-lg transition-all ${
                         selectedSport === sport
-                          ? "font-semibold text-gray-900 underline underline-offset-2"
+                          ? "font-semibold text-[#063c71] underline underline-offset-2"
                           : "text-gray-500 hover:text-gray-900"
                       }`}
                     >
@@ -117,7 +105,7 @@ export default function Shop() {
 
             {selectedSport === "Football" && (
               <div className="mb-8">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">
+                <p className="text-base font-bold uppercase tracking-widest text-gray-400 mb-3">
                   Football Type
                 </p>
                 <ul className="space-y-0.5">
@@ -127,7 +115,7 @@ export default function Shop() {
                         onClick={() => setFootballSub(sub)}
                         className={`w-full text-left text-sm py-1.5 px-2 rounded-lg transition-all ${
                           footballSub === sub
-                            ? "font-semibold text-gray-900 underline underline-offset-2"
+                            ? "font-semibold text-[#063c71] underline underline-offset-2"
                             : "text-gray-500 hover:text-gray-900"
                         }`}
                       >
@@ -157,22 +145,6 @@ export default function Shop() {
               <span className="text-sm text-gray-400">
                 ({filtered.length} items)
               </span>
-            </div>
-
-            <div className="relative">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none text-sm bg-white border border-gray-200 rounded-xl px-4 py-2 pr-8 text-gray-600 focus:outline-none cursor-pointer"
-              >
-                {SORT_OPTIONS.map((opt) => (
-                  <option key={opt}>{opt}</option>
-                ))}
-              </select>
-              <ChevronDown
-                size={13}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-              />
             </div>
           </div>
 
@@ -207,7 +179,8 @@ export default function Shop() {
                   name={p.name}
                   brand={p.brand}
                   price={p.price}
-                  image={p.image}
+                  image={p.images}
+                  id={0}
                 />
               ))}
             </div>

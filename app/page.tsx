@@ -4,6 +4,7 @@ import { FeaturedProduct } from "@/Components/layout/FeaturedProduct";
 import { NewArrivals } from "@/Components/layout/NewArrivals";
 import { Banner } from "@/Components/layout/Banner";
 import { Newsletter } from "@/Components/layout/Newsletter";
+import { Features } from "@/Components/layout/Features";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <FeaturedProduct />
       <NewArrivals />
       <Newsletter />
+      <Features />
     </div>
   );
 }

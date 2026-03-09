@@ -21,7 +21,7 @@ export function Newsletter() {
             className="w-full px-5 py-3 rounded-md text-gray-900 text-xs border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#063c71] focus:border-[#063c71] transition"
           />
 
-          <button className="bg-[#063c71] text-white font-semibold px-4 py-2 text-xs rounded-md hover:bg-[#042a50] transition cursor-pointer">
+          <button className="bg-[#063c71] text-white font-medium px-4 py-2 text-xs rounded-md hover:bg-[#042a50] transition cursor-pointer">
             Join the Squad
           </button>
         </div>

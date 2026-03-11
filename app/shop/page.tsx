@@ -4,34 +4,59 @@ import { useState } from "react";
 import Image from "next/image";
 import { SlidersHorizontal, X } from "lucide-react";
 import { ShopCard } from "@/Components/layout/ShopCard";
-import { PRODUCTS, SPORTS, FOOTBALL_SUBS } from "@/data/shop";
+import Sports from "@/Components/filters/sports";
+import Football from "@/Components/filters/football";
+import Basketball from "@/Components/filters/basketball";
+import { PRODUCTS } from "@/data/shop";
 
 export default function Shop() {
   const [selectedSport, setSelectedSport] = useState("All Sports");
   const [footballSub, setFootballSub] = useState("All");
+  const [footballDetail, setFootballDetail] = useState("All");
+  const [basketballSub, setBasketballSub] = useState("All");
+  const [basketballDetail, setBasketballDetail] = useState("All");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const filtered = PRODUCTS.filter((p) => {
     const sportMatch =
       selectedSport === "All Sports" || p.sport === selectedSport;
-    const subMatch =
-      selectedSport !== "Football" ||
-      footballSub === "All" ||
-      p.sub === footballSub;
-    return sportMatch && subMatch;
-  }).sort((a, b) => {
-    return 0;
+
+    let subMatch = true;
+    let detailMatch = true;
+
+    if (selectedSport === "Football") {
+      subMatch = footballSub === "All" || p.sub === footballSub;
+      if (footballSub !== "All") {
+        detailMatch =
+          footballDetail === "All" ||
+          footballDetail === "All Clubs" ||
+          footballDetail === "All Countries" ||
+          p.team === footballDetail;
+      }
+    }
+
+    if (selectedSport === "Basketball") {
+      subMatch = basketballSub === "All" || p.sub === basketballSub;
+      if (basketballSub !== "All") {
+        detailMatch = basketballDetail === "All" || p.team === basketballDetail;
+      }
+    }
+
+    return sportMatch && subMatch && detailMatch;
   });
 
   const activeLabel =
     selectedSport === "All Sports"
       ? "All Products"
       : selectedSport === "Football" && footballSub !== "All"
-        ? `Football · ${footballSub}`
-        : selectedSport;
+        ? `Football · ${footballSub} · ${footballDetail !== "All" ? footballDetail : ""}`
+        : selectedSport === "Basketball" && basketballSub !== "All"
+          ? `Basketball · ${basketballSub} · ${basketballDetail !== "All" ? basketballDetail : ""}`
+          : selectedSport;
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
+      {/* Banner */}
       <section className="relative w-full h-66 overflow-hidden">
         <Image
           src="/images/ball1.jpg"
@@ -51,6 +76,7 @@ export default function Shop() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 flex gap-8">
+        {/* Sidebar */}
         <>
           {sidebarOpen && (
             <div
@@ -78,57 +104,34 @@ export default function Shop() {
               </button>
             </div>
 
-            <div className="mb-8">
-              <p className="text-base font-bold uppercase tracking-widest text-gray-400 mb-3">
-                Categories
-              </p>
-              <ul className="space-y-0.5">
-                {SPORTS.map((sport) => (
-                  <li key={sport}>
-                    <button
-                      onClick={() => {
-                        setSelectedSport(sport);
-                        setFootballSub("All");
-                      }}
-                      className={`w-full text-left text-sm py-1.5 px-2 rounded-lg transition-all ${
-                        selectedSport === sport
-                          ? "font-semibold text-[#063c71] underline underline-offset-2"
-                          : "text-gray-500 hover:text-gray-900"
-                      }`}
-                    >
-                      {sport}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Sports
+              selectedSport={selectedSport}
+              setSelectedSport={setSelectedSport}
+              setFootballSub={setFootballSub}
+              setBasketballSub={setBasketballSub}
+            />
 
             {selectedSport === "Football" && (
-              <div className="mb-8">
-                <p className="text-base font-bold uppercase tracking-widest text-gray-400 mb-3">
-                  Football Type
-                </p>
-                <ul className="space-y-0.5">
-                  {FOOTBALL_SUBS.map((sub) => (
-                    <li key={sub}>
-                      <button
-                        onClick={() => setFootballSub(sub)}
-                        className={`w-full text-left text-sm py-1.5 px-2 rounded-lg transition-all ${
-                          footballSub === sub
-                            ? "font-semibold text-[#063c71] underline underline-offset-2"
-                            : "text-gray-500 hover:text-gray-900"
-                        }`}
-                      >
-                        {sub}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Football
+                footballSub={footballSub}
+                setFootballSub={setFootballSub}
+                footballDetail={footballDetail}
+                setFootballDetail={setFootballDetail}
+              />
+            )}
+
+            {selectedSport === "Basketball" && (
+              <Basketball
+                basketballSub={basketballSub}
+                setBasketballSub={setBasketballSub}
+                basketballDetail={basketballDetail}
+                setBasketballDetail={setBasketballDetail}
+              />
             )}
           </aside>
         </>
 
+        {/* Products */}
         <main className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
             <div className="flex items-center gap-3">
@@ -139,10 +142,8 @@ export default function Shop() {
                 <SlidersHorizontal size={15} />
                 Filter
               </button>
-              <h2 className="text-base font-bold text-gray-900">
-                {activeLabel}
-              </h2>
-              <span className="text-sm text-gray-400">
+              <h2 className="text-xs font-bold text-gray-900">{activeLabel}</h2>
+              <span className="text-xs text-gray-400">
                 ({filtered.length} items)
               </span>
             </div>
@@ -150,25 +151,8 @@ export default function Shop() {
 
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-32 text-gray-300">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-14 h-14 mb-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 5M17 13l2.3 5M9 20a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm8 0a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"
-                />
-              </svg>
               <p className="text-base font-semibold text-gray-400">
                 No products found
-              </p>
-              <p className="text-sm mt-1 text-gray-300">
-                Try adjusting your filters
               </p>
             </div>
           ) : (

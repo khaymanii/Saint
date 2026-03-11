@@ -1,10 +1,4 @@
-export const SPORTS = [
-  "All Sports",
-  "Football",
-  "Basketball",
-  "Running",
-  "NFL",
-];
+export const SPORTS = ["All Sports", "Football", "Basketball", "NFL"];
 
 export const FOOTBALL_SUBS = [
   "All",

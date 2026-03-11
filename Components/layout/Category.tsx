@@ -32,7 +32,8 @@ export function Category() {
                 <h3 className="text-sm font-semibold font-heading">
                   {category.name}
                 </h3>
-                <p className="text-xs opacity-80 group-hover:translate-x-1 transition cursor-pointer">
+
+                <p className="text-xs opacity-80 hover:bg-[#063c71] group-hover:translate-x-1 transition cursor-pointer">
                   Shop Now →
                 </p>
               </div>

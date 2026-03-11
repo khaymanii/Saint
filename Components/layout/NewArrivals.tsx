@@ -1,6 +1,5 @@
-import { ProductCard } from "./ProductCard";
-import { newArrivals } from "@/data/newArrivals";
-import Link from "next/link";
+import { ShopCard } from "./ShopCard";
+import { PRODUCTS } from "@/data/shop";
 
 export function NewArrivals() {
   return (
@@ -13,22 +12,18 @@ export function NewArrivals() {
               Relentless New Arrivals
             </h2>
           </div>
-          <Link href="/shop">
-            <button className="text-sm font-medium text-text-[#063c71] hover:underline">
-              Shop All
-            </button>
-          </Link>
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {newArrivals.map((item) => (
-            <ProductCard
+          {PRODUCTS.slice(4, 10).map((item) => (
+            <ShopCard
               key={item.id}
               name={item.name}
               brand={item.brand}
               price={item.price}
-              image={item.image}
+              image={item.images}
+              id={item.id}
             />
           ))}
         </div>

@@ -2,21 +2,21 @@ export const categories = [
   {
     name: "Jerseys",
     image: "/category/Jersey.jpg",
-    link: "/shop/jerseys",
+    link: "/shop",
   },
   {
     name: "Footwear",
     image: "/category/Ball.jpg",
-    link: "/shop/footwear",
+    link: "/shop",
   },
   {
     name: "Training Gear",
     image: "/category/Gym.jpg",
-    link: "/shop/training-gear",
+    link: "/shop",
   },
   {
     name: "Accessories",
     image: "/category/accessories.jpg",
-    link: "/shop/accessories",
+    link: "/shop",
   },
 ];

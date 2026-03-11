@@ -180,7 +180,7 @@ export default function Shop() {
                   brand={p.brand}
                   price={p.price}
                   image={p.images}
-                  id={0}
+                  id={p.id}
                 />
               ))}
             </div>

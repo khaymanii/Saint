@@ -10,7 +10,7 @@ export default function Contact() {
       <section className="max-w-6xl mx-auto px-6 py-16">
         <p className="text-sm text-gray-500 mb-3">Home • Contact</p>
 
-        <h1 className="text-2xl sm:text-3xl font-bold max-w-2xl">
+        <h1 className="text-2xl sm:text-3xl font-semibold max-w-2xl">
           We support every athlete and sports enthusiast.
         </h1>
 

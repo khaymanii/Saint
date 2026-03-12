@@ -62,12 +62,16 @@ export function Header() {
 
         {/* Right Section: Profile, Cart */}
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="icon">
-            <User className="h-10 w-10" />
-          </Button>
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-10 w-10" />
-          </Button>
+          <Link href="/profile" className={linkClasses("/profile")}>
+            <Button variant="ghost" size="icon">
+              <User className="h-10 w-10" />
+            </Button>
+          </Link>
+          <Link href="/cart" className={linkClasses("/cart")}>
+            <Button variant="ghost" size="icon">
+              <ShoppingCart className="h-10 w-10" />
+            </Button>
+          </Link>
         </div>
       </div>
 

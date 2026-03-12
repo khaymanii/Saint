@@ -57,12 +57,12 @@ export default function CartItem({
 
       {/* Mobile Layout */}
       <div className="md:hidden flex gap-4">
-        <div className="w-24 h-24 relative bg-gray-100 rounded">
+        <div className="w-24 h-24 relative bg-gray-100 rounded-md">
           <Image
             src={item.image}
             alt={item.name}
             fill
-            className="object-cover rounded"
+            className="object-cover rounded-md"
           />
         </div>
 

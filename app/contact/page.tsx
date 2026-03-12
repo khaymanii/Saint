@@ -8,7 +8,7 @@ export default function Contact() {
     <main className="bg-gray-50">
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-sm text-gray-500 mb-3">Home • Contact</p>
+        <p className="text-xs text-gray-500 mb-3">Home • Contact</p>
 
         <h1 className="text-2xl sm:text-3xl font-semibold max-w-2xl">
           We support every athlete and sports enthusiast.
@@ -22,7 +22,7 @@ export default function Contact() {
 
       {/* CONTACT INFO */}
       <section className="max-w-6xl mx-auto px-6 pb-14">
-        <h2 className="text-center text-2xl text-[#063c71] font-semibold mb-10">
+        <h2 className="text-center sm:text-3xl text-2xl text-[#063c71] font-semibold mb-10">
           Contact Us
         </h2>
 

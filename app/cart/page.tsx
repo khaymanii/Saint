@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CART_ITEMS } from "@/data/cart";
 import CartItem from "@/Components/cart/CartItem";
 import Link from "next/link";
+import { Features } from "@/Components/layout/Features";
 
 export default function CartPage() {
   const [cart, setCart] = useState(CART_ITEMS);
@@ -116,6 +117,8 @@ export default function CartPage() {
           </Link>
         </div>
       </div>
+
+      <Features />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import CheckoutForm from "@/Components/checkout/CheckoutForm";
 import OrderSummary from "@/Components/checkout/OrderSummary";
+import { Features } from "@/Components/layout/Features";
 
 export default function CheckoutPage() {
   return (
@@ -14,6 +15,7 @@ export default function CheckoutPage() {
 
         <OrderSummary />
       </div>
+      <Features />
     </div>
   );
 }

@@ -1,0 +1,32 @@
+export const CART_ITEMS = [
+  {
+    id: 1,
+    name: "Blue Flower Print Crop Top",
+    color: "Yellow",
+    size: "M",
+    price: 29,
+    quantity: 1,
+    shipping: 0,
+    image: "/images/ball1.jpg",
+  },
+  {
+    id: 2,
+    name: "Lavender Hoodie",
+    color: "Lavender",
+    size: "XXL",
+    price: 119,
+    quantity: 2,
+    shipping: 0,
+    image: "/images/football1.jpg",
+  },
+  {
+    id: 3,
+    name: "Black Sweatshirt",
+    color: "Black",
+    size: "XXL",
+    price: 123,
+    quantity: 2,
+    shipping: 5,
+    image: "/images/basketball1.jpg",
+  },
+];

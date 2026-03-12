@@ -42,7 +42,6 @@ export default function CartPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <div>
-        {" "}
         <p className="text-xs opacity-70 mb-3">Home • Cart</p>
         <h1 className="sm:text-3xl text-2xl font-semibold text-center text-[#063c71] mb-10">
           Cart
@@ -69,9 +68,7 @@ export default function CartPage() {
         />
       ))}
 
-      {/* Bottom Section */}
       <div className="grid lg:grid-cols-2 gap-10 mt-12">
-        {/* Coupon */}
         <div>
           <h3 className="font-semibold mb-2">Discount Codes</h3>
 
@@ -96,7 +93,6 @@ export default function CartPage() {
           </Link>
         </div>
 
-        {/* Summary */}
         <div className="bg-gray-50 p-6 rounded-lg h-fit">
           <div className="flex text-sm justify-between mb-3">
             <p>Sub Total</p>

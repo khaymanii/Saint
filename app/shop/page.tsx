@@ -66,7 +66,7 @@ export default function Shop() {
         />
         <div className="absolute inset-0 bg-black/35 flex flex-col items-center justify-center text-white">
           <p className="text-xs opacity-70 mb-2">Home • Shop</p>
-          <h1 className="sm:text-3xl text-2xl font-semibold">Shop</h1>
+          <h1 className="sm:text-3xl text-2xl font-bold">Shop</h1>
           <p className="text-sm opacity-75 mt-1">Gear up for greatness.</p>
         </div>
       </section>

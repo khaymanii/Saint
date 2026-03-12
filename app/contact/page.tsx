@@ -22,7 +22,7 @@ export default function Contact() {
 
       {/* CONTACT INFO */}
       <section className="max-w-6xl mx-auto px-6 pb-14">
-        <h2 className="text-center sm:text-3xl text-2xl text-[#063c71] font-semibold mb-10">
+        <h2 className="text-center sm:text-3xl text-2xl text-[#063c71] font-bold mb-10">
           Contact Us
         </h2>
 

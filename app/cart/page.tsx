@@ -43,7 +43,7 @@ export default function CartPage() {
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <div>
         <p className="text-xs opacity-70 mb-3">Home • Cart</p>
-        <h1 className="sm:text-3xl text-2xl font-semibold text-center text-[#063c71] mb-10">
+        <h1 className="sm:text-3xl text-2xl font-bold text-center text-[#063c71] mb-10">
           Cart
         </h1>
       </div>
@@ -69,7 +69,7 @@ export default function CartPage() {
       ))}
 
       <div className="grid lg:grid-cols-2 gap-10 mt-12">
-        <div>
+        {/*<div>
           <h3 className="font-semibold mb-2">Discount Codes</h3>
 
           <p className="text-sm text-gray-500 mb-4">
@@ -91,7 +91,7 @@ export default function CartPage() {
               Continue Shopping
             </button>
           </Link>
-        </div>
+        </div>*/}
 
         <div className="bg-gray-50 p-6 rounded-lg h-fit">
           <div className="flex text-sm justify-between mb-3">
@@ -109,9 +109,11 @@ export default function CartPage() {
             <p>${total}.00</p>
           </div>
 
-          <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer">
-            Proceed To Checkout
-          </button>
+          <Link href="/checkout">
+            <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer">
+              Proceed To Checkout
+            </button>
+          </Link>
         </div>
       </div>
     </div>

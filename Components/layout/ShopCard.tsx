@@ -27,7 +27,7 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
           />
           {/* Wishlist */}
           <div className="absolute top-3 right-3 bg-white rounded-full p-2 shadow">
-            <Heart size={18} />
+            <Heart size={18} className="text-[#063c71]" />
           </div>
         </div>
       </Link>

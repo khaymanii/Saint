@@ -1,4 +1,4 @@
-import OrdersContainer from "@/Components/orders/OrdersContainer";
+import OrdersContainer from "@/Components/profile/OrdersContainer";
 
 export default function Orders() {
   return (

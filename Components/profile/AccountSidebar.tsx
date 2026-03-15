@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { useState } from "react";
 import { Heart, LogOut, ShoppingBag, User } from "lucide-react";
+import LogoutModal from "@/Components/auth/LogoutModal";
 
 import {
   Select,
@@ -11,42 +12,35 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/ui/select";
+import Link from "next/link";
 
 export default function AccountSidebar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   const navItems = [
-    {
-      name: "My orders",
-      href: "/profile/orders",
-      icon: ShoppingBag,
-    },
-    {
-      name: "Wishlist",
-      href: "/profile/wishlist",
-      icon: Heart,
-    },
-    {
-      name: "Profile",
-      href: "/profile/info",
-      icon: User,
-    },
-    {
-      name: "Log out",
-      href: "/logout",
-      icon: LogOut,
-    },
+    { name: "My orders", href: "/profile/orders", icon: ShoppingBag },
+    { name: "Wishlist", href: "/profile/wishlist", icon: Heart },
+    { name: "Profile", href: "/profile/info", icon: User },
+    { name: "Log out", href: "/logout", icon: LogOut },
   ];
 
   const activeItem = navItems.find((item) => item.href === pathname);
+
+  const handleMobileSelect = (value: string) => {
+    if (value === "/logout") {
+      setIsLogoutOpen(true); // open modal instead of navigating
+    } else {
+      router.push(value);
+    }
+  };
 
   return (
     <aside className="w-full lg:w-64 lg:border-r lg:pr-6">
       {/* Greeting */}
       <div className="mb-6">
         <h2 className="font-semibold text-base sm:text-lg">Hello Jhanvi</h2>
-
         <p className="text-xs sm:text-sm text-gray-500">
           Welcome to your account
         </p>
@@ -54,10 +48,7 @@ export default function AccountSidebar() {
 
       {/* Mobile Select */}
       <div className="lg:hidden mb-6">
-        <Select
-          defaultValue={pathname}
-          onValueChange={(value) => router.push(value)}
-        >
+        <Select defaultValue={pathname} onValueChange={handleMobileSelect}>
           <SelectTrigger className="w-full border-[#063c71] focus:ring-[#063c71]">
             <SelectValue placeholder={activeItem?.name || "Account Menu"} />
           </SelectTrigger>
@@ -82,13 +73,24 @@ export default function AccountSidebar() {
           const Icon = item.icon;
           const isActive = pathname === item.href;
 
+          if (item.name === "Log out") {
+            return (
+              <button
+                key={item.name}
+                onClick={() => setIsLogoutOpen(true)}
+                className="px-3 py-2 rounded text-sm flex items-center hover:bg-[#063c71]/10 text-gray-700"
+              >
+                <Icon className="w-4 h-4 mr-2" />
+                {item.name}
+              </button>
+            );
+          }
+
           return (
             <Link
               key={item.name}
               href={item.href}
-              className={`px-3 py-2 rounded text-sm flex items-center transition
-              
-              ${
+              className={`px-3 py-2 rounded text-sm flex items-center transition ${
                 isActive
                   ? "bg-[#063c71] text-white"
                   : "hover:bg-[#063c71]/10 text-gray-700"
@@ -100,6 +102,13 @@ export default function AccountSidebar() {
           );
         })}
       </nav>
+
+      {/* Logout Modal */}
+      <LogoutModal
+        isOpen={isLogoutOpen}
+        setIsOpen={setIsLogoutOpen}
+        children={undefined}
+      />
     </aside>
   );
 }

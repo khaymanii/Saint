@@ -1,15 +1,10 @@
 import { WISHLIST_ITEMS } from "@/data/wishlist";
 import WishlistItem from "./WishlistItem";
-import EmptyWishlist from "./EmptyWishlist";
 
 export default function WishlistList() {
-  if (WISHLIST_ITEMS.length === 0) {
-    return <EmptyWishlist />;
-  }
-
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-6">Wishlist</h2>
+      <div className="flex gap-6 text-base font-semibold">Wishlist</div>
 
       {WISHLIST_ITEMS.map((item) => (
         <WishlistItem key={item.id} {...item} />

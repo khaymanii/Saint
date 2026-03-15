@@ -1,0 +1,47 @@
+export const ORDERS = [
+  {
+    id: 1,
+    orderNo: "#123456789",
+    orderDate: "2 June 2023 2:40 PM",
+    deliveryDate: "8 June 2023",
+    status: "Inprogress",
+    payment: "Cash on delivery",
+    product: {
+      name: "Black Printed T-shirt",
+      color: "Pink",
+      qty: 1,
+      total: 23,
+      image: "/images/basketball1.jpg",
+    },
+  },
+  {
+    id: 2,
+    orderNo: "#123456789",
+    orderDate: "2 June 2023 2:40 PM",
+    deliveryDate: "8 June 2023",
+    status: "Shipped",
+    payment: "Cash on delivery",
+    product: {
+      name: "Printed blue & white Coat",
+      color: "White",
+      qty: 1,
+      total: 134,
+      image: "/images/football2.jpg",
+    },
+  },
+  {
+    id: 3,
+    orderNo: "#123456789",
+    orderDate: "2 June 2023 2:40 PM",
+    deliveryDate: "8 June 2023",
+    status: "Inprogress",
+    payment: "Cash on delivery",
+    product: {
+      name: "Blue Shirt",
+      color: "Blue",
+      qty: 1,
+      total: 93,
+      image: "/images/ball1.jpg",
+    },
+  },
+];

@@ -15,7 +15,7 @@ export default function AccountSidebar() {
     },
     {
       name: "Wishlist",
-      href: "/profile",
+      href: "/profile/wishlist",
       icon: Heart,
     },
     {

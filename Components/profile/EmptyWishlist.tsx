@@ -7,7 +7,7 @@ import { ShopCard } from "../layout/ShopCard";
 
 export default function EmptyWishlist() {
   return (
-    <section className="w-full bg-gray-100 py-20 px-4">
+    <section className="w-full py-20 px-4">
       <div className="flex items-center justify-center">
         <div className="border rounded-xl p-8 text-center relative flex flex-col items-center justify-center shadow-md max-w-4xl bg-white">
           {/* Check Icon */}
@@ -34,7 +34,7 @@ export default function EmptyWishlist() {
           </Link>
         </div>
       </div>
-      <h2 className="sm:text-3xl text-2xl font-bold text-[#063c71] mb-10  mt-20">
+      <h2 className="sm:text-3xl text-2xl font-bold text-[#063c71] mb-10  mt-30">
         Recommended Gears
       </h2>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">

@@ -1,7 +1,7 @@
 "use client";
 
 import { PRODUCTS } from "@/data/shop";
-import { use, useEffect, useState } from "react";
+import { use, useState } from "react";
 import Image from "next/image";
 import { ShopCard } from "@/Components/layout/ShopCard";
 import { slugify } from "@/lib/slugify";
@@ -16,10 +16,6 @@ export default function ProductPage({
   const [selectedImage, setSelectedImage] = useState(product?.images[0]);
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
-
-  useEffect(() => {
-    document.title = "Saint - Relentless";
-  }, []);
 
   if (!product) return <div>Product not found</div>;
 

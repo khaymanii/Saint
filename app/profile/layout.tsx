@@ -7,14 +7,12 @@ export default function ProfileLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-15">
       <Breadcrumb />
 
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Sidebar */}
         <AccountSidebar />
 
-        {/* Page Content */}
         <div className="flex-1">{children}</div>
       </div>
     </div>

@@ -4,7 +4,6 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { Heart, LogOut, ShoppingBag, User } from "lucide-react";
 import LogoutModal from "@/Components/auth/LogoutModal";
-
 import {
   Select,
   SelectContent,
@@ -20,7 +19,7 @@ export default function AccountSidebar() {
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   const navItems = [
-    { name: "My orders", href: "/profile/orders", icon: ShoppingBag },
+    { name: "My orders", href: "/profile", icon: ShoppingBag },
     { name: "Wishlist", href: "/profile/wishlist", icon: Heart },
     { name: "Profile", href: "/profile/info", icon: User },
     { name: "Log out", href: "/logout", icon: LogOut },

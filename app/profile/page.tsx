@@ -1,5 +1,9 @@
-import { redirect } from "next/navigation";
+import OrdersContainer from "@/Components/profile/OrdersContainer";
 
-export default function ProfilePage() {
-  redirect("/profile/orders");
+export default function Orders() {
+  return (
+    <div>
+      <OrdersContainer />
+    </div>
+  );
 }

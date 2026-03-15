@@ -7,17 +7,15 @@ import { ShopCard } from "../layout/ShopCard";
 
 export default function EmptyWishlist() {
   return (
-    <section className="w-full py-20 px-4">
+    <section className="w-full py-10 px-4">
       <div className="flex items-center justify-center">
         <div className="border rounded-xl p-8 text-center relative flex flex-col items-center justify-center shadow-md max-w-4xl bg-white">
-          {/* Check Icon */}
           <div className="flex justify-center mb-4">
             <div className="w-20 h-20 rounded-full bg-[#063c71] flex items-center justify-center">
               <Heart className="w-10 h-10 text-white animate-pulse" />
             </div>
           </div>
 
-          {/* Text */}
           <h2 className="text-lg font-semibold text-gray-800 mb-2">
             Your wishlist is empty
           </h2>

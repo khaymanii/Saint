@@ -35,7 +35,7 @@ export default function WishlistItem({ name, color, price, image }: Props) {
       <div className="flex items-center justify-between sm:justify-end gap-4">
         <span className="font-medium text-sm sm:text-base">${price}.00</span>
 
-        <button className="bg-[#063c71] text-white px-4 py-2 text-sm rounded w-auto sm:w-auto hover:opacity-90 transition">
+        <button className="bg-[#063c71] text-white px-4 py-2 text-sm rounded-md w-auto sm:w-auto hover:opacity-90 transition">
           Add to cart
         </button>
       </div>

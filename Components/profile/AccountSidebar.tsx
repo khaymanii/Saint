@@ -28,7 +28,7 @@ export default function AccountSidebar() {
       icon: Heart,
     },
     {
-      name: "My info",
+      name: "Profile",
       href: "/profile/info",
       icon: User,
     },

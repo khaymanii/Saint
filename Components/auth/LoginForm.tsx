@@ -1,9 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export function Login() {
+  const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
       <div className="w-full max-w-sm bg-white p-10 rounded-md border shadow-sm">
@@ -16,7 +17,10 @@ export function Login() {
         </div>
 
         {/* Google Button */}
-        <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-md py-3 text-sm font-medium bg-[#063c71] text-white transition">
+        <button
+          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-md py-3 text-sm font-medium bg-[#063c71] text-white transition"
+          onClick={loginWithGoogle}
+        >
           <FcGoogle size={20} />
           Continue with Google
         </button>

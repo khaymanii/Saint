@@ -12,11 +12,13 @@ import {
   SelectValue,
 } from "@/Components/ui/select";
 import Link from "next/link";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function AccountSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  const user = useAuthStore((state) => state.user);
 
   const navItems = [
     { name: "My orders", href: "/profile", icon: ShoppingBag },
@@ -39,7 +41,10 @@ export default function AccountSidebar() {
     <aside className="w-full lg:w-64 lg:border-r lg:pr-6">
       {/* Greeting */}
       <div className="mb-6">
-        <h2 className="font-semibold text-base sm:text-lg">Hello Jhanvi</h2>
+        <h2 className="font-semibold text-base sm:text-lg">
+          Hello {user?.displayName || "User"}
+        </h2>
+        <p className="text-xs mb-2">{user?.email || "jhanvi@example.com"}</p>
         <p className="text-xs sm:text-sm text-gray-500">
           Welcome to your account
         </p>

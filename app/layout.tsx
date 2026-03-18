@@ -6,6 +6,8 @@ import "./globals.css";
 import { Header } from "@/Components/layout/Header";
 import { Footer } from "@/Components/layout/Footer";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { useAuthStore } from "@/store/useAuthStore";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,8 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-
   const hideLayout = pathname === "/login";
+  const initAuth = useAuthStore((state) => state.initAuth);
+
+  useEffect(() => {
+    initAuth();
+  }, []);
 
   return (
     <html lang="en" className={`${poppins.className}`}>

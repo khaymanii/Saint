@@ -1,9 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "next/navigation"; // ✅ correct import for App Router
 
 export function Login() {
   const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
+  const router = useRouter(); // ✅ initialize router inside component
+
+  const handleLogin = async () => {
+    const user = await loginWithGoogle();
+    if (user) router.push("/checkout");
+  };
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
@@ -18,8 +27,8 @@ export function Login() {
 
         {/* Google Button */}
         <button
-          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-md py-3 text-sm font-medium bg-[#063c71] text-white transition"
-          onClick={loginWithGoogle}
+          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-md py-3 text-sm font-medium bg-[#063c71] text-white transition cursor-pointer"
+          onClick={handleLogin}
         >
           <FcGoogle size={20} />
           Continue with Google

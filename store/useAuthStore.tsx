@@ -11,12 +11,11 @@ import {
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth } from "@/firebaseConfig/firebase";
 import { db } from "@/firebaseConfig/firebase";
-import router from "next/router";
 
 interface AuthState {
   user: User | null;
   loading: boolean;
-  loginWithGoogle: () => Promise<void>;
+  loginWithGoogle: () => Promise<User | null>;
   logout: () => Promise<void>;
   initAuth: () => void;
 }
@@ -29,8 +28,9 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-
       const user = result.user;
+
+      console.log("Logged in user:", user);
 
       // 🔥 Save user to Firestore
       const userRef = doc(db, "users", user.uid);
@@ -47,16 +47,16 @@ export const useAuthStore = create<AuthState>((set) => ({
       }
 
       set({ user });
-      router.push("/checkout");
+      return user; // ✅ return user
     } catch (error) {
       console.error("Google login error:", error);
+      return null; // ✅ return null on error
     }
   },
 
   logout: async () => {
     await signOut(auth);
     set({ user: null });
-    router.push("/");
   },
 
   initAuth: () => {

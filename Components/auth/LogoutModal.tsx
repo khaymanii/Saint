@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogTrigger,
@@ -9,6 +11,7 @@ import {
   DialogClose,
 } from "@/Components/ui/dialog";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "next/navigation";
 
 interface Props {
   children: React.ReactNode;
@@ -24,6 +27,12 @@ export default function LogoutModal({
   triggerClassName,
 }: Props) {
   const logout = useAuthStore((state) => state.logout);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logout();
+    router.push("/");
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -47,7 +56,7 @@ export default function LogoutModal({
           </DialogClose>
 
           <button
-            onClick={logout}
+            onClick={handleLogout}
             className="px-4 py-2 text-sm rounded-md bg-red-600 text-white hover:opacity-90 cursor-pointer"
           >
             Log out

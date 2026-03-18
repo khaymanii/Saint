@@ -60,7 +60,7 @@ export default function OrderSummary() {
         </div>
       </div>
       {/* Payment */}
-      <div className="mt-6 space-y-4 text-sm">
+      {/* <div className="mt-6 space-y-4 text-sm">
         <label className="flex items-center gap-3">
           <input
             type="radio"
@@ -73,7 +73,7 @@ export default function OrderSummary() {
         </label>
       </div>
 
-      {/* <div className="flex gap-3 mt-6">
+     <div className="flex gap-3 mt-6">
         <input
           placeholder="Coupon Code"
           className="border p-3 rounded w-full text-xs"

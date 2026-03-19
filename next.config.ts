@@ -26,7 +26,6 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-    domains: ["images.unsplash.com"],
   },
 };
 

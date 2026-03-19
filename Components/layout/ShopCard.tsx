@@ -23,6 +23,7 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
             src={image[0]}
             alt={name}
             fill
+            sizes="(max-width: 1024px) 50vw, 25vw"
             className="object-cover group-hover:scale-105 transition duration-300"
           />
           {/* Wishlist */}

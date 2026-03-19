@@ -31,6 +31,7 @@ export default function OrderSummary() {
                   src={item.image}
                   alt={item.name}
                   fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
                   className="object-contain"
                 />
               </div>
@@ -86,7 +87,7 @@ export default function OrderSummary() {
      */}
 
       {/* Place Order */}
-      <button className="mt-6 bg-[#063c71] text-xs text-white px-8 py-3 rounded">
+      <button className="mt-6 bg-[#063c71] text-xs text-white px-8 py-3 rounded-md">
         Place Order
       </button>
     </div>

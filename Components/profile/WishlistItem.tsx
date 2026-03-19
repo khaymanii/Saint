@@ -12,14 +12,15 @@ export default function WishlistItem({ name, color, price, image }: Props) {
     <div className="border-b py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       {/* Product Info */}
       <div className="flex items-center gap-4">
-        <button className="text-gray-400 hover:text-red-500">✕</button>
+        <button className="text-red-500">✕</button>
 
         <Image
           src={image}
           alt={name}
           width={70}
           height={70}
-          className="rounded object-cover"
+          loading="eager"
+          className="rounded object-cover w-17.5 h-17.5"
         />
 
         <div>

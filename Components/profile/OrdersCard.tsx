@@ -35,7 +35,7 @@ export default function OrderCard({ order }: Props) {
             alt={order.product.name}
             width={55}
             height={55}
-            className="rounded object-cover"
+            className="rounded-md object-cover w-13.75 h-13.75"
           />
 
           <div>

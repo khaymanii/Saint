@@ -20,6 +20,7 @@ export default function CartItem({
               src={item.image}
               alt={item.name}
               fill
+              sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-cover rounded"
             />
           </div>
@@ -62,6 +63,7 @@ export default function CartItem({
             src={item.image}
             alt={item.name}
             fill
+            sizes="(max-width: 1024px) 50vw, 25vw"
             className="object-cover rounded-md"
           />
         </div>

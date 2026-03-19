@@ -96,7 +96,7 @@ export default function AccountSidebar() {
               href={item.href}
               className={`px-3 py-2 rounded text-sm flex items-center transition ${
                 isActive
-                  ? "bg-[#063c71] text-white"
+                  ? "bg-[#063c71] text-white rounded-md"
                   : "hover:bg-[#063c71]/10 text-gray-700"
               }`}
             >

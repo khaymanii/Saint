@@ -14,6 +14,7 @@ export default function EmptyCart() {
             alt="Empty cart"
             width={260}
             height={260}
+            loading="eager"
             className="object-contain"
           />
         </div>

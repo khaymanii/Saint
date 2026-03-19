@@ -62,6 +62,8 @@ export default function Shop() {
           src="/images/ball1.jpg"
           alt="Shop Banner"
           fill
+          loading="eager"
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/35 flex flex-col items-center justify-center text-white">

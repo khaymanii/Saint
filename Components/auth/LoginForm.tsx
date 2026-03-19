@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useRouter } from "next/navigation"; // ✅ correct import for App Router
+import { useRouter } from "next/navigation";
 
 export function Login() {
   const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
-  const router = useRouter(); // ✅ initialize router inside component
+  const router = useRouter();
 
   const handleLogin = async () => {
     const user = await loginWithGoogle();

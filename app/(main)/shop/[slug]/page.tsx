@@ -40,6 +40,8 @@ export default function ProductPage({
                   src={img}
                   alt=""
                   fill
+                  loading="eager"
+                  sizes="80px"
                   className="object-cover rounded-md"
                 />
               </div>
@@ -51,6 +53,8 @@ export default function ProductPage({
               src={selectedImage!}
               alt={product.name}
               fill
+              loading="eager"
+              sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-contain p-6"
             />
           </div>

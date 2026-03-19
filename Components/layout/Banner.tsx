@@ -15,6 +15,8 @@ export function Banner() {
               src="/images/ball1.jpg"
               alt="Background texture"
               fill
+              loading="eager"
+              sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-cover"
             />
           </div>
@@ -62,6 +64,8 @@ export function Banner() {
             src="/images/footballwomen1.jpg"
             alt="Saint Athlete"
             fill
+            loading="eager"
+            sizes="(max-width: 1024px) 50vw, 25vw"
             className="object-cover"
           />
         </div>

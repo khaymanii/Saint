@@ -5,7 +5,6 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/Components/layout/Header";
 import { Footer } from "@/Components/layout/Footer";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 
@@ -25,8 +24,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const hideLayout = pathname === "/login";
   const initAuth = useAuthStore((state) => state.initAuth);
 
   useEffect(() => {
@@ -57,9 +54,9 @@ export default function RootLayout({
       </head>
 
       <body className="antialiased flex flex-col min-h-screen">
-        {!hideLayout && <Header />}
+        <Header />
         <main className="grow">{children}</main>
-        {!hideLayout && <Footer />}
+        <Footer />
       </body>
     </html>
   );

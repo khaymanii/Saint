@@ -17,8 +17,10 @@ interface AuthState {
   loading: boolean;
   loginWithGoogle: () => Promise<User | null>;
   logout: () => Promise<void>;
-  initAuth: () => void;
+  initAuth: () => (() => void) | void;
 }
+
+let hasInitialized = false;
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
@@ -60,8 +62,13 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   initAuth: () => {
-    onAuthStateChanged(auth, (user) => {
+    if (hasInitialized) return;
+    hasInitialized = true;
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       set({ user, loading: false });
     });
+
+    return unsubscribe;
   },
 }));

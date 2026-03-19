@@ -3,10 +3,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/Components/layout/Header";
-import { Footer } from "@/Components/layout/Footer";
-import { useEffect } from "react";
-import { useAuthStore } from "@/store/useAuthStore";
+import { AuthInit } from "@/Components/providers/AuthInit";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,22 +11,11 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const metadata: Metadata = {
-  title: "Saint - Relentless",
-  description: "Sportswear and Gears for the Relentless",
-};
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const initAuth = useAuthStore((state) => state.initAuth);
-
-  useEffect(() => {
-    initAuth();
-  }, []);
-
   return (
     <html lang="en" className={`${poppins.className}`}>
       <head>
@@ -54,9 +40,7 @@ export default function RootLayout({
       </head>
 
       <body className="antialiased flex flex-col min-h-screen">
-        <Header />
-        <main className="grow">{children}</main>
-        <Footer />
+        <AuthInit>{children}</AuthInit>
       </body>
     </html>
   );

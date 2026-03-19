@@ -20,7 +20,7 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
       <Link href={`/shop/${slugify(name)}`}>
         <div className="relative w-full h-52 sm:h-64 lg:h-80 bg-gray-100 overflow-hidden">
           <Image
-            src={image[0]}
+            src={image?.[0] || "/images/ball1.jpg"}
             alt={name}
             fill
             sizes="(max-width: 1024px) 50vw, 25vw"

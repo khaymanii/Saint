@@ -123,7 +123,6 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Progress bar */}
       <div className="absolute bottom-0 left-0 w-full h-0.75 bg-white/10 z-40">
         <div
           key={current}

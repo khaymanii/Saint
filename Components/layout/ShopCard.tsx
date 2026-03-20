@@ -18,6 +18,7 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
     <div className="group cursor-pointer border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-300">
       {/* Image */}
       <Link href={`/shop/${slugify(name)}`}>
+        {" "}
         <div className="relative w-full h-52 sm:h-64 lg:h-80 bg-gray-100 overflow-hidden">
           <Image
             src={image?.[0] || "/images/ball1.jpg"}
@@ -43,7 +44,10 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
         <div className="flex items-center justify-between mt-2">
           <div className="text-sm font-semibold text-gray-900">${price}</div>
 
-          <button className="flex text-xs items-center gap-1 bg-[#063c71] text-white p-2 rounded-full hover:bg-[#042a50] transition">
+          <button
+            className="flex text-xs items-center gap-1 bg-[#063c71] text-white p-2 rounded-full hover:bg-[#042a50] transition"
+            onClick={() => id}
+          >
             <ShoppingCart size={16} />
           </button>
         </div>

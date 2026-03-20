@@ -7,13 +7,30 @@ export function Footer() {
   return (
     <footer className="bg-[#063c71] text-white py-10">
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Copyright */}
-        <div>
-          {" "}
-          <h1 className="text-2xl font-bold sm:text-left text-center">SAINT</h1>
+        <div className="text-center md:text-left">
+          <Link href="/">
+            <h1 className="text-2xl font-bold">SAINT</h1>
+          </Link>
+
           <p className="font-medium">
             Sportswear and Gears for the Relentless.
           </p>
+        </div>
+
+        {/* Legal Links */}
+        <div className="flex gap-6 text-sm">
+          <Link
+            href="/privacy-policy"
+            className="hover:underline hover:text-gray-300 transition"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/terms-of-service"
+            className="hover:underline hover:text-gray-300 transition"
+          >
+            Terms of Service
+          </Link>
         </div>
 
         {/* Social Icons */}
@@ -48,6 +65,8 @@ export function Footer() {
           </Link>
         </div>
       </div>
+
+      {/* Bottom */}
       <div className="container mx-auto px-6 mt-6">
         <p className="text-center text-sm">
           © {new Date().getFullYear()} Saint. All rights reserved.

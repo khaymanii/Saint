@@ -21,13 +21,11 @@ export function Banner() {
             />
           </div>
 
-          {/* Overlay */}
           <div className="absolute inset-0 bg-[#063c71]/80" />
 
-          {/* Content */}
           <div className="relative z-10 max-w-md">
             <span className="uppercase tracking-widest text-sm text-blue-200 font-semibold">
-              New Collection
+              New Gears
             </span>
 
             <h1 className="text-2xl md:text-5xl font-bold mt-4 leading-tight">

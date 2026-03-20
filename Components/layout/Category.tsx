@@ -15,7 +15,7 @@ export function Category() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category) => (
             <Link
-              key={category.name}
+              key={category.id}
               href={category.link}
               className="group relative h-80 overflow-hidden rounded-xl"
             >

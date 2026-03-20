@@ -14,7 +14,7 @@ export function Features() {
           </div>
 
           <h3 className="mt-4 font-semibold text-sm tracking-wide">
-            SwIFT AND FAST DELIVERY
+            SWIFT AND FAST DELIVERY
           </h3>
 
           <p className="text-xs text-gray-600 mt-2">

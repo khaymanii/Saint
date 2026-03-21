@@ -11,6 +11,7 @@ import {
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth } from "@/firebaseConfig/firebase";
 import { db } from "@/firebaseConfig/firebase";
+import { useCartStore } from "@/store/useCartStore";
 
 interface AuthState {
   user: User | null;
@@ -62,8 +63,16 @@ export const useAuthStore = create<AuthState>((set) => ({
     if (hasInitialized) return;
     hasInitialized = true;
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       set({ user, loading: false });
+
+      // 🔥 THIS IS THE MISSING PIECE
+      if (user?.uid) {
+        const cartStore = useCartStore.getState();
+
+        await cartStore.mergeGuestCartToUserCart(user.uid);
+        await cartStore.loadCart(user.uid);
+      }
     });
 
     return unsubscribe;

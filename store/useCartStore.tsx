@@ -1,155 +1,228 @@
-"use client";
-
 import { create } from "zustand";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { toast } from "sonner";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "@/firebaseConfig/firebase";
-import { toast } from "sonner"; // shadcn toast
 
-type CartItem = {
-  id: string;
+export interface CartItem {
+  id: number;
   name: string;
   price: number;
   image: string;
   quantity: number;
-};
-
-interface CartState {
-  cartItems: CartItem[];
-  cartCount: number;
-  subtotal: number;
-  loading: boolean;
-
-  fetchCart: (userId: string) => Promise<void>;
-  addToCart: (
-    userId: string,
-    item: Omit<CartItem, "quantity">,
-  ) => Promise<void>;
-  removeFromCart: (userId: string, itemId: string) => Promise<void>;
 }
 
-export const useCartStore = create<CartState>((set, get) => ({
-  cartItems: [],
-  cartCount: 0,
-  subtotal: 0,
-  loading: false,
+interface CartStore {
+  cart: CartItem[];
 
-  fetchCart: async (userId) => {
-    if (!userId) return;
+  addToCart: (item: Omit<CartItem, "quantity">, userId?: string) => void;
+  removeFromCart: (id: number, userId?: string) => void;
+  mergeGuestCartToUserCart: (userId: string) => Promise<void>;
+  increaseQty: (id: number, userId?: string) => void;
+  decreaseQty: (id: number, userId?: string) => void;
+  clearCart: (userId?: string) => void;
 
-    set({ loading: true });
+  loadCart: (userId?: string) => void;
 
+  getTotalItems: () => number;
+  getTotalPrice: () => number;
+}
+
+/* ================= LOCAL STORAGE HELPERS ================= */
+
+const CART_KEY = "cart-storage";
+
+const saveToLocal = (cart: CartItem[]) => {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+};
+
+const loadFromLocal = (): CartItem[] => {
+  if (typeof window === "undefined") return [];
+  const data = localStorage.getItem(CART_KEY);
+  return data ? JSON.parse(data) : [];
+};
+
+/* ================= STORE ================= */
+
+export const useCartStore = create<CartStore>((set, get) => {
+  const syncCartToFirebase = async (userId: string, cart: CartItem[]) => {
     try {
-      const cartRef = doc(db, "carts", userId);
-      const snap = await getDoc(cartRef);
+      await setDoc(doc(db, "carts", userId), { cart });
+    } catch (error) {
+      console.error("Firebase sync failed:", error);
+      toast.error("Failed to sync cart to cloud");
+    }
+  };
 
-      if (snap.exists()) {
-        const data = snap.data();
+  return {
+    // 🧠 INIT FROM LOCAL STORAGE
+    cart: loadFromLocal(),
 
-        set({
-          cartItems: data.items || [],
-          cartCount: data.cartCount || 0,
-          subtotal: data.subtotal || 0,
-        });
-      } else {
-        await setDoc(cartRef, {
-          items: [],
-          cartCount: 0,
-          subtotal: 0,
+    /* ================= ADD TO CART ================= */
+    addToCart: (item, userId) => {
+      set((state) => {
+        const existing = state.cart.find((p) => p.id === item.id);
+
+        let updatedCart: CartItem[];
+
+        if (existing) {
+          updatedCart = state.cart.map((p) =>
+            p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p,
+          );
+
+          toast.info("Increased quantity in cart 🛒");
+        } else {
+          updatedCart = [...state.cart, { ...item, quantity: 1 }];
+          toast.success("Gear added to cart 🛍️");
+        }
+
+        // 💾 LOCAL FIRST (IMPORTANT)
+        saveToLocal(updatedCart);
+
+        // ☁️ FIREBASE (OPTIONAL)
+        if (userId) syncCartToFirebase(userId, updatedCart);
+
+        return { cart: updatedCart };
+      });
+    },
+
+    /* ================= REMOVE ================= */
+    removeFromCart: (id, userId) => {
+      set((state) => {
+        const updatedCart = state.cart.filter((item) => item.id !== id);
+
+        toast.error("Gear removed from cart ❌");
+
+        saveToLocal(updatedCart);
+        if (userId) syncCartToFirebase(userId, updatedCart);
+
+        return { cart: updatedCart };
+      });
+    },
+
+    mergeGuestCartToUserCart: async (userId: string) => {
+      try {
+        const guestCart = loadFromLocal();
+
+        const ref = doc(db, "carts", userId);
+        const snap = await getDoc(ref);
+
+        let userCart: CartItem[] = [];
+
+        if (snap.exists()) {
+          userCart = snap.data().cart || [];
+        }
+
+        // 🔥 MERGE LOGIC
+        const merged = [...userCart];
+
+        guestCart.forEach((guestItem) => {
+          const existing = merged.find((i) => i.id === guestItem.id);
+
+          if (existing) {
+            existing.quantity += guestItem.quantity;
+          } else {
+            merged.push(guestItem);
+          }
         });
 
-        set({
-          cartItems: [],
-          cartCount: 0,
-          subtotal: 0,
-        });
+        // Save merged result
+        await setDoc(ref, { cart: merged });
+
+        // update local + state
+        set({ cart: merged });
+        saveToLocal(merged);
+
+        toast.success("Cart synced with your account 🛒");
+      } catch (err) {
+        console.error(err);
+        toast.error("Cart sync failed");
       }
-    } catch (err) {
-      console.error("fetchCart error:", err);
-    } finally {
-      set({ loading: false });
-    }
-  },
+    },
 
-  addToCart: async (userId, item) => {
-    if (!userId) return;
+    /* ================= INCREASE ================= */
+    increaseQty: (id, userId) => {
+      set((state) => {
+        const updatedCart = state.cart.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+        );
 
-    const { cartItems } = get();
+        toast.info("Quantity increased ➕");
 
-    // 🔥 Prevent duplicates (increase quantity instead)
-    const existingItem = cartItems.find((i) => i.id === item.id);
+        saveToLocal(updatedCart);
+        if (userId) syncCartToFirebase(userId, updatedCart);
 
-    let updatedItems;
-
-    if (existingItem) {
-      updatedItems = cartItems.map((i) =>
-        i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i,
-      );
-
-      toast(`${item.name} quantity increased`);
-    } else {
-      updatedItems = [...cartItems, { ...item, quantity: 1 }];
-
-      toast.success(`${item.name} added to cart`);
-    }
-
-    const updatedSubtotal = updatedItems.reduce(
-      (acc, i) => acc + i.price * i.quantity,
-      0,
-    );
-
-    const cartRef = doc(db, "carts", userId);
-
-    try {
-      await updateDoc(cartRef, {
-        items: updatedItems,
-        cartCount: updatedItems.reduce((acc, i) => acc + i.quantity, 0),
-        subtotal: updatedSubtotal,
+        return { cart: updatedCart };
       });
+    },
 
-      set({
-        cartItems: updatedItems,
-        cartCount: updatedItems.reduce((acc, i) => acc + i.quantity, 0),
-        subtotal: updatedSubtotal,
+    /* ================= DECREASE ================= */
+    decreaseQty: (id, userId) => {
+      set((state) => {
+        const item = state.cart.find((i) => i.id === id);
+
+        let updatedCart: CartItem[];
+
+        if (item?.quantity === 1) {
+          updatedCart = state.cart.filter((i) => i.id !== id);
+          toast.warning("Item removed from cart");
+        } else {
+          updatedCart = state.cart.map((item) =>
+            item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+          );
+
+          toast.info("Quantity decreased ➖");
+        }
+
+        saveToLocal(updatedCart);
+        if (userId) syncCartToFirebase(userId, updatedCart);
+
+        return { cart: updatedCart };
       });
-    } catch (err) {
-      console.error("addToCart error:", err);
+    },
 
-      toast.error("Failed to add gear to cart");
-    }
-  },
+    /* ================= CLEAR ================= */
+    clearCart: (userId) => {
+      set(() => {
+        const empty: CartItem[] = [];
 
-  removeFromCart: async (userId, itemId) => {
-    if (!userId) return;
+        toast.success("Cart cleared 🧹");
 
-    const { cartItems } = get();
+        saveToLocal(empty);
+        if (userId) syncCartToFirebase(userId, empty);
 
-    const updatedItems = cartItems.filter((i) => i.id !== itemId);
-
-    const updatedSubtotal = updatedItems.reduce(
-      (acc, i) => acc + i.price * i.quantity,
-      0,
-    );
-
-    const cartRef = doc(db, "carts", userId);
-
-    try {
-      await updateDoc(cartRef, {
-        items: updatedItems,
-        cartCount: updatedItems.reduce((acc, i) => acc + i.quantity, 0),
-        subtotal: updatedSubtotal,
+        return { cart: empty };
       });
+    },
 
-      set({
-        cartItems: updatedItems,
-        cartCount: updatedItems.reduce((acc, i) => acc + i.quantity, 0),
-        subtotal: updatedSubtotal,
-      });
+    /* ================= LOAD FROM FIREBASE ================= */
+    loadCart: async (userId?: string) => {
+      try {
+        if (!userId) return;
 
-      toast.success("Gear removed from cart");
-    } catch (err) {
-      console.error("removeFromCart error:", err);
+        const ref = doc(db, "carts", userId);
+        const snap = await getDoc(ref);
 
-      toast.error("Failed to remove gear from cart");
-    }
-  },
-}));
+        if (snap.exists()) {
+          const data = snap.data();
+
+          const cart = data.cart || [];
+
+          set({ cart });
+
+          // sync local too
+          saveToLocal(cart);
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to load cart");
+      }
+    },
+
+    /* ================= TOTALS ================= */
+    getTotalItems: () => get().cart.reduce((t, i) => t + i.quantity, 0),
+
+    getTotalPrice: () =>
+      get().cart.reduce((t, i) => t + i.price * i.quantity, 0),
+  };
+});

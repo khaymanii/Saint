@@ -7,6 +7,7 @@ import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/Components/ui/Button";
 import { useAuthStore } from "@/store/useAuthStore";
 import Image from "next/image";
+import { CartBadge } from "@/Components/cart/CartBadge";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,7 +61,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/login" className={linkClasses("/login")}>
+          <Link href="/profile" className={linkClasses("/login")}>
             {user && user.photoURL ? (
               <Image
                 src={user.photoURL}
@@ -76,8 +77,9 @@ export function Header() {
             )}
           </Link>
           <Link href="/cart" className={linkClasses("/cart")}>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-10 w-10" />
+              <CartBadge />
             </Button>
           </Link>
         </div>

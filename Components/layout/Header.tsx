@@ -5,10 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/Components/ui/Button";
+import { useAuthStore } from "@/store/useAuthStore";
+import Image from "next/image";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const user = useAuthStore((state) => state.user);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -24,9 +27,7 @@ export function Header() {
   return (
     <header className="w-full shadow bg-white sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Left Section: Mobile Menu & Logo */}
         <div className="flex items-center gap-4">
-          {/* Mobile Hamburger Menu */}
           <div className="md:hidden">
             <Button
               variant="ghost"
@@ -41,13 +42,11 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Logo */}
           <Link href="/">
             <h1 className="text-2xl font-bold text-[#063c71]">SAINT</h1>
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 font-body text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -60,12 +59,21 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Right Section: Profile, Cart */}
         <div className="flex items-center gap-3">
-          <Link href="/profile" className={linkClasses("/profile")}>
-            <Button variant="ghost" size="icon">
-              <User className="h-10 w-10" />
-            </Button>
+          <Link href="/login" className={linkClasses("/login")}>
+            {user && user.photoURL ? (
+              <Image
+                src={user.photoURL}
+                alt="Profile"
+                width={30}
+                height={30}
+                className="rounded-full object-cover border-2 border-[#063c71]"
+              />
+            ) : (
+              <Button variant="ghost" size="icon">
+                <User className="h-10 w-10" />
+              </Button>
+            )}
           </Link>
           <Link href="/cart" className={linkClasses("/cart")}>
             <Button variant="ghost" size="icon">

@@ -11,7 +11,7 @@ export function Login() {
 
   const handleLogin = async () => {
     const user = await loginWithGoogle();
-    if (user) router.push("/checkout");
+    if (user) router.push("/profile");
   };
 
   return (

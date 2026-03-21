@@ -32,9 +32,6 @@ export const useAuthStore = create<AuthState>((set) => ({
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      console.log("Logged in user:", user);
-
-      // 🔥 Save user to Firestore
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
 

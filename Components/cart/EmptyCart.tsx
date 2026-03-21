@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function EmptyCart() {
   return (
-    <section className="w-full flex items-center justify-center bg-gray-100 py-20 px-4">
+    <section className="w-full flex items-center justify-center py-8 px-4">
       <div className="flex flex-col items-center text-center max-w-md">
         <div className="mb-6">
           <Image

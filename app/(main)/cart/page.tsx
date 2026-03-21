@@ -4,6 +4,7 @@ import CartItem from "@/Components/cart/CartItem";
 import Link from "next/link";
 import { Features } from "@/Components/layout/Features";
 import { useCartStore } from "@/store/useCartStore";
+import EmptyCart from "@/Components/cart/EmptyCart";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -20,6 +21,14 @@ export default function CartPage() {
   //const shipping = cart.reduce((acc, item) => acc + item.shipping, 0);
 
   //const total = subTotal + shipping;
+
+  if (cart.length === 0) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 text-center">
+        <EmptyCart />
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">

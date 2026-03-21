@@ -27,8 +27,10 @@ export default function CartItem({
 
           <div>
             <p className="font-medium">{item.name}</p>
-            <p className="text-sm text-gray-500">Color : {item.color}</p>
-            <p className="text-sm text-gray-500">Size : {item.size}</p>
+            <p className="text-sm text-gray-500">
+              Color : {item.selectedColor}
+            </p>
+            <p className="text-sm text-gray-500">Size : {item.selectedSize}</p>
           </div>
         </div>
 
@@ -36,13 +38,23 @@ export default function CartItem({
 
         {/* Quantity */}
         <div className="flex items-center border rounded w-fit">
-          <button onClick={() => decreaseQty(item.id)} className="px-3">
+          <button
+            onClick={() =>
+              decreaseQty(item.id, item.selectedSize, item.selectedColor)
+            }
+            className="px-3"
+          >
             -
           </button>
 
           <span className="px-4">{item.quantity}</span>
 
-          <button onClick={() => increaseQty(item.id)} className="px-3">
+          <button
+            onClick={() =>
+              increaseQty(item.id, item.selectedSize, item.selectedColor)
+            }
+            className="px-3"
+          >
             +
           </button>
         </div>
@@ -52,7 +64,9 @@ export default function CartItem({
         <p>${subtotal}.00</p>
 
         <button
-          onClick={() => removeFromCart(item.id)}
+          onClick={() =>
+            removeFromCart(item.id, item.selectedSize, item.selectedColor)
+          }
           className="text-red-500"
         >
           <Trash2 size={18} />
@@ -75,26 +89,38 @@ export default function CartItem({
           <p className="font-medium">{item.name}</p>
 
           <p className="text-sm text-gray-500">
-            Color: {item.color} • Size: {item.size}
+            Color: {item.selectedColor} • Size: {item.selectedSize}
           </p>
 
           <p className="text-sm mt-1">${item.price}.00</p>
 
           <div className="flex items-center gap-3 mt-3">
             <div className="flex items-center border rounded">
-              <button onClick={() => decreaseQty(item.id)} className="px-3">
+              <button
+                onClick={() =>
+                  decreaseQty(item.id, item.selectedSize, item.selectedColor)
+                }
+                className="px-3"
+              >
                 -
               </button>
 
               <span className="px-4">{item.quantity}</span>
 
-              <button onClick={() => increaseQty(item.id)} className="px-3">
+              <button
+                onClick={() =>
+                  increaseQty(item.id, item.selectedSize, item.selectedColor)
+                }
+                className="px-3"
+              >
                 +
               </button>
             </div>
 
             <button
-              onClick={() => removeFromCart(item.id)}
+              onClick={() =>
+                removeFromCart(item.id, item.selectedSize, item.selectedColor)
+              }
               className="text-red-500"
             >
               <Trash2 size={18} />

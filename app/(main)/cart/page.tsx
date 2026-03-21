@@ -1,44 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { CART_ITEMS } from "@/data/cart";
 import CartItem from "@/Components/cart/CartItem";
 import Link from "next/link";
 import { Features } from "@/Components/layout/Features";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function CartPage() {
-  const [cart, setCart] = useState(CART_ITEMS);
+  const cart = useCartStore((state) => state.cart);
 
-  const increaseQty = (id: number) => {
-    setCart(
-      cart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
-    );
-  };
-
-  const decreaseQty = (id: number) => {
-    setCart(
-      cart.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
-          : item,
-      ),
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCart(cart.filter((item) => item.id !== id));
-  };
+  const increaseQty = useCartStore((state) => state.increaseQty);
+  const decreaseQty = useCartStore((state) => state.decreaseQty);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
 
   const subTotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
 
-  const shipping = cart.reduce((acc, item) => acc + item.shipping, 0);
+  //const shipping = cart.reduce((acc, item) => acc + item.shipping, 0);
 
-  const total = subTotal + shipping;
+  //const total = subTotal + shipping;
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
@@ -65,7 +46,7 @@ export default function CartPage() {
           item={item}
           increaseQty={increaseQty}
           decreaseQty={decreaseQty}
-          removeItem={removeItem}
+          removeFromCart={removeFromCart}
         />
       ))}
 
@@ -100,7 +81,7 @@ export default function CartPage() {
             <p>${subTotal}.00</p>
           </div>
 
-          <div className="flex text-sm justify-between mb-3">
+          {/* <div className="flex text-sm justify-between mb-3">
             <p>Shipping</p>
             <p>${shipping}.00</p>
           </div>
@@ -108,7 +89,7 @@ export default function CartPage() {
           <div className="flex justify-between font-semibold text-lg mt-6">
             <p>Grand Total</p>
             <p>${total}.00</p>
-          </div>
+          </div>*/}
 
           <Link href="/checkout">
             <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer">

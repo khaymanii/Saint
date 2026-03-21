@@ -23,6 +23,8 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
       name,
       price,
       image: image?.[0] || "/images/ball1.jpg",
+      selectedSize: "L",
+      selectedColor: "Black",
     });
   };
 
@@ -43,26 +45,25 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
             <Heart size={18} className="text-[#063c71]" />
           </div>
         </div>
+
+        {/* Product Info */}
+        <div className="p-3 flex flex-col gap-2">
+          <div>
+            <p className="sm:text-sm text-xs font-medium line-clamp-1">
+              {name}
+            </p>
+            <p className="text-xs text-gray-500">{brand}</p>
+          </div>
+
+          <div className="flex items-center justify-between mt-2">
+            <div className="text-sm font-semibold text-gray-900">${price}</div>
+
+            <button className="flex text-xs items-center gap-1 bg-[#063c71] text-white p-2 rounded-full hover:bg-[#042a50] transition">
+              <ShoppingCart size={16} />
+            </button>
+          </div>
+        </div>
       </Link>
-
-      {/* Product Info */}
-      <div className="p-3 flex flex-col gap-2">
-        <div>
-          <p className="sm:text-sm text-xs font-medium line-clamp-1">{name}</p>
-          <p className="text-xs text-gray-500">{brand}</p>
-        </div>
-
-        <div className="flex items-center justify-between mt-2">
-          <div className="text-sm font-semibold text-gray-900">${price}</div>
-
-          <button
-            className="flex text-xs items-center gap-1 bg-[#063c71] text-white p-2 rounded-full hover:bg-[#042a50] transition"
-            onClick={handleAddToCart}
-          >
-            <ShoppingCart size={16} />
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

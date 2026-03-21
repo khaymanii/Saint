@@ -5,7 +5,7 @@ export default function CartItem({
   item,
   increaseQty,
   decreaseQty,
-  removeItem,
+  removeFromCart,
 }: any) {
   const subtotal = item.price * item.quantity;
 
@@ -51,7 +51,10 @@ export default function CartItem({
 
         <p>${subtotal}.00</p>
 
-        <button onClick={() => removeItem(item.id)} className="text-red-500">
+        <button
+          onClick={() => removeFromCart(item.id)}
+          className="text-red-500"
+        >
           <Trash2 size={18} />
         </button>
       </div>
@@ -91,7 +94,7 @@ export default function CartItem({
             </div>
 
             <button
-              onClick={() => removeItem(item.id)}
+              onClick={() => removeFromCart(item.id)}
               className="text-red-500"
             >
               <Trash2 size={18} />

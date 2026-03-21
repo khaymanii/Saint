@@ -9,12 +9,24 @@ export interface CartItem {
   price: number;
   image: string;
   quantity: number;
+  selectedSize: string;
+  selectedColor: string;
+  shipping?: number;
 }
+
+export type AddToCartItem = {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  selectedSize: string;
+  selectedColor: string;
+  quantity?: number;
+};
 
 interface CartStore {
   cart: CartItem[];
-
-  addToCart: (item: Omit<CartItem, "quantity">, userId?: string) => void;
+  addToCart: (item: AddToCartItem, userId?: string) => void;
   removeFromCart: (id: number, userId?: string) => void;
   mergeGuestCartToUserCart: (userId: string) => Promise<void>;
   increaseQty: (id: number, userId?: string) => void;
@@ -61,25 +73,41 @@ export const useCartStore = create<CartStore>((set, get) => {
     /* ================= ADD TO CART ================= */
     addToCart: (item, userId) => {
       set((state) => {
-        const existing = state.cart.find((p) => p.id === item.id);
+        const existing = state.cart.find(
+          (p) =>
+            p.id === item.id &&
+            p.selectedSize === item.selectedSize &&
+            p.selectedColor === item.selectedColor,
+        );
 
         let updatedCart: CartItem[];
 
         if (existing) {
           updatedCart = state.cart.map((p) =>
-            p.id === item.id ? { ...p, quantity: p.quantity + 1 } : p,
+            p.id === item.id &&
+            p.selectedSize === item.selectedSize &&
+            p.selectedColor === item.selectedColor
+              ? { ...p, quantity: p.quantity + (item.quantity || 1) }
+              : p,
           );
 
           toast.info("Increased quantity in cart 🛒");
         } else {
-          updatedCart = [...state.cart, { ...item, quantity: 1 }];
+          updatedCart = [
+            ...state.cart,
+            {
+              ...item,
+              quantity: item.quantity || 1,
+            },
+          ];
+
           toast.success("Gear added to cart 🛍️");
         }
 
-        // 💾 LOCAL FIRST (IMPORTANT)
+        // 💾 LOCAL STORAGE
         saveToLocal(updatedCart);
 
-        // ☁️ FIREBASE (OPTIONAL)
+        // ☁️ FIREBASE SYNC
         if (userId) syncCartToFirebase(userId, updatedCart);
 
         return { cart: updatedCart };

@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { slugify } from "@/lib/slugify";
-import { useCartStore } from "@/store/useCartStore";
+import { useWishlistStore } from "@/store/useWishlistStore";
+import { useMemo } from "react";
 
 interface ShopCardProps {
   id: number;
@@ -15,17 +16,29 @@ interface ShopCardProps {
 }
 
 export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
-  const addToCart = useCartStore((state) => state.addToCart);
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
 
-  const handleAddToCart = () => {
-    addToCart({
-      id,
-      name,
-      price,
-      image: image?.[0] || "/images/ball1.jpg",
-      selectedSize: "L",
-      selectedColor: "Black",
-    });
+  /* ================= CHECK IF ITEM EXISTS ================= */
+  const isWishlisted = useMemo(() => {
+    return wishlist.some((item) => item.id === id);
+  }, [wishlist, id]);
+
+  /* ================= TOGGLE WISHLIST ================= */
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault(); // prevents link navigation
+
+    if (isWishlisted) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({
+        id,
+        name,
+        price,
+        image: image?.[0] || "/images/ball1.jpg",
+        quantity: 1,
+        selectedColor: "default",
+      });
+    }
   };
 
   return (
@@ -40,13 +53,22 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
             sizes="(max-width: 1024px) 50vw, 25vw"
             className="object-cover group-hover:scale-105 transition duration-300"
           />
-          {/* Wishlist */}
-          <div className="absolute top-3 right-3 bg-white rounded-full p-2 shadow">
-            <Heart size={18} className="text-[#063c71]" />
-          </div>
-        </div>
 
-        {/* Product Info */}
+          {/* Wishlist Button */}
+          <button
+            onClick={handleWishlist}
+            className="absolute top-3 right-3 bg-white rounded-full p-2 shadow cursor-pointer"
+          >
+            <Heart
+              size={18}
+              className={isWishlisted ? "fill-[#063c71]" : "text-[#063c71]"}
+            />
+          </button>
+        </div>
+      </Link>
+
+      {/* Product Info */}
+      <Link href={`/shop/${slugify(name)}`}>
         <div className="p-3 flex flex-col gap-2">
           <div>
             <p className="sm:text-sm text-xs font-medium line-clamp-1">

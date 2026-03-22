@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ShopCard } from "@/Components/layout/ShopCard";
 import { slugify } from "@/lib/slugify";
 import { useCartStore } from "@/store/useCartStore";
+import { toast } from "sonner";
 
 export default function ProductPage({
   params,
@@ -23,6 +24,8 @@ export default function ProductPage({
   if (!product) return <div>Product not found</div>;
 
   const related = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 8);
+
+  function handleAddToCart(): void {}
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
@@ -129,11 +132,14 @@ export default function ProductPage({
             </div>
 
             <button
-              className="bg-[#063c71] text-white px-8 py-3 rounded cursor-pointer"
-              disabled={!selectedSize || !selectedColor}
+              className={`bg-[#063c71] text-white px-8 py-3 rounded ${
+                !selectedSize || !selectedColor
+                  ? "opacity-50 cursor-not-allowed"
+                  : "cursor-pointer"
+              }`}
               onClick={() => {
                 if (!selectedSize || !selectedColor) {
-                  alert("Please select size and color");
+                  toast.error("Please select size and color");
                   return;
                 }
 
@@ -161,7 +167,7 @@ export default function ProductPage({
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {related.map((item) => (
-            <ShopCard image={[]} key={item.id} {...item} />
+            <ShopCard image={[item.images[0]]} key={item.id} {...item} />
           ))}
         </div>
       </div>

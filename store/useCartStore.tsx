@@ -90,6 +90,8 @@ export const useCartStore = create<CartStore>((set, get) => {
         let updatedCart: CartItem[];
 
         if (existing) {
+          toast.info("Gear already in cart 🛒");
+
           updatedCart = state.cart.map((p) =>
             p.id === item.id &&
             p.selectedSize === item.selectedSize &&

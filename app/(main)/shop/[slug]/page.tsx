@@ -5,17 +5,20 @@ import { use, useState } from "react";
 import Image from "next/image";
 import { ShopCard } from "@/Components/layout/ShopCard";
 import { slugify } from "@/lib/slugify";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function ProductPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const resolvedParams = use(params); // unwrap the promise
+  const resolvedParams = use(params);
   const product = PRODUCTS.find((p) => slugify(p.name) === resolvedParams.slug);
   const [selectedImage, setSelectedImage] = useState(product?.images[0]);
   const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const addToCart = useCartStore((state) => state.addToCart);
 
   if (!product) return <div>Product not found</div>;
 
@@ -79,7 +82,10 @@ export default function ProductPage({
               {product.colors.map((color) => (
                 <div
                   key={color}
-                  className="w-6 h-6 rounded-full border cursor-pointer"
+                  onClick={() => setSelectedColor(color)}
+                  className={`w-6 h-6 rounded-full border cursor-pointer ${
+                    selectedColor === color ? "ring-2 ring-[#063c71]" : ""
+                  }`}
                   style={{ backgroundColor: color }}
                 />
               ))}
@@ -122,7 +128,26 @@ export default function ProductPage({
               </button>
             </div>
 
-            <button className="bg-[#063c71] text-white px-8 py-3 rounded cursor-pointer">
+            <button
+              className="bg-[#063c71] text-white px-8 py-3 rounded cursor-pointer"
+              disabled={!selectedSize || !selectedColor}
+              onClick={() => {
+                if (!selectedSize || !selectedColor) {
+                  alert("Please select size and color");
+                  return;
+                }
+
+                addToCart({
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.images[0],
+                  selectedSize,
+                  selectedColor,
+                  quantity,
+                });
+              }}
+            >
               Add to Cart
             </button>
           </div>

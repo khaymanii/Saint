@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { toast } from "sonner";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { db } from "@/firebaseConfig/firebase";
+import { db, auth } from "@/firebaseConfig/firebase";
 
 export interface CartItem {
   id: number;
@@ -26,12 +26,12 @@ export type AddToCartItem = {
 
 interface CartStore {
   cart: CartItem[];
-  addToCart: (item: AddToCartItem, userId?: string) => void;
-  removeFromCart: (id: number, userId?: string) => void;
+  addToCart: (item: AddToCartItem) => void;
+  removeFromCart: (id: number) => void;
   mergeGuestCartToUserCart: (userId: string) => Promise<void>;
-  increaseQty: (id: number, userId?: string) => void;
-  decreaseQty: (id: number, userId?: string) => void;
-  clearCart: (userId?: string) => void;
+  increaseQty: (id: number) => void;
+  decreaseQty: (id: number) => void;
+  clearCart: () => void;
 
   loadCart: (userId?: string) => void;
 
@@ -57,11 +57,18 @@ const loadFromLocal = (): CartItem[] => {
 /* ================= STORE ================= */
 
 export const useCartStore = create<CartStore>((set, get) => {
-  const syncCartToFirebase = async (userId: string, cart: CartItem[]) => {
+  const syncCartToFirebase = async (cart: CartItem[]) => {
+    const user = auth.currentUser;
+
+    if (!user?.uid) {
+      console.log("Guest user — skipping Firebase sync");
+      return;
+    }
+
     try {
-      await setDoc(doc(db, "carts", userId), { cart });
+      await setDoc(doc(db, "carts", user.uid), { cart });
     } catch (error) {
-      console.error("Firebase sync failed:", error);
+      console.error("Failed to sync cart:", error);
       toast.error("Failed to sync cart to cloud");
     }
   };
@@ -71,7 +78,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     cart: loadFromLocal(),
 
     /* ================= ADD TO CART ================= */
-    addToCart: (item, userId) => {
+    addToCart: (item) => {
       set((state) => {
         const existing = state.cart.find(
           (p) =>
@@ -108,22 +115,20 @@ export const useCartStore = create<CartStore>((set, get) => {
         saveToLocal(updatedCart);
 
         // ☁️ FIREBASE SYNC
-        if (userId) syncCartToFirebase(userId, updatedCart);
-
+        syncCartToFirebase(updatedCart);
         return { cart: updatedCart };
       });
     },
 
     /* ================= REMOVE ================= */
-    removeFromCart: (id, userId) => {
+    removeFromCart: (id) => {
       set((state) => {
         const updatedCart = state.cart.filter((item) => item.id !== id);
 
         toast.error("Gear removed from cart ❌");
 
         saveToLocal(updatedCart);
-        if (userId) syncCartToFirebase(userId, updatedCart);
-
+        syncCartToFirebase(updatedCart);
         return { cart: updatedCart };
       });
     },
@@ -169,7 +174,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     },
 
     /* ================= INCREASE ================= */
-    increaseQty: (id, userId) => {
+    increaseQty: (id) => {
       set((state) => {
         const updatedCart = state.cart.map((item) =>
           item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
@@ -178,14 +183,13 @@ export const useCartStore = create<CartStore>((set, get) => {
         toast.info("Quantity increased ➕");
 
         saveToLocal(updatedCart);
-        if (userId) syncCartToFirebase(userId, updatedCart);
-
+        syncCartToFirebase(updatedCart);
         return { cart: updatedCart };
       });
     },
 
     /* ================= DECREASE ================= */
-    decreaseQty: (id, userId) => {
+    decreaseQty: (id) => {
       set((state) => {
         const item = state.cart.find((i) => i.id === id);
 
@@ -203,22 +207,20 @@ export const useCartStore = create<CartStore>((set, get) => {
         }
 
         saveToLocal(updatedCart);
-        if (userId) syncCartToFirebase(userId, updatedCart);
-
+        syncCartToFirebase(updatedCart);
         return { cart: updatedCart };
       });
     },
 
     /* ================= CLEAR ================= */
-    clearCart: (userId) => {
+    clearCart: () => {
       set(() => {
         const empty: CartItem[] = [];
 
         toast.success("Cart cleared 🧹");
 
         saveToLocal(empty);
-        if (userId) syncCartToFirebase(userId, empty);
-
+        syncCartToFirebase(empty);
         return { cart: empty };
       });
     },
@@ -248,8 +250,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     },
 
     /* ================= TOTALS ================= */
-    getTotalItems: () => get().cart.reduce((t, i) => t + i.quantity, 0),
-
+    getTotalItems: () => get().cart.length,
     getTotalPrice: () =>
       get().cart.reduce((t, i) => t + i.price * i.quantity, 0),
   };

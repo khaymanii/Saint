@@ -8,7 +8,6 @@ import EmptyCart from "@/Components/cart/EmptyCart";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
-
   const increaseQty = useCartStore((state) => state.increaseQty);
   const decreaseQty = useCartStore((state) => state.decreaseQty);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -87,17 +86,17 @@ export default function CartPage() {
         <div className="bg-gray-50 p-6 rounded-lg h-fit">
           <div className="flex text-sm justify-between mb-3">
             <p>Sub Total</p>
-            <p>${subTotal}.00</p>
+            <p>${subTotal}</p>
           </div>
 
           {/* <div className="flex text-sm justify-between mb-3">
             <p>Shipping</p>
-            <p>${shipping}.00</p>
+            <p>${shipping}</p>
           </div>
 
           <div className="flex justify-between font-semibold text-lg mt-6">
             <p>Grand Total</p>
-            <p>${total}.00</p>
+            <p>${total}</p>
           </div>*/}
 
           <Link href="/checkout">

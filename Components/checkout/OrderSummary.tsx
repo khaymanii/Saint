@@ -1,13 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { ORDER_ITEMS } from "@/data/checkout";
-import { useState } from "react";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function OrderSummary() {
-  const [payment, setPayment] = useState("cod");
+  const cart = useCartStore((state) => state.cart);
 
-  const subtotal = ORDER_ITEMS.reduce((acc, item) => acc + item.price, 0);
+  const subtotal = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
+  );
 
   const shipping = 0;
 
@@ -20,9 +22,10 @@ export default function OrderSummary() {
         <h2 className="sm:text-3xl text-2xl font-semibold mb-8 text-center">
           Order Summary
         </h2>
-        {ORDER_ITEMS.map((item) => (
+
+        {cart.map((item) => (
           <div
-            key={item.id}
+            key={`${item.id}-${item.selectedSize}-${item.selectedColor}`}
             className="flex items-center justify-between text-sm"
           >
             <div className="flex items-center gap-4">
@@ -31,23 +34,35 @@ export default function OrderSummary() {
                   src={item.image}
                   alt={item.name}
                   fill
-                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  sizes="50px"
                   className="object-contain"
                 />
               </div>
 
-              <p>{item.name}</p>
+              <div>
+                <p>{item.name}</p>
+
+                {/* ✅ Variant info */}
+                <p className="text-xs text-gray-500">
+                  {item.selectedColor} • {item.selectedSize}
+                </p>
+
+                {/* ✅ Quantity */}
+                <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
+              </div>
             </div>
 
-            <p>${item.price}</p>
+            {/* ✅ Price × quantity */}
+            <p>${(item.price * item.quantity).toFixed(2)}</p>
           </div>
         ))}
       </div>
+
       {/* Totals */}
       <div className="space-y-3 border-t pt-4">
         <div className="flex justify-between text-sm">
           <p>Subtotal:</p>
-          <p>${subtotal}</p>
+          <p>${subtotal.toFixed(2)}</p>
         </div>
 
         <div className="flex justify-between text-sm">
@@ -57,37 +72,14 @@ export default function OrderSummary() {
 
         <div className="flex justify-between font-semibold text-lg border-t pt-3">
           <p>Total:</p>
-          <p>${total}</p>
+          <p>${total.toFixed(2)}</p>
         </div>
       </div>
-      {/* Payment */}
-      {/* <div className="mt-6 space-y-4 text-sm">
-        <label className="flex items-center gap-3">
-          <input
-            type="radio"
-            name="payment"
-            checked={payment === "bank"}
-            onChange={() => setPayment("bank")}
-          />
 
-          <span>Bank</span>
-        </label>
-      </div>
-
-     <div className="flex gap-3 mt-6">
-        <input
-          placeholder="Coupon Code"
-          className="border p-3 rounded w-full text-xs"
-        />
-
-        <button className="bg-[#063c71] text-white px-6 rounded text-xs">
-          Apply Coupon
-        </button>
-      </div>
-     */}
-
-      {/* Place Order */}
-      <button className="mt-6 bg-[#063c71] text-xs text-white px-8 py-3 rounded-md">
+      <button
+        disabled={cart.length === 0}
+        className="mt-6 bg-[#063c71] text-xs text-white px-8 py-3 rounded-md disabled:opacity-50 cursor-pointer"
+      >
         Place Order
       </button>
     </div>

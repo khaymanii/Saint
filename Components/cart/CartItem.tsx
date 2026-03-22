@@ -34,7 +34,7 @@ export default function CartItem({
           </div>
         </div>
 
-        <p>${item.price}.00</p>
+        <p>${item.price}</p>
 
         {/* Quantity */}
         <div className="flex items-center border rounded w-fit">
@@ -59,9 +59,9 @@ export default function CartItem({
           </button>
         </div>
 
-        <p>{item.shipping === 0 ? "FREE" : `$${item.shipping}.00`}</p>
+        <p>{item.shipping === 0 ? "FREE" : `$${item.shipping}`}</p>
 
-        <p>${subtotal}.00</p>
+        <p>${subtotal}</p>
 
         <button
           onClick={() =>
@@ -128,7 +128,7 @@ export default function CartItem({
           </div>
 
           <p className="text-sm mt-2">
-            Subtotal: <span className="font-medium">${subtotal}.00</span>
+            Subtotal: <span className="font-medium">${subtotal}</span>
           </p>
         </div>
       </div>

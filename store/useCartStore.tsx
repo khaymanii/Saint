@@ -86,17 +86,8 @@ export const useCartStore = create<CartStore>((set, get) => {
         let updatedCart: CartItem[];
 
         if (existing) {
-          toast.info("Gear already in cart 🛒");
-
-          updatedCart = state.cart.map((p) =>
-            p.id === item.id &&
-            p.selectedSize === item.selectedSize &&
-            p.selectedColor === item.selectedColor
-              ? { ...p, quantity: p.quantity + (item.quantity || 1) }
-              : p,
-          );
-
-          toast.info("Increased quantity in cart 🛒");
+          toast.info("Gear already in cart — go to cart to update quantity");
+          return state;
         } else {
           updatedCart = [
             ...state.cart,

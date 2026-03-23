@@ -11,9 +11,7 @@ export default function CartItem({
 
   return (
     <div className="border-b py-6">
-      {/* Desktop Layout */}
       <div className="hidden md:grid grid-cols-7 items-center">
-        {/* Product */}
         <div className="col-span-2 flex items-center gap-4">
           <div className="w-20 h-20 relative bg-gray-100 rounded">
             <Image
@@ -36,7 +34,6 @@ export default function CartItem({
 
         <p>${item.price}</p>
 
-        {/* Quantity */}
         <div className="flex items-center border rounded w-fit">
           <button onClick={() => decreaseQty(item)} className="px-3">
             -

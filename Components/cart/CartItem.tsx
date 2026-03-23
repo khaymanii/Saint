@@ -38,23 +38,13 @@ export default function CartItem({
 
         {/* Quantity */}
         <div className="flex items-center border rounded w-fit">
-          <button
-            onClick={() =>
-              decreaseQty(item.id, item.selectedSize, item.selectedColor)
-            }
-            className="px-3"
-          >
+          <button onClick={() => decreaseQty(item)} className="px-3">
             -
           </button>
 
           <span className="px-4">{item.quantity}</span>
 
-          <button
-            onClick={() =>
-              increaseQty(item.id, item.selectedSize, item.selectedColor)
-            }
-            className="px-3"
-          >
+          <button onClick={() => increaseQty(item)} className="px-3">
             +
           </button>
         </div>
@@ -63,12 +53,7 @@ export default function CartItem({
 
         <p>${subtotal}</p>
 
-        <button
-          onClick={() =>
-            removeFromCart(item.id, item.selectedSize, item.selectedColor)
-          }
-          className="text-red-500"
-        >
+        <button onClick={() => removeFromCart(item)} className="text-red-500">
           <Trash2 size={18} />
         </button>
       </div>

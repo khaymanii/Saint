@@ -93,7 +93,7 @@ export default function Contact() {
             <Phone className="mx-auto mb-3 text-[#063c71]" />
             <h3 className="text-sm font-semibold">PHONE</h3>
             <p className="text-xs text-gray-600 mt-2">
-              +2349032894161 or +2348132894161
+              +2348166588402 or +2349032894161
             </p>
           </div>
 
@@ -153,7 +153,6 @@ export default function Contact() {
           </button>
         </form>
 
-        {/* SIDE PANEL */}
         <div className="bg-gray-100 rounded-md p-8 flex flex-col justify-center">
           <h3 className="text-lg font-semibold mb-3">Customer Support</h3>
 
@@ -167,7 +166,7 @@ export default function Contact() {
               <strong>Email:</strong> support@saintstore.com
             </p>
             <p>
-              <strong>Phone:</strong> +2349032894161 or +2348132894161
+              <strong>Phone:</strong> +2348166588402 or +2349032894161
             </p>
             <p>
               <strong>Hours:</strong> Mon – Fri, 9am – 5pm

@@ -54,7 +54,7 @@ export default function CartPage() {
       {/* Cart Items */}
       {cart.map((item) => (
         <CartItem
-          key={item.id}
+          key={`${item.id}-${item.selectedSize}-${item.selectedColor}`}
           item={item}
           increaseQty={increaseQty}
           decreaseQty={decreaseQty}

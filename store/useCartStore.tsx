@@ -27,10 +27,10 @@ export type AddToCartItem = {
 interface CartStore {
   cart: CartItem[];
   addToCart: (item: AddToCartItem) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (item: CartItem) => void;
   mergeGuestCartToUserCart: (userId: string) => Promise<void>;
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
+  increaseQty: (item: CartItem) => void;
+  decreaseQty: (item: CartItem) => void;
   clearCart: () => void;
 
   loadCart: (userId?: string) => void;
@@ -107,14 +107,22 @@ export const useCartStore = create<CartStore>((set, get) => {
       });
     },
 
-    removeFromCart: (id) => {
+    removeFromCart: (item) => {
       set((state) => {
-        const updatedCart = state.cart.filter((item) => item.id !== id);
+        const updatedCart = state.cart.filter(
+          (p) =>
+            !(
+              p.id === item.id &&
+              p.selectedSize === item.selectedSize &&
+              p.selectedColor === item.selectedColor
+            ),
+        );
 
         toast.error("Gear removed from cart ❌");
 
         saveToLocal(updatedCart);
         syncCartToFirebase(updatedCart);
+
         return { cart: updatedCart };
       });
     },
@@ -156,39 +164,40 @@ export const useCartStore = create<CartStore>((set, get) => {
       }
     },
 
-    increaseQty: (id) => {
+    increaseQty: (item) => {
       set((state) => {
-        const updatedCart = state.cart.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+        const updatedCart = state.cart.map((p) =>
+          p.id === item.id &&
+          p.selectedSize === item.selectedSize &&
+          p.selectedColor === item.selectedColor
+            ? { ...p, quantity: p.quantity + 1 }
+            : p,
         );
 
         toast.info("Quantity increased ➕");
 
         saveToLocal(updatedCart);
         syncCartToFirebase(updatedCart);
+
         return { cart: updatedCart };
       });
     },
 
-    decreaseQty: (id) => {
+    decreaseQty: (item) => {
       set((state) => {
-        const item = state.cart.find((i) => i.id === id);
+        const updatedCart = state.cart.map((p) =>
+          p.id === item.id &&
+          p.selectedSize === item.selectedSize &&
+          p.selectedColor === item.selectedColor
+            ? { ...p, quantity: Math.max(1, p.quantity - 1) }
+            : p,
+        );
 
-        let updatedCart: CartItem[];
-
-        if (item?.quantity === 1) {
-          updatedCart = state.cart.filter((i) => i.id !== id);
-          toast.warning("Item removed from cart");
-        } else {
-          updatedCart = state.cart.map((item) =>
-            item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
-          );
-
-          toast.info("Quantity decreased ➖");
-        }
+        toast.info("Quantity decreased ➖");
 
         saveToLocal(updatedCart);
         syncCartToFirebase(updatedCart);
+
         return { cart: updatedCart };
       });
     },

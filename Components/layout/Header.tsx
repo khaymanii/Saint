@@ -86,7 +86,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu — absolutely positioned so it overlays content below */}
       {isMobileMenuOpen && (
         <nav className="md:hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 font-body text-base z-50">
           {navLinks.map((link) => (

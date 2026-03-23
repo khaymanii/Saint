@@ -53,10 +53,8 @@ export function Hero() {
         />
       ))}
 
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/40 to-black/70 z-20" />
 
-      {/* Content */}
       <div
         key={current}
         className={`relative z-30 flex flex-col items-center justify-center text-center h-full px-6 md:px-12 lg:px-24
@@ -80,7 +78,6 @@ export function Hero() {
           {slide.accent}
         </p>
 
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
             href="/shop"
@@ -91,7 +88,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Prev / Next Arrows */}
       <button
         onClick={prev}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-40 p-2 bg-black/30 hover:bg-black/60 text-white transition rounded-full"
@@ -107,7 +103,6 @@ export function Hero() {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Dot indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex gap-3">
         {slides.map((_, i) => (
           <button
@@ -131,7 +126,6 @@ export function Hero() {
         />
       </div>
 
-      {/* Keyframes */}
       <style jsx>{`
         @keyframes slideIn {
           from {

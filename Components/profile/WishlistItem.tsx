@@ -18,7 +18,7 @@ export default function WishlistItem({ id, name, price, image }: Props) {
   const { removeFromWishlist } = useWishlistStore();
 
   const handleRemove = (e: React.MouseEvent) => {
-    e.preventDefault(); // prevents link navigation
+    e.preventDefault();
     removeFromWishlist(id);
   };
 

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { slugify } from "@/lib/slugify";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { useMemo } from "react";
+import { useHydration } from "@/hooks/useHydration";
 
 interface ShopCardProps {
   id: number;
@@ -17,6 +18,7 @@ interface ShopCardProps {
 
 export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
+  const mounted = useHydration();
 
   const isWishlisted = useMemo(() => {
     return wishlist.some((item) => item.id === id);
@@ -59,7 +61,9 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
           >
             <Heart
               size={18}
-              className={isWishlisted ? "fill-[#063c71]" : "text-[#063c71]"}
+              className={
+                mounted && isWishlisted ? "fill-[#063c71]" : "text-[#063c71]"
+              }
             />
           </button>
         </div>

@@ -36,14 +36,14 @@ export function Footer() {
         {/* Social Icons */}
         <div className="flex items-center gap-6 text-white">
           <Link
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/company/saint-sportx"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaLinkedin className="h-5 w-5 hover:text-blue-500 transition" />
           </Link>
           <Link
-            href="https://twitter.com"
+            href="https://x.com/@saint_sportx"
             target="_blank"
             rel="noopener noreferrer"
           >

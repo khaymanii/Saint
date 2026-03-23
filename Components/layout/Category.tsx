@@ -8,7 +8,7 @@ export function Category() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="sm:text-3xl text-2xl text-[#063c71] font-bold">
-            Explore Sports Gear{" "}
+            Explore Sports Gear
           </h2>
         </div>
 

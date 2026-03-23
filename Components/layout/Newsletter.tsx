@@ -15,7 +15,6 @@ export function Newsletter() {
       return;
     }
 
-    // simple validation
     if (!email.includes("@")) {
       toast.error("Enter a valid email");
       return;

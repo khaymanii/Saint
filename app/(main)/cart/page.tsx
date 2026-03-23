@@ -5,12 +5,16 @@ import Link from "next/link";
 import { Features } from "@/Components/layout/Features";
 import { useCartStore } from "@/store/useCartStore";
 import EmptyCart from "@/Components/cart/EmptyCart";
+import { useAuthStore } from "@/store/useAuthStore";
+import { getProtectedRoute } from "@/lib/getProtectedRoute";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
   const increaseQty = useCartStore((state) => state.increaseQty);
   const decreaseQty = useCartStore((state) => state.decreaseQty);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const user = useAuthStore((state) => state.user);
+  const checkoutHref = getProtectedRoute(user, "/checkout");
 
   const subTotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -99,7 +103,7 @@ export default function CartPage() {
             <p>${total}</p>
           </div>*/}
 
-          <Link href="/checkout">
+          <Link href={checkoutHref}>
             <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer">
               Proceed To Checkout
             </button>

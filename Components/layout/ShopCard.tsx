@@ -18,14 +18,12 @@ interface ShopCardProps {
 export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
 
-  /* ================= CHECK IF ITEM EXISTS ================= */
   const isWishlisted = useMemo(() => {
     return wishlist.some((item) => item.id === id);
   }, [wishlist, id]);
 
-  /* ================= TOGGLE WISHLIST ================= */
   const handleWishlist = (e: React.MouseEvent) => {
-    e.preventDefault(); // prevents link navigation
+    e.preventDefault();
 
     if (isWishlisted) {
       removeFromWishlist(id);

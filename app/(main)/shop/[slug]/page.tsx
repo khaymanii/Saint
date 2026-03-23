@@ -25,8 +25,6 @@ export default function ProductPage({
 
   const related = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 8);
 
-  function handleAddToCart(): void {}
-
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       <p className="text-gray-400 text-xs mb-8">
@@ -70,7 +68,7 @@ export default function ProductPage({
           <h1 className="text-2xl font-semibold mb-3">{product.name}</h1>
 
           <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-            ⭐ {product.rating} ({product.reviews} Reviews)
+            ⭐ {product.rating} {/*({product.reviews} Reviews)*/}
             <span className="text-green-600">In Stock</span>
           </div>
 
@@ -79,7 +77,10 @@ export default function ProductPage({
           <p className="text-gray-600 mb-6">{product.description}</p>
 
           <div className="mb-6">
-            <p className="mb-2 font-medium">Colours:</p>
+            <p className="mb-2 font-medium">
+              Colours:{" "}
+              <span className="text-xs text-gray-500">Select colour</span>
+            </p>
 
             <div className="flex gap-3">
               {product.colors.map((color) => (
@@ -96,7 +97,9 @@ export default function ProductPage({
           </div>
 
           <div className="mb-6">
-            <p className="mb-2 font-medium">Size:</p>
+            <p className="mb-2 font-medium">
+              Size: <span className="text-xs text-gray-500">Select size</span>
+            </p>
 
             <div className="flex gap-3">
               {product.sizes.map((size) => (
@@ -160,7 +163,7 @@ export default function ProductPage({
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-20">
         <h2 className="text-xl font-semibold mb-6 text-[#063c71]">
           Similar Gears
         </h2>

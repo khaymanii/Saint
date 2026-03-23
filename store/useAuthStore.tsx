@@ -12,6 +12,7 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth } from "@/firebaseConfig/firebase";
 import { db } from "@/firebaseConfig/firebase";
 import { useCartStore } from "@/store/useCartStore";
+import { getIdToken } from "firebase/auth";
 
 interface AuthState {
   user: User | null;
@@ -32,6 +33,10 @@ export const useAuthStore = create<AuthState>((set) => ({
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+
+      const token = await user.getIdToken();
+
+      document.cookie = `token=${token}; path=/;`;
 
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
@@ -56,6 +61,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: async () => {
     await signOut(auth);
+    document.cookie = "token=; path=/; max-age=0";
     set({ user: null });
   },
 

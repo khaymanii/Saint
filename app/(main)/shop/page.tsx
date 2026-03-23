@@ -56,10 +56,9 @@ export default function Shop() {
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
-      {/* Banner */}
-      <section className="relative w-full h-66 overflow-hidden">
+      <section className="relative w-full h-80 overflow-hidden">
         <Image
-          src="/images/ball1.jpg"
+          src="/images/boxing2.jpg"
           alt="Shop Banner"
           fill
           loading="eager"

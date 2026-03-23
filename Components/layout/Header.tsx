@@ -8,12 +8,13 @@ import { Button } from "@/Components/ui/Button";
 import { useAuthStore } from "@/store/useAuthStore";
 import Image from "next/image";
 import { CartBadge } from "@/Components/cart/CartBadge";
+import { getProtectedRoute } from "@/lib/getProtectedRoute";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const user = useAuthStore((state) => state.user);
-
+  const profileHref = getProtectedRoute(user, "/profile");
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
@@ -61,7 +62,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/profile" className={linkClasses("/login")}>
+          <Link href={profileHref} className={linkClasses("/profile")}>
             {user && user.photoURL ? (
               <Image
                 src={user.photoURL}

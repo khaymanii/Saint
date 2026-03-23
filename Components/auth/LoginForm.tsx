@@ -3,15 +3,20 @@
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useAuthStore } from "@/store/useAuthStore";
-import { useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export function Login() {
   const loginWithGoogle = useAuthStore((state) => state.loginWithGoogle);
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const redirect = searchParams.get("redirect") || "/profile";
 
   const handleLogin = async () => {
     const user = await loginWithGoogle();
-    if (user) router.push("/profile");
+
+    if (user) {
+      router.replace(redirect);
+    }
   };
 
   return (

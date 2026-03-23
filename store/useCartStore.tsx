@@ -54,8 +54,6 @@ const loadFromLocal = (): CartItem[] => {
   return data ? JSON.parse(data) : [];
 };
 
-/* ================= STORE ================= */
-
 export const useCartStore = create<CartStore>((set, get) => {
   const syncCartToFirebase = async (cart: CartItem[]) => {
     const user = auth.currentUser;
@@ -74,10 +72,8 @@ export const useCartStore = create<CartStore>((set, get) => {
   };
 
   return {
-    // 🧠 INIT FROM LOCAL STORAGE
     cart: loadFromLocal(),
 
-    /* ================= ADD TO CART ================= */
     addToCart: (item) => {
       set((state) => {
         const existing = state.cart.find(
@@ -113,16 +109,13 @@ export const useCartStore = create<CartStore>((set, get) => {
           toast.success("Gear added to cart 🛍️");
         }
 
-        // 💾 LOCAL STORAGE
         saveToLocal(updatedCart);
 
-        // ☁️ FIREBASE SYNC
         syncCartToFirebase(updatedCart);
         return { cart: updatedCart };
       });
     },
 
-    /* ================= REMOVE ================= */
     removeFromCart: (id) => {
       set((state) => {
         const updatedCart = state.cart.filter((item) => item.id !== id);
@@ -148,7 +141,6 @@ export const useCartStore = create<CartStore>((set, get) => {
           userCart = snap.data().cart || [];
         }
 
-        // 🔥 MERGE LOGIC
         const merged = [...userCart];
 
         guestCart.forEach((guestItem) => {
@@ -161,10 +153,8 @@ export const useCartStore = create<CartStore>((set, get) => {
           }
         });
 
-        // Save merged result
         await setDoc(ref, { cart: merged });
 
-        // update local + state
         set({ cart: merged });
         saveToLocal(merged);
 
@@ -175,7 +165,6 @@ export const useCartStore = create<CartStore>((set, get) => {
       }
     },
 
-    /* ================= INCREASE ================= */
     increaseQty: (id) => {
       set((state) => {
         const updatedCart = state.cart.map((item) =>
@@ -190,7 +179,6 @@ export const useCartStore = create<CartStore>((set, get) => {
       });
     },
 
-    /* ================= DECREASE ================= */
     decreaseQty: (id) => {
       set((state) => {
         const item = state.cart.find((i) => i.id === id);
@@ -214,7 +202,6 @@ export const useCartStore = create<CartStore>((set, get) => {
       });
     },
 
-    /* ================= CLEAR ================= */
     clearCart: () => {
       set(() => {
         const empty: CartItem[] = [];
@@ -227,7 +214,6 @@ export const useCartStore = create<CartStore>((set, get) => {
       });
     },
 
-    /* ================= LOAD FROM FIREBASE ================= */
     loadCart: async (userId?: string) => {
       try {
         if (!userId) return;
@@ -242,7 +228,6 @@ export const useCartStore = create<CartStore>((set, get) => {
 
           set({ cart });
 
-          // sync local too
           saveToLocal(cart);
         }
       } catch (error) {
@@ -251,7 +236,6 @@ export const useCartStore = create<CartStore>((set, get) => {
       }
     },
 
-    /* ================= TOTALS ================= */
     getTotalItems: () => get().cart.length,
     getTotalPrice: () =>
       get().cart.reduce((t, i) => t + i.price * i.quantity, 0),

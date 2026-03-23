@@ -3,8 +3,6 @@ import { toast } from "sonner";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "@/firebaseConfig/firebase";
 
-/* ================= TYPES ================= */
-
 export interface WishlistItem {
   id: number;
   name: string;
@@ -24,8 +22,6 @@ interface WishlistStore {
   mergeGuestWishlistToUserWishlist: (userId: string) => Promise<void>;
 }
 
-/* ================= LOCAL STORAGE ================= */
-
 const WISHLIST_KEY = "wishlist-storage";
 
 const saveToLocal = (wishlist: WishlistItem[]) => {
@@ -39,10 +35,7 @@ const loadFromLocal = (): WishlistItem[] => {
   return data ? JSON.parse(data) : [];
 };
 
-/* ================= STORE ================= */
-
 export const useWishlistStore = create<WishlistStore>((set, get) => {
-  /* ================= FIREBASE SYNC ================= */
   const syncWishlistToFirebase = async (wishlist: WishlistItem[]) => {
     const user = auth.currentUser;
 
@@ -59,10 +52,8 @@ export const useWishlistStore = create<WishlistStore>((set, get) => {
   };
 
   return {
-    /* ================= STATE ================= */
     wishlist: loadFromLocal(),
 
-    /* ================= ADD ================= */
     addToWishlist: (item) => {
       set((state) => {
         const exists = state.wishlist.find(
@@ -85,7 +76,6 @@ export const useWishlistStore = create<WishlistStore>((set, get) => {
       });
     },
 
-    /* ================= REMOVE ================= */
     removeFromWishlist: (id, selectedColor) => {
       set((state) => {
         const updated = state.wishlist.filter((item) => {
@@ -104,7 +94,6 @@ export const useWishlistStore = create<WishlistStore>((set, get) => {
       });
     },
 
-    /* ================= MERGE ================= */
     mergeGuestWishlistToUserWishlist: async (userId: string) => {
       try {
         const guest = loadFromLocal();
@@ -140,7 +129,6 @@ export const useWishlistStore = create<WishlistStore>((set, get) => {
       }
     },
 
-    /* ================= LOAD ================= */
     loadWishlist: async (userId?: string) => {
       if (!userId) return;
 

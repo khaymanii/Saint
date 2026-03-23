@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,9 +5,7 @@ export function Banner() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-16">
       <div className="grid lg:grid-cols-2 overflow-hidden rounded-xl">
-        {/* LEFT SIDE */}
         <div className="relative bg-[#063c71] text-white p-8 flex items-center">
-          {/* Background image */}
           <div className="absolute inset-0 opacity-30">
             <Image
               src="/images/ball1.jpg"
@@ -56,7 +52,6 @@ export function Banner() {
           </div>
         </div>
 
-        {/* RIGHT SIDE IMAGE */}
         <div className="relative h-125 hidden sm:block">
           <Image
             src="/images/footballwomen1.jpg"

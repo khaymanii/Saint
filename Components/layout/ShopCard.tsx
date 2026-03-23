@@ -1,11 +1,11 @@
 "use client";
 
+import { useMemo } from "react";
 import Image from "next/image";
-import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { Heart, ShoppingCart } from "lucide-react";
 import { slugify } from "@/lib/slugify";
 import { useWishlistStore } from "@/store/useWishlistStore";
-import { useMemo } from "react";
 import { useHydration } from "@/hooks/useHydration";
 
 interface ShopCardProps {
@@ -43,7 +43,6 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
 
   return (
     <div className="group cursor-pointer border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-      {/* Image */}
       <Link href={`/shop/${slugify(name)}`}>
         <div className="relative w-full h-52 sm:h-64 lg:h-80 bg-gray-100 overflow-hidden">
           <Image
@@ -54,7 +53,6 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
             className="object-cover group-hover:scale-105 transition duration-300"
           />
 
-          {/* Wishlist Button */}
           <button
             onClick={handleWishlist}
             className="absolute top-3 right-3 bg-white rounded-full p-2 shadow cursor-pointer"
@@ -69,7 +67,6 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
         </div>
       </Link>
 
-      {/* Product Info */}
       <Link href={`/shop/${slugify(name)}`}>
         <div className="p-3 flex flex-col gap-2">
           <div>

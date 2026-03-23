@@ -1,5 +1,3 @@
-"use client";
-
 import { PRODUCTS } from "@/data/shop";
 import { Heart } from "lucide-react";
 import Link from "next/link";
@@ -24,7 +22,6 @@ export default function EmptyWishlist() {
             Discover amazing sports gear and save your favorites for later.
           </p>
 
-          {/* Button */}
           <Link href="/shop" className="inline-block">
             <button className="bg-[#063c71] text-white text-sm font-medium px-5 py-2 rounded-md hover:opacity-90 transition cursor-pointer">
               Continue Shopping

@@ -20,14 +20,12 @@ interface Props {
 export default function OrderCard({ order }: Props) {
   return (
     <div className="border rounded-md p-4 mb-4">
-      {/* Top Row */}
       <div className="flex items-center justify-between text-xs sm:text-sm mb-3">
         <p className="font-medium">Order {order.orderNo}</p>
 
         <span className="text-gray-500">{order.status}</span>
       </div>
 
-      {/* Product */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <Image

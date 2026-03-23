@@ -31,7 +31,7 @@ export default function AccountSidebar() {
 
   const handleMobileSelect = (value: string) => {
     if (value === "/logout") {
-      setIsLogoutOpen(true); // open modal instead of navigating
+      setIsLogoutOpen(true);
     } else {
       router.push(value);
     }
@@ -50,7 +50,6 @@ export default function AccountSidebar() {
         </p>
       </div>
 
-      {/* Mobile Select */}
       <div className="lg:hidden mb-6">
         <Select defaultValue={pathname} onValueChange={handleMobileSelect}>
           <SelectTrigger className="w-full border-[#063c71] focus:ring-[#063c71]">
@@ -71,7 +70,6 @@ export default function AccountSidebar() {
         </Select>
       </div>
 
-      {/* Desktop Sidebar */}
       <nav className="hidden lg:flex lg:flex-col gap-2">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -107,7 +105,6 @@ export default function AccountSidebar() {
         })}
       </nav>
 
-      {/* Logout Modal */}
       <LogoutModal
         isOpen={isLogoutOpen}
         setIsOpen={setIsLogoutOpen}

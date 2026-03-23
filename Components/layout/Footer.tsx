@@ -1,5 +1,3 @@
-"use client";
-
 import { FaLinkedin, FaInstagram, FaTiktok } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
@@ -22,7 +20,6 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Legal Links */}
         <div className="flex gap-6 text-sm text-white/80">
           <Link href="/privacy-policy" className="hover:text-white transition">
             Privacy Policy
@@ -35,7 +32,6 @@ export function Footer() {
           </Link>
         </div>
 
-        {/* Social Icons */}
         <div className="flex items-center gap-4">
           <Link
             href="https://www.linkedin.com/company/saint-sportx"
@@ -54,7 +50,7 @@ export function Footer() {
           </Link>
 
           <Link
-            href="https://instagram.com"
+            href="https://instagram.com/saint_sportx"
             target="_blank"
             className={iconBox}
           >
@@ -62,7 +58,7 @@ export function Footer() {
           </Link>
 
           <Link
-            href="https://www.tiktok.com"
+            href="https://www.tiktok.com/@saint_sportx"
             target="_blank"
             className={iconBox}
           >
@@ -71,7 +67,6 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom */}
       <div className="container mx-auto px-6 mt-6">
         <p className="text-center text-xs text-white/70">
           © {new Date().getFullYear()} Saint. All rights reserved.

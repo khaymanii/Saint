@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, X, ShoppingCart, User } from "lucide-react";
-import { Button } from "@/Components/ui/Button";
-import { useAuthStore } from "@/store/useAuthStore";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Button } from "@/Components/ui/Button";
 import { CartBadge } from "@/Components/cart/CartBadge";
+import { useAuthStore } from "@/store/useAuthStore";
+import { Menu, X, ShoppingCart, User } from "lucide-react";
 import { getProtectedRoute } from "@/lib/getProtectedRoute";
 
 export function Header() {

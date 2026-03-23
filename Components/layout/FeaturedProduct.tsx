@@ -13,7 +13,7 @@ export function FeaturedProduct() {
             </h2>
           </div>
           <Link href="/shop">
-            <button className="text-sm font-medium text-text-[#063c71] hover:underline cursor-pointer">
+            <button className="text-sm font-medium text-[#063c71] hover:underline cursor-pointer">
               View All
             </button>
           </Link>

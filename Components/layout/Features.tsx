@@ -1,5 +1,3 @@
-"use client";
-
 import { Truck, Headphones, ShieldCheck } from "lucide-react";
 
 export function Features() {

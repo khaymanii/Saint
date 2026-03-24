@@ -1,6 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+
+const params = useSearchParams();
+const orderId = params.get("orderId");
 
 export default function OrderConfirmation() {
   return (
@@ -29,9 +33,11 @@ export default function OrderConfirmation() {
             <h2 className="text-lg font-semibold text-gray-800 mb-2">
               Your Order is Confirmed
             </h2>
-
+            <p className="text-sm text-gray-500">
+              Order ID: <span className="font-medium">{orderId}</span>
+            </p>
             <p className="text-sm text-gray-500 mb-6">
-              Thank you for your purchase. Your items will be shipped shortly.
+              Thank you for your purchase. Your gears will be shipped shortly.
             </p>
 
             <Link href="/shop" className="inline-block">

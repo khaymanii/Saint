@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { db, auth } from "@/firebaseConfig/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, collection, setDoc, serverTimestamp } from "firebase/firestore";
 import { useCartStore } from "./useCartStore";
 import { toast } from "sonner";
 
@@ -17,7 +17,7 @@ interface CheckoutData {
 interface CheckoutStore {
   formData: CheckoutData;
   setFormData: (data: Partial<CheckoutData>) => void;
-  placeOrder: () => Promise<boolean>;
+  placeOrder: () => Promise<string | false>;
   loading: boolean;
 }
 
@@ -53,7 +53,15 @@ export const useCheckoutStore = create<CheckoutStore>((set, get) => ({
     try {
       set({ loading: true });
 
-      await addDoc(collection(db, "orders"), {
+      // ✅ Create doc reference FIRST
+      const orderRef = doc(collection(db, "orders"));
+
+      // ✅ Generate short order ID
+      const orderId = `ST-${orderRef.id.slice(0, 6).toUpperCase()}`;
+
+      // ✅ Save order (single write)
+      await setDoc(orderRef, {
+        orderId,
         ...formData,
         items: cart,
         total,
@@ -63,11 +71,12 @@ export const useCheckoutStore = create<CheckoutStore>((set, get) => ({
       });
 
       clearCart();
-      toast.success("Order placed 🎉");
+
+      toast.success(`Order placed 🎉 (${orderId})`);
 
       set({ loading: false });
 
-      return true;
+      return orderId; // ✅ return for UI usage
     } catch (err) {
       console.error(err);
       toast.error("Order failed");

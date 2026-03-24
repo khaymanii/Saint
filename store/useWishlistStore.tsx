@@ -23,6 +23,7 @@ interface WishlistStore {
 }
 
 const WISHLIST_KEY = "wishlist-storage";
+const MERGE_KEY = "wishlist-merged";
 
 const saveToLocal = (wishlist: WishlistItem[]) => {
   if (typeof window === "undefined") return;
@@ -96,6 +97,12 @@ export const useWishlistStore = create<WishlistStore>((set, get) => {
 
     mergeGuestWishlistToUserWishlist: async (userId: string) => {
       try {
+        const alreadyMerged = localStorage.getItem(MERGE_KEY);
+
+        if (alreadyMerged) {
+          toast.info("Wishlist already synced — skipping");
+          return;
+        }
         const guest = loadFromLocal();
 
         const ref = doc(db, "wishlists", userId);
@@ -121,6 +128,9 @@ export const useWishlistStore = create<WishlistStore>((set, get) => {
 
         set({ wishlist: merged });
         saveToLocal(merged);
+
+        localStorage.setItem(MERGE_KEY, "true");
+        localStorage.removeItem(WISHLIST_KEY);
 
         toast.success("Wishlist synced 💖");
       } catch (err) {

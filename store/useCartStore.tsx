@@ -169,6 +169,7 @@ export const useCartStore = create<CartStore>((set, get) => {
         saveToLocal(merged);
 
         localStorage.setItem(MERGE_KEY, "true");
+        localStorage.removeItem(CART_KEY);
 
         toast.success("Cart synced with your account 🛒");
       } catch (err) {

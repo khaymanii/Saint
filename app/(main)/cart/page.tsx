@@ -7,6 +7,7 @@ import { useCartStore } from "@/store/useCartStore";
 import EmptyCart from "@/Components/cart/EmptyCart";
 import { useAuthStore } from "@/store/useAuthStore";
 import { getProtectedRoute } from "@/lib/getProtectedRoute";
+import { useHydration } from "@/hooks/useHydration";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -15,6 +16,9 @@ export default function CartPage() {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const user = useAuthStore((state) => state.user);
   const checkoutHref = getProtectedRoute(user, "/checkout");
+  const mounted = useHydration();
+
+  if (!mounted) return null;
 
   const subTotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,

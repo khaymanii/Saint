@@ -2,9 +2,18 @@
 
 import Image from "next/image";
 import { useCartStore } from "@/store/useCartStore";
+import { useCheckoutStore } from "@/store/useCheckoutStore";
+import { useRouter } from "next/navigation";
+import { useHydration } from "@/hooks/useHydration";
 
 export default function OrderSummary() {
   const cart = useCartStore((state) => state.cart);
+  const placeOrder = useCheckoutStore((s) => s.placeOrder);
+  const loading = useCheckoutStore((s) => s.loading);
+  const router = useRouter();
+  const mounted = useHydration();
+
+  if (!mounted) return null;
 
   const subtotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -42,23 +51,19 @@ export default function OrderSummary() {
               <div>
                 <p>{item.name}</p>
 
-                {/* ✅ Variant info */}
                 <p className="text-xs text-gray-500">
                   {item.selectedColor} • {item.selectedSize}
                 </p>
 
-                {/* ✅ Quantity */}
                 <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
               </div>
             </div>
 
-            {/* ✅ Price × quantity */}
             <p>${(item.price * item.quantity).toFixed(2)}</p>
           </div>
         ))}
       </div>
 
-      {/* Totals */}
       <div className="space-y-3 border-t pt-4">
         <div className="flex justify-between text-sm">
           <p>Subtotal:</p>
@@ -77,10 +82,17 @@ export default function OrderSummary() {
       </div>
 
       <button
-        disabled={cart.length === 0}
+        disabled={cart.length === 0 || loading}
         className="mt-6 bg-[#063c71] text-xs text-white px-8 py-3 rounded-md disabled:opacity-50 cursor-pointer"
+        onClick={async () => {
+          const success = await placeOrder();
+
+          if (success) {
+            router.push("/order-confirmation");
+          }
+        }}
       >
-        Place Order
+        {loading ? "Processing..." : "Place Order"}
       </button>
     </div>
   );

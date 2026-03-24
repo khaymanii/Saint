@@ -42,6 +42,7 @@ interface CartStore {
 /* ================= LOCAL STORAGE HELPERS ================= */
 
 const CART_KEY = "cart-storage";
+const MERGE_KEY = "cart-merged";
 
 const saveToLocal = (cart: CartItem[]) => {
   if (typeof window === "undefined") return;
@@ -129,6 +130,13 @@ export const useCartStore = create<CartStore>((set, get) => {
 
     mergeGuestCartToUserCart: async (userId: string) => {
       try {
+        const alreadyMerged = localStorage.getItem(MERGE_KEY);
+
+        if (alreadyMerged) {
+          toast.info("Cart already synced — skipping");
+          return;
+        }
+
         const guestCart = loadFromLocal();
 
         const ref = doc(db, "carts", userId);
@@ -143,11 +151,14 @@ export const useCartStore = create<CartStore>((set, get) => {
         const merged = [...userCart];
 
         guestCart.forEach((guestItem) => {
-          const existing = merged.find((i) => i.id === guestItem.id);
+          const existing = merged.find(
+            (i) =>
+              i.id === guestItem.id &&
+              i.selectedSize === guestItem.selectedSize &&
+              i.selectedColor === guestItem.selectedColor,
+          );
 
-          if (existing) {
-            existing.quantity += guestItem.quantity;
-          } else {
+          if (!existing) {
             merged.push(guestItem);
           }
         });
@@ -156,6 +167,8 @@ export const useCartStore = create<CartStore>((set, get) => {
 
         set({ cart: merged });
         saveToLocal(merged);
+
+        localStorage.setItem(MERGE_KEY, "true");
 
         toast.success("Cart synced with your account 🛒");
       } catch (err) {

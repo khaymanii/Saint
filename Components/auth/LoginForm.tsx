@@ -40,9 +40,9 @@ export function Login() {
         <p className="text-xs text-gray-400 text-center mt-8">
           By continuing you agree to Saint's{" "}
           <Link className="underline text-[#063c71]" href="/terms">
-            Terms Of Service
+            Terms Of Service{" "}
           </Link>
-          and
+          and{" "}
           <Link className="underline text-[#063c71]" href="/privacy">
             Privacy Policy
           </Link>

@@ -53,13 +53,10 @@ export const useCheckoutStore = create<CheckoutStore>((set, get) => ({
     try {
       set({ loading: true });
 
-      // ✅ Create doc reference FIRST
       const orderRef = doc(collection(db, "orders"));
 
-      // ✅ Generate short order ID
       const orderId = `ST-${orderRef.id.slice(0, 6).toUpperCase()}`;
 
-      // ✅ Save order (single write)
       await setDoc(orderRef, {
         orderId,
         ...formData,
@@ -76,7 +73,7 @@ export const useCheckoutStore = create<CheckoutStore>((set, get) => ({
 
       set({ loading: false });
 
-      return orderId; // ✅ return for UI usage
+      return orderId;
     } catch (err) {
       console.error(err);
       toast.error("Order failed");

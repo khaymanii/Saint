@@ -1,12 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 export default function OrderConfirmation() {
-  const params = useSearchParams();
-  const orderId = params.get("orderId");
-
   return (
     <section className="w-full flex items-center justify-center bg-gray-100 py-20 px-4">
       <div className="bg-white shadow-lg rounded-xl max-w-3xl w-full flex flex-col md:flex-row items-center gap-8 p-8">
@@ -33,9 +29,7 @@ export default function OrderConfirmation() {
             <h2 className="text-lg font-semibold text-gray-800 mb-2">
               Your Order is Confirmed
             </h2>
-            <p className="text-sm text-gray-500">
-              Order ID: <span className="font-medium">{orderId}</span>
-            </p>
+
             <p className="text-sm text-gray-500 mb-6">
               Thank you for your purchase. Your gears will be shipped shortly.
             </p>

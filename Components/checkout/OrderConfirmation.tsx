@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-const params = useSearchParams();
-const orderId = params.get("orderId");
-
 export default function OrderConfirmation() {
+  const params = useSearchParams();
+  const orderId = params.get("orderId");
+
   return (
     <section className="w-full flex items-center justify-center bg-gray-100 py-20 px-4">
       <div className="bg-white shadow-lg rounded-xl max-w-3xl w-full flex flex-col md:flex-row items-center gap-8 p-8">

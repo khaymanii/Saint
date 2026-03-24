@@ -7,6 +7,7 @@ import { ShopCard } from "@/Components/layout/ShopCard";
 import { slugify } from "@/lib/slugify";
 import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
+import { BackButton } from "@/Components/layout/BackButton";
 
 export default function ProductPage({
   params,
@@ -27,9 +28,10 @@ export default function ProductPage({
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
-      <p className="text-gray-400 text-xs mb-8">
-        Shop • Product Details • {product.name}
-      </p>
+      <div className="mb-4">
+        <BackButton />
+      </div>
+      <p className="text-gray-400 text-xs mb-8">Shop • Gear • {product.name}</p>
 
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="flex gap-6">

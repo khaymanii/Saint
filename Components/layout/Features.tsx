@@ -48,7 +48,7 @@ export function Features() {
           </h3>
 
           <p className="text-xs text-gray-600 mt-2">
-            We return money within 30 days
+            We return money within 7 days
           </p>
         </div>
       </div>

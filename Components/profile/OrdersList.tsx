@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "@/firebaseConfig/firebase";
 import OrderCard from "./OrdersCard";
+import EmptyOrder from "./EmptyOrder";
 
 export default function OrdersList() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -33,9 +34,11 @@ export default function OrdersList() {
 
   return (
     <div className="space-y-4">
-      {orders.map((order) => (
-        <OrderCard key={order.id} order={order} />
-      ))}
+      {orders.length === 0 ? (
+        <EmptyOrder />
+      ) : (
+        orders.map((order) => <OrderCard key={order.id} order={order} />)
+      )}
     </div>
   );
 }

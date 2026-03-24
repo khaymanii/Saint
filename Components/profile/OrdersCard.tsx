@@ -26,39 +26,51 @@ interface Props {
 }
 
 export default function OrderCard({ order }: Props) {
-  const product = order.items?.[0];
-
   return (
     <div className="border rounded-md p-4 mb-4">
       {/* HEADER */}
       <div className="flex items-center justify-between text-xs sm:text-sm mb-3">
-        <p className="font-medium">Order {order.orderId}</p>
-        <span className="text-gray-500 capitalize">{order.status}</span>
+        <p className="font-medium">OrderID ({order.orderId})</p>
+        <span className="text-yellow-500 capitalize">{order.status}</span>
       </div>
 
-      {/* PRODUCT */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <Image
-            src={product?.image || ""}
-            alt={product?.name || "Product"}
-            width={55}
-            height={55}
-            className="rounded-md object-cover w-14 h-14"
-          />
+      {/* PRODUCTS LIST */}
+      <div className="space-y-4">
+        {order.items.map((item, index) => (
+          <div key={index} className="flex items-center justify-between gap-4">
+            {/* LEFT SIDE */}
+            <div className="flex items-center gap-3">
+              <Image
+                src={item.image}
+                alt={item.name}
+                width={55}
+                height={55}
+                className="rounded-md object-cover w-14 h-14"
+              />
 
-          <div>
-            <p className="text-sm font-medium">{product?.name}</p>
+              <div>
+                <p className="text-sm font-medium">{item.name}</p>
 
-            <p className="text-xs text-gray-500">Qty: {product?.quantity}</p>
+                <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
 
-            <p className="hidden sm:block text-xs text-gray-500">
-              Color: {product?.selectedColor} | Size: {product?.selectedSize}
+                <p className="hidden sm:block text-xs text-gray-500">
+                  Color: {item.selectedColor} | Size: {item.selectedSize}
+                </p>
+              </div>
+            </div>
+
+            {/* RIGHT SIDE */}
+            <p className="text-sm font-semibold">
+              ${(item.price * item.quantity).toFixed(2)}
             </p>
           </div>
-        </div>
+        ))}
+      </div>
 
-        <p className="text-sm font-semibold">${order.total}</p>
+      {/* TOTAL */}
+      <div className="flex justify-between mt-4 border-t pt-3 text-sm font-semibold">
+        <p>Total</p>
+        <p>${order.total.toFixed(2)}</p>
       </div>
 
       {/* FOOTER */}
@@ -70,10 +82,10 @@ export default function OrderCard({ order }: Props) {
             : ""}
         </p>
 
-        <p>Delivery: Processing</p>
+        <p className="capitalize text-yellow-500">Status: {order.status}</p>
       </div>
 
-      {/* ADDRESS (optional but useful) */}
+      {/* ADDRESS */}
       <div className="text-xs text-gray-500 mt-2">
         <p>
           {order.address}, {order.city}, {order.state}

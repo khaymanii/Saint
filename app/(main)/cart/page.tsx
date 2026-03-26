@@ -117,7 +117,7 @@ export default function CartPage() {
             </button>
           </Link>
           <Link href="/shop">
-            <button className="w-full border-2 border-[#063c71] text-[#063c71] text-sm py-3 mt-2 rounded-md cursor-pointer flex items-center justify-center">
+            <button className="w-full border border-[#063c71] text-[#063c71] text-sm py-3 mt-2 rounded-md cursor-pointer flex items-center justify-center">
               Add More Gears
               <Plus className="w-4 h-4 text-[#063c71] inline-block ml-2" />
             </button>

@@ -20,7 +20,7 @@ export function Login() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-6">
+    <main className="min-h-screen flex items-center justify-center px-6 -mt-10">
       <div className="w-full max-w-sm bg-white p-10 rounded-md border shadow-sm">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-[#063c71]">SAINT</h1>

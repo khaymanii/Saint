@@ -10,7 +10,6 @@ export interface CartItem {
   image: string;
   quantity: number;
   selectedSize: string;
-  selectedColor: string;
   shipping?: number;
 }
 
@@ -20,7 +19,6 @@ export type AddToCartItem = {
   image: string;
   price: number;
   selectedSize: string;
-  selectedColor: string;
   quantity?: number;
 };
 
@@ -78,10 +76,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     addToCart: (item) => {
       set((state) => {
         const existing = state.cart.find(
-          (p) =>
-            p.id === item.id &&
-            p.selectedSize === item.selectedSize &&
-            p.selectedColor === item.selectedColor,
+          (p) => p.id === item.id && p.selectedSize === item.selectedSize,
         );
 
         let updatedCart: CartItem[];
@@ -111,12 +106,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     removeFromCart: (item) => {
       set((state) => {
         const updatedCart = state.cart.filter(
-          (p) =>
-            !(
-              p.id === item.id &&
-              p.selectedSize === item.selectedSize &&
-              p.selectedColor === item.selectedColor
-            ),
+          (p) => !(p.id === item.id && p.selectedSize === item.selectedSize),
         );
 
         toast.error("Gear removed from cart ❌");
@@ -154,8 +144,7 @@ export const useCartStore = create<CartStore>((set, get) => {
           const existing = merged.find(
             (i) =>
               i.id === guestItem.id &&
-              i.selectedSize === guestItem.selectedSize &&
-              i.selectedColor === guestItem.selectedColor,
+              i.selectedSize === guestItem.selectedSize,
           );
 
           if (!existing) {
@@ -181,9 +170,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     increaseQty: (item) => {
       set((state) => {
         const updatedCart = state.cart.map((p) =>
-          p.id === item.id &&
-          p.selectedSize === item.selectedSize &&
-          p.selectedColor === item.selectedColor
+          p.id === item.id && p.selectedSize === item.selectedSize
             ? { ...p, quantity: p.quantity + 1 }
             : p,
         );
@@ -200,9 +187,7 @@ export const useCartStore = create<CartStore>((set, get) => {
     decreaseQty: (item) => {
       set((state) => {
         const updatedCart = state.cart.map((p) =>
-          p.id === item.id &&
-          p.selectedSize === item.selectedSize &&
-          p.selectedColor === item.selectedColor
+          p.id === item.id && p.selectedSize === item.selectedSize
             ? { ...p, quantity: Math.max(1, p.quantity - 1) }
             : p,
         );

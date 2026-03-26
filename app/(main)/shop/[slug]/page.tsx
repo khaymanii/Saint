@@ -18,7 +18,6 @@ export default function ProductPage({
   const product = PRODUCTS.find((p) => slugify(p.name) === resolvedParams.slug);
   const [selectedImage, setSelectedImage] = useState(product?.images[0]);
   const [selectedSize, setSelectedSize] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
   const [quantity, setQuantity] = useState(1);
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -80,26 +79,6 @@ export default function ProductPage({
 
           <div className="mb-6">
             <p className="mb-2 font-medium">
-              Colours:{" "}
-              <span className="text-xs text-gray-500">Select colour</span>
-            </p>
-
-            <div className="flex gap-3">
-              {product.colors.map((color) => (
-                <div
-                  key={color}
-                  onClick={() => setSelectedColor(color)}
-                  className={`w-6 h-6 rounded-full border cursor-pointer ${
-                    selectedColor === color ? "ring-2 ring-[#063c71]" : ""
-                  }`}
-                  style={{ backgroundColor: color }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-6">
-            <p className="mb-2 font-medium">
               Size: <span className="text-xs text-gray-500">Select size</span>
             </p>
 
@@ -138,13 +117,13 @@ export default function ProductPage({
 
             <button
               className={`bg-[#063c71] text-white px-8 py-3 rounded ${
-                !selectedSize || !selectedColor
+                !selectedSize
                   ? "opacity-50 cursor-not-allowed"
                   : "cursor-pointer"
               }`}
               onClick={() => {
-                if (!selectedSize || !selectedColor) {
-                  toast.error("Please select size and color");
+                if (!selectedSize) {
+                  toast.error("Please select size");
                   return;
                 }
 
@@ -154,7 +133,6 @@ export default function ProductPage({
                   price: product.price,
                   image: product.images[0],
                   selectedSize,
-                  selectedColor,
                   quantity,
                 });
               }}

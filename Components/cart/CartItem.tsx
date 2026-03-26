@@ -75,7 +75,7 @@ export default function CartItem({
             Size: {item.selectedSize}
           </p>
 
-          <p className="text-sm mt-1">${item.price}.00</p>
+          <p className="text-sm mt-1">${item.price}</p>
 
           <div className="flex items-center gap-3 mt-3">
             <div className="flex items-center border rounded">

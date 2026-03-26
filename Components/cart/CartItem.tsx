@@ -72,7 +72,7 @@ export default function CartItem({
           <p className="font-medium">{item.name}</p>
 
           <p className="text-sm text-gray-500">
-            Color: {item.selectedColor} • Size: {item.selectedSize}
+            Size: {item.selectedSize}
           </p>
 
           <p className="text-sm mt-1">${item.price}.00</p>

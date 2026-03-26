@@ -30,7 +30,7 @@ export default function ProductPage({
       <div className="mb-4">
         <BackButton />
       </div>
-      <p className="text-gray-400 text-xs mb-8">Shop • Gear • {product.name}</p>
+      <p className="text-gray-400 text-xs mb-8">Shop • {product.name}</p>
 
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="flex gap-6">

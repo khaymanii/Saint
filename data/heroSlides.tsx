@@ -27,6 +27,6 @@ export const slides = [
     image: "/images/football2.jpg",
     headline: "BEAUTIFUL GAME",
     sub: "Own the Pitch",
-    accent: "Match-ready footballs built for precision and power.",
+    accent: "Match-ready football gears built for precision and power.",
   },
 ];

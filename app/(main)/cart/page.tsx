@@ -8,6 +8,7 @@ import EmptyCart from "@/Components/cart/EmptyCart";
 import { useAuthStore } from "@/store/useAuthStore";
 import { getProtectedRoute } from "@/lib/getProtectedRoute";
 import { useHydration } from "@/hooks/useHydration";
+import { Plus, PlusIcon } from "lucide-react";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -91,7 +92,7 @@ export default function CartPage() {
           </Link>
         </div>*/}
 
-        <div className="bg-gray-50 p-6 rounded-lg h-fit">
+        <div className="bg-gray-50 p-6 rounded-lg h-fit mb-20">
           <div className="flex text-sm justify-between mb-3">
             <p>Sub Total</p>
             <p>${subTotal}</p>
@@ -110,6 +111,12 @@ export default function CartPage() {
           <Link href={checkoutHref}>
             <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer">
               Proceed To Checkout
+            </button>
+          </Link>
+          <Link href="/shop">
+            <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer flex items-center justify-center">
+              Add More Gears
+              <Plus className="w-4 h-4 text-white inline-block ml-2" />{" "}
             </button>
           </Link>
         </div>

@@ -25,9 +25,7 @@ export default function CartItem({
 
           <div>
             <p className="font-medium">{item.name}</p>
-            <p className="text-sm text-gray-500">
-              Color : {item.selectedColor}
-            </p>
+
             <p className="text-sm text-gray-500">Size : {item.selectedSize}</p>
           </div>
         </div>

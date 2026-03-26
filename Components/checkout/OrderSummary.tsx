@@ -34,7 +34,7 @@ export default function OrderSummary() {
 
         {cart.map((item) => (
           <div
-            key={`${item.id}-${item.selectedSize}-${item.selectedColor}`}
+            key={`${item.id}-${item.selectedSize}`}
             className="flex items-center justify-between text-sm"
           >
             <div className="flex items-center gap-4">
@@ -51,9 +51,7 @@ export default function OrderSummary() {
               <div>
                 <p>{item.name}</p>
 
-                <p className="text-xs text-gray-500">
-                  {item.selectedColor} • {item.selectedSize}
-                </p>
+                <p className="text-xs text-gray-500">{item.selectedSize}</p>
 
                 <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
               </div>

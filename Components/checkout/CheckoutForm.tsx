@@ -11,7 +11,6 @@ export default function CheckoutForm() {
 
   const values = watch();
 
-  // Sync form → Zustand
   useEffect(() => {
     setFormData(values);
   }, [values]);

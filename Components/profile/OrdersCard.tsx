@@ -6,17 +6,14 @@ interface Props {
     createdAt: any;
     status: string;
     total: number;
-
     address: string;
     city: string;
     state: string;
     phone: string;
     email: string;
-
     items: {
       name: string;
       color?: string;
-      selectedColor: string;
       selectedSize: string;
       quantity: number;
       price: number;
@@ -54,7 +51,7 @@ export default function OrderCard({ order }: Props) {
                 <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
 
                 <p className="hidden sm:block text-xs text-gray-500">
-                  Color: {item.selectedColor} | Size: {item.selectedSize}
+                  Size: {item.selectedSize}
                 </p>
               </div>
             </div>

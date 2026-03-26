@@ -8,7 +8,8 @@ import EmptyCart from "@/Components/cart/EmptyCart";
 import { useAuthStore } from "@/store/useAuthStore";
 import { getProtectedRoute } from "@/lib/getProtectedRoute";
 import { useHydration } from "@/hooks/useHydration";
-import { Plus, PlusIcon } from "lucide-react";
+import { Plus } from "lucide-react";
+import { BackButton } from "@/Components/layout/BackButton";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -41,12 +42,14 @@ export default function CartPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <div>
+        <div className="mb-4">
+          <BackButton />
+        </div>
         <p className="text-xs opacity-70 mb-3">Home • Cart</p>
         <h1 className="sm:text-3xl text-2xl font-bold text-center text-[#063c71] mb-10">
           Cart
         </h1>
       </div>
-      {/* Desktop Table Header */}
       <div className="hidden md:grid grid-cols-7 bg-[#063c71] text-white p-4 text-sm font-semibold">
         <p className="col-span-2">PRODUCT DETAILS</p>
         <p>PRICE</p>
@@ -114,7 +117,7 @@ export default function CartPage() {
             </button>
           </Link>
           <Link href="/shop">
-            <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer flex items-center justify-center">
+            <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-2 rounded-md cursor-pointer flex items-center justify-center">
               Add More Gears
               <Plus className="w-4 h-4 text-white inline-block ml-2" />{" "}
             </button>

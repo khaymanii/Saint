@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
+import { useHydration } from "@/hooks/useHydration";
 
 export default function CartItem({
   item,
@@ -8,6 +9,9 @@ export default function CartItem({
   removeFromCart,
 }: any) {
   const subtotal = item.price * item.quantity;
+  const mounted = useHydration();
+
+  if (!mounted) return null;
 
   return (
     <div className="border-b py-6">
@@ -53,7 +57,6 @@ export default function CartItem({
         </button>
       </div>
 
-      {/* Mobile Layout */}
       <div className="md:hidden flex gap-4">
         <div className="w-24 h-24 relative bg-gray-100 rounded-md">
           <Image
@@ -76,31 +79,19 @@ export default function CartItem({
 
           <div className="flex items-center gap-3 mt-3">
             <div className="flex items-center border rounded">
-              <button
-                onClick={() =>
-                  decreaseQty(item.id, item.selectedSize, item.selectedColor)
-                }
-                className="px-3"
-              >
+              <button onClick={() => decreaseQty(item)} className="px-3">
                 -
               </button>
 
               <span className="px-4">{item.quantity}</span>
 
-              <button
-                onClick={() =>
-                  increaseQty(item.id, item.selectedSize, item.selectedColor)
-                }
-                className="px-3"
-              >
+              <button onClick={() => increaseQty(item)} className="px-3">
                 +
               </button>
             </div>
 
             <button
-              onClick={() =>
-                removeFromCart(item.id, item.selectedSize, item.selectedColor)
-              }
+              onClick={() => removeFromCart(item)}
               className="text-red-500"
             >
               <Trash2 size={18} />

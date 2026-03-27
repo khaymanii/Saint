@@ -7,28 +7,21 @@ import ShopFilters from "@/Components/shop/ShopFilters";
 import ShopProduct from "@/Components/shop/ShopProduct";
 import { Search } from "lucide-react";
 import filterProducts from "@/lib/filterUtils";
+import { usePagination } from "@/hooks/usePagination";
+import PaginationControls from "@/Components/layout/PaginationControls";
 
 export default function Shop() {
-  /* -------- STATE -------- */
-
   const [selectedSport, setSelectedSport] = useState("All Sports");
   const [selectedSub, setSelectedSub] = useState("All");
   const [selectedTeam, setSelectedTeam] = useState("All");
-
   const [search, setSearch] = useState("");
-
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(300);
-
-  /* TEMP */
   const [tempSport, setTempSport] = useState(selectedSport);
   const [tempSub, setTempSub] = useState(selectedSub);
   const [tempTeam, setTempTeam] = useState(selectedTeam);
-
   const [tempMinPrice, setTempMinPrice] = useState(minPrice);
   const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
-
-  /* -------- FILTER ACTIONS -------- */
 
   const applyFilters = () => {
     setSelectedSport(tempSport);
@@ -52,8 +45,6 @@ export default function Shop() {
     setMaxPrice(300);
   };
 
-  /* -------- FILTER DATA -------- */
-
   const filtered = filterProducts(PRODUCTS, {
     selectedSport,
     selectedSub,
@@ -63,7 +54,8 @@ export default function Shop() {
     maxPrice,
   });
 
-  /* -------- RENDER -------- */
+  const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
+    usePagination(filtered, 12);
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
@@ -104,6 +96,13 @@ export default function Shop() {
       </div>
 
       <ShopProduct products={filtered} />
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        goToPage={goToPage}
+        next={next}
+        prev={prev}
+      />
     </div>
   );
 }

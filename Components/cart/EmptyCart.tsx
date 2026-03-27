@@ -15,6 +15,7 @@ export default function EmptyCart() {
             height={260}
             loading="eager"
             className="object-contain"
+            style={{ width: "auto", height: "auto" }}
           />
         </div>
 

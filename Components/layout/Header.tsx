@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -15,20 +15,45 @@ export function Header() {
   const pathname = usePathname();
   const user = useAuthStore((state) => state.user);
   const profileHref = getProtectedRoute(user, "/profile");
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/shop" },
     { name: "Contact Us", href: "/contact" },
   ];
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMobileMenuOpen]);
+
   const linkClasses = (href: string) =>
     `transition ${
       pathname === href ? "text-[#063c71] font-semibold" : "text-black"
     } hover:text-[#063c71]`;
 
+  const mobileLinkClasses = (href: string) =>
+    `px-4 py-3 rounded-lg transition ${
+      pathname === href
+        ? "bg-[#063c71] text-white font-semibold shadow-md"
+        : "text-black hover:bg-gray-100"
+    }`;
+
   return (
     <header className="w-full shadow bg-white sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* LEFT */}
         <div className="flex items-center gap-4">
           <div className="md:hidden">
             <Button
@@ -49,6 +74,7 @@ export function Header() {
           </Link>
         </div>
 
+        {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-8 font-body text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -61,6 +87,7 @@ export function Header() {
           ))}
         </nav>
 
+        {/* RIGHT */}
         <div className="flex items-center gap-3">
           <Link href={profileHref} className={linkClasses("/profile")}>
             {user && user.photoURL ? (
@@ -77,6 +104,7 @@ export function Header() {
               </Button>
             )}
           </Link>
+
           <Link href="/cart" className={linkClasses("/cart")}>
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingCart className="h-10 w-10" />
@@ -87,13 +115,16 @@ export function Header() {
       </div>
 
       {isMobileMenuOpen && (
-        <nav className="md:hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-4 font-body text-base z-50">
+        <nav
+          ref={menuRef}
+          className="md:hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-4 flex flex-col gap-3 font-body text-base z-50"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className={linkClasses(link.href)}
+              className={mobileLinkClasses(link.href)}
             >
               {link.name}
             </Link>

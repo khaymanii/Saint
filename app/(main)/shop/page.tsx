@@ -1,173 +1,109 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { SlidersHorizontal, X } from "lucide-react";
-import { ShopCard } from "@/Components/layout/ShopCard";
-import Sports from "@/Components/filters/sports";
-import Football from "@/Components/filters/football";
-import Basketball from "@/Components/filters/basketball";
 import { PRODUCTS } from "@/data/shop";
+import ShopBanner from "@/Components/shop/ShopBanner";
+import ShopFilters from "@/Components/shop/ShopFilters";
+import ShopProduct from "@/Components/shop/ShopProduct";
+import { Search } from "lucide-react";
+import filterProducts from "@/lib/filterUtils";
 
 export default function Shop() {
+  /* -------- STATE -------- */
+
   const [selectedSport, setSelectedSport] = useState("All Sports");
-  const [footballSub, setFootballSub] = useState("All");
-  const [footballDetail, setFootballDetail] = useState("All");
-  const [basketballSub, setBasketballSub] = useState("All");
-  const [basketballDetail, setBasketballDetail] = useState("All");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedSub, setSelectedSub] = useState("All");
+  const [selectedTeam, setSelectedTeam] = useState("All");
 
-  const filtered = PRODUCTS.filter((p) => {
-    const sportMatch =
-      selectedSport === "All Sports" || p.sport === selectedSport;
+  const [search, setSearch] = useState("");
 
-    let subMatch = true;
-    let detailMatch = true;
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(300);
 
-    if (selectedSport === "Football") {
-      subMatch = footballSub === "All" || p.sub === footballSub;
-      if (footballSub !== "All") {
-        detailMatch =
-          footballDetail === "All" ||
-          footballDetail === "All Clubs" ||
-          footballDetail === "All Countries" ||
-          p.team === footballDetail;
-      }
-    }
+  /* TEMP */
+  const [tempSport, setTempSport] = useState(selectedSport);
+  const [tempSub, setTempSub] = useState(selectedSub);
+  const [tempTeam, setTempTeam] = useState(selectedTeam);
 
-    if (selectedSport === "Basketball") {
-      subMatch = basketballSub === "All" || p.sub === basketballSub;
-      if (basketballSub !== "All") {
-        detailMatch = basketballDetail === "All" || p.team === basketballDetail;
-      }
-    }
+  const [tempMinPrice, setTempMinPrice] = useState(minPrice);
+  const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
 
-    return sportMatch && subMatch && detailMatch;
+  /* -------- FILTER ACTIONS -------- */
+
+  const applyFilters = () => {
+    setSelectedSport(tempSport);
+    setSelectedSub(tempSub);
+    setSelectedTeam(tempTeam);
+    setMinPrice(tempMinPrice);
+    setMaxPrice(tempMaxPrice);
+  };
+
+  const resetFilters = () => {
+    setTempSport("All Sports");
+    setTempSub("All");
+    setTempTeam("All");
+    setTempMinPrice(0);
+    setTempMaxPrice(300);
+
+    setSelectedSport("All Sports");
+    setSelectedSub("All");
+    setSelectedTeam("All");
+    setMinPrice(0);
+    setMaxPrice(300);
+  };
+
+  /* -------- FILTER DATA -------- */
+
+  const filtered = filterProducts(PRODUCTS, {
+    selectedSport,
+    selectedSub,
+    selectedTeam,
+    search,
+    minPrice,
+    maxPrice,
   });
 
-  const activeLabel =
-    selectedSport === "All Sports"
-      ? "All Products"
-      : selectedSport === "Football" && footballSub !== "All"
-        ? `Football · ${footballSub} · ${footballDetail !== "All" ? footballDetail : ""}`
-        : selectedSport === "Basketball" && basketballSub !== "All"
-          ? `Basketball · ${basketballSub} · ${basketballDetail !== "All" ? basketballDetail : ""}`
-          : selectedSport;
+  /* -------- RENDER -------- */
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
-      <section className="relative w-full h-80 overflow-hidden">
-        <Image
-          src="/images/boxing2.jpg"
-          alt="Shop Banner"
-          fill
-          loading="eager"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/35 flex flex-col items-center justify-center text-white">
-          <p className="text-xs opacity-70 mb-2">Home • Shop</p>
-          <h1 className="sm:text-3xl text-2xl font-bold">Shop</h1>
-          <p className="text-sm opacity-75 mt-1">Gear up for greatness.</p>
-        </div>
-      </section>
+      <ShopBanner />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 flex gap-8">
-        {/* Sidebar */}
-        <>
-          {sidebarOpen && (
-            <div
-              className="fixed inset-0 bg-black/40 z-40 md:hidden"
-              onClick={() => setSidebarOpen(false)}
+      {/* SEARCH + FILTER */}
+      <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="flex border rounded-lg bg-white overflow-hidden">
+          <div className="flex items-center gap-2 flex-1 px-3">
+            <Search size={18} className="text-gray-400" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className="w-full py-3 outline-none text-sm"
             />
-          )}
-
-          <aside
-            className={`
-              fixed top-0 left-0 h-full z-50 bg-white p-6 overflow-y-auto w-64 shadow-xl transition-transform duration-300
-              md:static md:z-auto md:h-auto md:w-56 md:shrink-0 md:bg-transparent md:p-0 md:shadow-none md:translate-x-0
-              ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-            `}
-          >
-            <div className="flex items-center justify-between mb-6 md:hidden">
-              <span className="font-bold text-gray-900 text-sm uppercase tracking-widest">
-                Filters
-              </span>
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="text-gray-500 hover:text-gray-900"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <Sports
-              selectedSport={selectedSport}
-              setSelectedSport={setSelectedSport}
-              setFootballSub={setFootballSub}
-              setBasketballSub={setBasketballSub}
-            />
-
-            {selectedSport === "Football" && (
-              <Football
-                footballSub={footballSub}
-                setFootballSub={setFootballSub}
-                footballDetail={footballDetail}
-                setFootballDetail={setFootballDetail}
-              />
-            )}
-
-            {selectedSport === "Basketball" && (
-              <Basketball
-                basketballSub={basketballSub}
-                setBasketballSub={setBasketballSub}
-                basketballDetail={basketballDetail}
-                setBasketballDetail={setBasketballDetail}
-              />
-            )}
-          </aside>
-        </>
-
-        {/* Products */}
-        <main className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="md:hidden flex items-center gap-2 text-sm font-medium text-gray-600 border border-gray-200 px-3 py-2 rounded-md hover:bg-gray-50 transition"
-              >
-                <SlidersHorizontal size={15} />
-                Filter
-              </button>
-              <h2 className="text-xs font-bold text-gray-900">{activeLabel}</h2>
-              <span className="text-xs text-gray-400">
-                ({filtered.length} items)
-              </span>
-            </div>
           </div>
 
-          {filtered.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-32 text-gray-300">
-              <p className="text-base font-semibold text-gray-400">
-                No products found
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filtered.map((p) => (
-                <ShopCard
-                  key={p.id}
-                  name={p.name}
-                  brand={p.brand}
-                  price={p.price}
-                  image={p.images}
-                  id={p.id}
-                />
-              ))}
-            </div>
-          )}
-        </main>
+          <ShopFilters
+            state={{
+              tempSport,
+              tempSub,
+              tempTeam,
+              tempMinPrice,
+              tempMaxPrice,
+            }}
+            setters={{
+              setTempSport,
+              setTempSub,
+              setTempTeam,
+              setTempMinPrice,
+              setTempMaxPrice,
+            }}
+            applyFilters={applyFilters}
+            resetFilters={resetFilters}
+          />
+        </div>
       </div>
+
+      <ShopProduct products={filtered} />
     </div>
   );
 }

@@ -17,7 +17,6 @@ export function usePagination<T>(data: T[], itemsPerPage: number) {
   const next = () => goToPage(currentPage + 1);
   const prev = () => goToPage(currentPage - 1);
 
-  // reset page when data changes (VERY IMPORTANT)
   useEffect(() => {
     setCurrentPage(1);
   }, [data]);

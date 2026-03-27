@@ -58,7 +58,7 @@ export default function Shop() {
     usePagination(filtered, 12);
 
   return (
-    <div className="min-h-screen bg-[#fafaf8]">
+    <div className="min-h-screen">
       <ShopBanner />
 
       {/* SEARCH + FILTER */}

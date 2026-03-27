@@ -39,7 +39,6 @@ export const PRODUCTS = [
     description:
       "Official Real Madrid home jersey made with breathable fabric for comfort and performance.",
     sizes: ["XS", "S", "M", "L", "XL"],
-    colors: ["#000000", "#ffffff"],
     rating: 4.5,
     reviews: 150,
     stock: true,
@@ -59,7 +58,6 @@ export const PRODUCTS = [
     description:
       "Official Barcelona away kit with breathable and lightweight performance fabric.",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["#1e3a8a", "#f97316"],
     rating: 4.4,
     reviews: 180,
     stock: true,
@@ -81,7 +79,6 @@ export const PRODUCTS = [
     description:
       "Brazil national team jersey designed with moisture-wicking material for maximum comfort.",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["#f7d117", "#0a8f3c"],
     rating: 4.6,
     reviews: 210,
     stock: true,
@@ -101,7 +98,6 @@ export const PRODUCTS = [
     description:
       "France national team jersey inspired by the World Cup champions.",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["#1d4ed8", "#ffffff"],
     rating: 4.6,
     reviews: 240,
     stock: true,
@@ -120,7 +116,6 @@ export const PRODUCTS = [
     description:
       "High-performance football boots designed for speed, precision, and control on the pitch.",
     sizes: ["7", "8", "9", "10", "11"],
-    colors: ["#000000", "#ff0000"],
     rating: 4.7,
     reviews: 95,
     stock: true,
@@ -139,7 +134,6 @@ export const PRODUCTS = [
     description:
       "Lightweight shin guards providing superior protection and comfort.",
     sizes: ["S", "M", "L"],
-    colors: ["#000000", "#ffffff"],
     rating: 4.2,
     reviews: 60,
     stock: true,
@@ -158,7 +152,6 @@ export const PRODUCTS = [
     description:
       "High-performance basketball shoes engineered for explosive speed and support.",
     sizes: ["8", "9", "10", "11", "12"],
-    colors: ["#000000", "#ef4444"],
     rating: 4.8,
     reviews: 320,
     stock: true,
@@ -177,7 +170,6 @@ export const PRODUCTS = [
     description:
       "Official Los Angeles Lakers jersey designed with breathable performance fabric.",
     sizes: ["S", "M", "L", "XL"],
-    colors: ["#facc15", "#7c3aed"],
     rating: 4.7,
     reviews: 275,
     stock: true,
@@ -195,7 +187,6 @@ export const PRODUCTS = [
     description:
       "Professional tennis racket built for control, power, and tournament performance.",
     sizes: ["Grip 2", "Grip 3", "Grip 4"],
-    colors: ["#000000", "#f97316"],
     rating: 4.6,
     reviews: 110,
     stock: true,
@@ -213,7 +204,6 @@ export const PRODUCTS = [
     description:
       "Ultraboost running shoes with responsive cushioning for long-distance comfort.",
     sizes: ["7", "8", "9", "10", "11"],
-    colors: ["#000000", "#ffffff"],
     rating: 4.8,
     reviews: 410,
     stock: true,

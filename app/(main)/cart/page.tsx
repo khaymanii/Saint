@@ -51,7 +51,7 @@ export default function CartPage() {
         </h1>
       </div>
       <div className="hidden md:grid grid-cols-7 bg-[#063c71] text-white p-4 text-sm font-semibold">
-        <p className="col-span-2">PRODUCT DETAILS</p>
+        <p className="col-span-2">GEAR</p>
         <p>PRICE</p>
         <p>QUANTITY</p>
         <p>SHIPPING</p>

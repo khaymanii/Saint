@@ -97,9 +97,9 @@ export default function ProductPage({
           </div>
 
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex border rounded">
+            <div className="flex items-center border rounded-full overflow-hidden">
               <button
-                className="px-4"
+                className="px-3 py-1 text-gray-600 hover:bg-gray-100"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
               >
                 -
@@ -108,7 +108,7 @@ export default function ProductPage({
               <span className="px-6 py-2">{quantity}</span>
 
               <button
-                className="px-4"
+                className="px-3 py-1 text-gray-600 hover:bg-gray-100"
                 onClick={() => setQuantity(quantity + 1)}
               >
                 +

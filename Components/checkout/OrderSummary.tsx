@@ -26,7 +26,6 @@ export default function OrderSummary() {
 
   return (
     <div>
-      {/* Items */}
       <div className="space-y-6 mb-8 bg-gray-50 p-6 rounded-lg h-fit">
         <h2 className="sm:text-3xl text-2xl font-semibold mb-8 text-center">
           Order Summary

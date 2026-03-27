@@ -42,7 +42,6 @@ export function Hero() {
 
   return (
     <section className="relative w-full h-[90vh] md:h-[85vh] overflow-hidden z-0">
-      {/* Slides */}
       {slides.map((s, i) => (
         <div
           key={i}

@@ -31,7 +31,7 @@ export const PRODUCTS = [
     price: 18000,
     sport: "Football",
     sub: "Country Jerseys",
-    team: "Blue Dragon",
+    team: "Japan",
     images: [
       "/catalogue/Blue Dragon.jpeg",
       "/catalogue/Blue Dragon Model.webp",
@@ -50,7 +50,7 @@ export const PRODUCTS = [
     price: 18000,
     sport: "Football",
     sub: "Country Jerseys",
-    team: "Blue Lock Y-3",
+    team: "Japan",
     images: ["/catalogue/Blue Lock.jpeg", "/catalogue/Blue Lock1.jpg"],
     description:
       "The jersey features a royal blue and black base with striking, dynamic graphics of manga panels from the Blue Lock series.",

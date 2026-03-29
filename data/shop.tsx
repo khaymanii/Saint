@@ -26,19 +26,19 @@ export const PRODUCTS = [
   // FOOTBALL - CLUB JERSEYS
   {
     id: 1,
-    name: "Real Madrid Home Jersey",
+    name: "Japan Special Blue Dragon Jersey",
     brand: "Adidas",
-    price: 89.99,
+    price: 18000,
     sport: "Football",
-    sub: "Club Jerseys",
-    team: "Real Madrid",
+    sub: "Country Jerseys",
+    team: "Blue Dragon",
     images: [
-      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55",
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+      "/catalogue/Blue Dragon.jpeg",
+      "/catalogue/Blue Dragon Model.webp",
     ],
     description:
-      "Official Real Madrid home jersey made with breathable fabric for comfort and performance.",
-    sizes: ["XS", "S", "M", "L", "XL"],
+      "The shirt has a white base color with a large, detailed blue dragon graphic on the lower front and sleeves, featuring wave-inspired patterns",
+    sizes: ["L", "XL", "XXL"],
     rating: 4.5,
     reviews: 150,
     stock: true,

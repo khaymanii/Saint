@@ -26,7 +26,7 @@ export const PRODUCTS = [
   // FOOTBALL - CLUB JERSEYS
   {
     id: 1,
-    name: "Japan Blue Dragon Jersey",
+    name: "Japan Blue Dragon Anime Jersey",
     brand: "Adidas",
     price: 18000,
     sport: "Football",
@@ -45,7 +45,7 @@ export const PRODUCTS = [
   },
   {
     id: 2,
-    name: "Japan Blue Lock Jersey",
+    name: "Japan Blue Lock Anime Jersey",
     brand: "Adidas",
     price: 18000,
     sport: "Football",

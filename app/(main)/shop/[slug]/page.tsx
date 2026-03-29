@@ -21,7 +21,12 @@ export default function ProductPage({
   const [quantity, setQuantity] = useState(1);
   const addToCart = useCartStore((state) => state.addToCart);
 
-  if (!product) return <div>Product not found</div>;
+  if (!product)
+    return (
+      <div className="h-screen flex items-center justify-center font-semibold text-xl text-gray-500">
+        Product not found
+      </div>
+    );
 
   const related = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 8);
 

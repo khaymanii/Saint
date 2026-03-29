@@ -43,7 +43,7 @@ export default function ShopFilters({
         </button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-md rounded-2xl">
+      <DialogContent className="max-w-md rounded-2xl px-6">
         <DialogHeader>
           <div className="flex justify-between items-center py-4">
             <DialogTitle className="text-lg font-semibold">Filter</DialogTitle>

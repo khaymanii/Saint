@@ -32,63 +32,82 @@ export default function ProductPage({
       </div>
       <p className="text-gray-400 text-xs mb-8">Shop • {product.name}</p>
 
-      <div className="grid lg:grid-cols-2 gap-12">
-        <div className="flex gap-6">
-          <div className="flex flex-col gap-4">
+      <div className="grid lg:grid-cols-2 gap-10">
+        {/* IMAGES */}
+        <div className="flex flex-col gap-4">
+          {/* MAIN IMAGE */}
+          <div className="relative w-full h-80 sm:h-96 overflow-hidden">
+            <Image
+              src={selectedImage!}
+              alt={product.name}
+              fill
+              priority
+              className="object-contain p-6 rounded-md"
+            />
+          </div>
+
+          {/* THUMBNAILS (SCROLL ON MOBILE) */}
+          <div className="flex gap-3 overflow-x-auto scrollbar-hide">
             {product.images.map((img) => (
               <div
                 key={img}
                 onClick={() => setSelectedImage(img)}
-                className="w-20 h-20 bg-gray-100 cursor-pointer relative rounded-md"
+                className={`min-w-17.5 h-20 relative rounded-lg cursor-pointer border 
+          ${selectedImage === img ? "border-[#063c71]" : "border-transparent"}`}
               >
                 <Image
                   src={img}
                   alt=""
                   fill
-                  loading="eager"
                   sizes="80px"
-                  className="object-cover rounded-md"
+                  className="object-cover rounded-lg"
                 />
               </div>
             ))}
           </div>
-
-          <div className="flex-1 relative bg-gray-100 h-112.5 rounded-md">
-            <Image
-              src={selectedImage!}
-              alt={product.name}
-              fill
-              loading="eager"
-              sizes="(max-width: 1024px) 50vw, 25vw"
-              className="object-contain p-6"
-            />
-          </div>
         </div>
 
-        <div>
-          <h1 className="text-2xl font-semibold mb-3">{product.name}</h1>
+        {/* DETAILS */}
+        <div className="flex flex-col">
+          {/* TITLE */}
+          <h1 className="text-xl sm:text-2xl font-semibold mb-2">
+            {product.name}
+          </h1>
 
-          <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-            ⭐ {product.rating} {/*({product.reviews} Reviews)*/}
-            <span className="text-green-600">In Stock</span>
+          {/* RATING */}
+          <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+            ⭐ {product.rating}
+            <span className="text-green-600 font-medium">In Stock</span>
           </div>
 
-          <p className="text-2xl font-semibold mb-4">${product.price}</p>
+          {/* PRICE */}
+          <p className="text-2xl font-bold text-[#063c71] mb-4">
+            #{product.price}
+          </p>
 
-          <p className="text-gray-600 mb-6">{product.description}</p>
+          {/* DESCRIPTION */}
+          <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+            {product.description}
+          </p>
 
+          {/* SIZE */}
           <div className="mb-6">
-            <p className="mb-2 font-medium">
-              Size: <span className="text-xs text-gray-500">Select size</span>
+            <p className="mb-2 font-medium text-sm">
+              Size
+              <span className="text-xs text-gray-400 ml-1">(Select size)</span>
             </p>
 
-            <div className="flex gap-3">
+            <div className="grid grid-cols-4 gap-2">
               {product.sizes.map((size) => (
                 <button
                   key={size}
                   onClick={() => setSelectedSize(size)}
-                  className={`px-4 py-2 border rounded
-                  ${selectedSize === size ? "bg-[#063c71] text-white" : ""}`}
+                  className={`py-2 text-sm border rounded-md transition
+            ${
+              selectedSize === size
+                ? "bg-[#063c71] text-white border-[#063c71]"
+                : "hover:border-[#063c71]"
+            }`}
                 >
                   {size}
                 </button>
@@ -96,31 +115,33 @@ export default function ProductPage({
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex items-center border rounded-full overflow-hidden">
+          {/* ACTIONS */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+            {/* QUANTITY */}
+            <div className="flex items-center justify-between border rounded-full px-3 py-1 w-full sm:w-fit">
               <button
-                className="px-3 py-1 text-gray-600 hover:bg-gray-100"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="text-lg px-2 text-gray-600 hover:text-black"
               >
                 -
               </button>
 
-              <span className="px-6 py-2">{quantity}</span>
+              <span className="px-4 text-sm font-medium">{quantity}</span>
 
               <button
-                className="px-3 py-1 text-gray-600 hover:bg-gray-100"
                 onClick={() => setQuantity(quantity + 1)}
+                className="text-lg px-2 text-gray-600 hover:text-black"
               >
                 +
               </button>
             </div>
 
+            {/* ADD TO CART */}
             <button
-              className={`bg-[#063c71] text-white px-8 py-3 rounded ${
-                !selectedSize
-                  ? "opacity-50 cursor-not-allowed"
-                  : "cursor-pointer"
-              }`}
+              className={`w-full sm:w-auto bg-[#063c71] text-white px-6 py-3 rounded-md text-sm font-medium transition
+        ${
+          !selectedSize ? "opacity-50 cursor-not-allowed" : "hover:bg-[#042a50]"
+        }`}
               onClick={() => {
                 if (!selectedSize) {
                   toast.error("Please select size");

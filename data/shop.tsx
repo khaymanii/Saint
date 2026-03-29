@@ -26,7 +26,7 @@ export const PRODUCTS = [
   // FOOTBALL - CLUB JERSEYS
   {
     id: 1,
-    name: "Japan Special Blue Dragon Jersey",
+    name: "Japan Blue Dragon Jersey",
     brand: "Adidas",
     price: 18000,
     sport: "Football",
@@ -45,19 +45,16 @@ export const PRODUCTS = [
   },
   {
     id: 2,
-    name: "Barcelona Away Kit",
-    brand: "Nike",
-    price: 94.99,
+    name: "Japan Blue Lock Jersey",
+    brand: "Adidas",
+    price: 18000,
     sport: "Football",
-    sub: "Club Jerseys",
-    team: "Barcelona",
-    images: [
-      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12",
-      "https://images.unsplash.com/photo-1575361204480-aadea25e6e68",
-    ],
+    sub: "Country Jerseys",
+    team: "Blue Lock Y-3",
+    images: ["/catalogue/Blue Lock.jpeg", "/catalogue/Blue Lock1.jpg"],
     description:
-      "Official Barcelona away kit with breathable and lightweight performance fabric.",
-    sizes: ["S", "M", "L", "XL"],
+      "The jersey features a royal blue and black base with striking, dynamic graphics of manga panels from the Blue Lock series.",
+    sizes: ["L", "XL", "XXL"],
     rating: 4.4,
     reviews: 180,
     stock: true,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PRODUCTS } from "@/data/shop";
 import ShopBanner from "@/Components/shop/ShopBanner";
 import ShopFilters from "@/Components/shop/ShopFilters";
@@ -15,13 +15,13 @@ export default function Shop() {
   const [selectedSub, setSelectedSub] = useState("All");
   const [selectedTeam, setSelectedTeam] = useState("All");
   const [search, setSearch] = useState("");
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(300);
   const [tempSport, setTempSport] = useState(selectedSport);
   const [tempSub, setTempSub] = useState(selectedSub);
   const [tempTeam, setTempTeam] = useState(selectedTeam);
-  const [tempMinPrice, setTempMinPrice] = useState(minPrice);
-  const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000);
+  const [tempMinPrice, setTempMinPrice] = useState(0);
+  const [tempMaxPrice, setTempMaxPrice] = useState(100000);
 
   const applyFilters = () => {
     setSelectedSport(tempSport);
@@ -36,16 +36,32 @@ export default function Shop() {
     setTempSub("All");
     setTempTeam("All");
     setTempMinPrice(0);
-    setTempMaxPrice(300);
-
+    setTempMaxPrice(100000); // ← was 300
     setSelectedSport("All Sports");
     setSelectedSub("All");
     setSelectedTeam("All");
     setMinPrice(0);
-    setMaxPrice(300);
+    setMaxPrice(100000); // ← was 300
   };
 
-  const filtered = filterProducts(PRODUCTS, {
+  // ✅ AFTER — stable reference, only recomputes when filters change
+  const filtered = useMemo(
+    () =>
+      filterProducts(PRODUCTS, {
+        selectedSport,
+        selectedSub,
+        selectedTeam,
+        search,
+        minPrice,
+        maxPrice,
+      }),
+    [selectedSport, selectedSub, selectedTeam, search, minPrice, maxPrice],
+  );
+
+  const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
+    usePagination(filtered, 12);
+
+  console.log("FILTERS:", {
     selectedSport,
     selectedSub,
     selectedTeam,
@@ -54,13 +70,8 @@ export default function Shop() {
     maxPrice,
   });
 
-  const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
-    usePagination(filtered, 12);
-
-  // ✅ Reset page on filter change
-  useEffect(() => {
-    goToPage(1);
-  }, [selectedSport, selectedSub, selectedTeam, search, minPrice, maxPrice]);
+  console.log("TOTAL PRODUCTS:", PRODUCTS.length);
+  console.log("FILTERED:", filtered.length);
 
   return (
     <div className="min-h-screen">
@@ -98,7 +109,7 @@ export default function Shop() {
           />
         </div>
       </div>
-      <ShopProduct products={paginatedData} />
+      <ShopProduct products={paginatedData} />{" "}
       <PaginationControls
         currentPage={currentPage}
         totalPages={totalPages}

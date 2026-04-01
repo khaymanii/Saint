@@ -1,18 +1,29 @@
 import { PRODUCTS } from "@/data/shop";
 
+/* ==============================
+   SPORTS
+============================== */
 export const SPORTS = [
   "All Sports",
   ...Array.from(new Set(PRODUCTS.map((p) => p.sport))),
 ];
 
+/* ==============================
+   SUBCATEGORIES
+============================== */
 export const getSubs = (sport: string) => {
   if (sport === "All Sports") return ["All"];
+
   const subs = PRODUCTS.filter((p) => p.sport === sport && p.sub).map(
     (p) => p.sub,
   );
+
   return ["All", ...Array.from(new Set(subs))];
 };
 
+/* ==============================
+   TEAMS
+============================== */
 export const getTeams = (sport: string, sub: string) => {
   const teams = PRODUCTS.filter((p) => {
     return (
@@ -25,6 +36,9 @@ export const getTeams = (sport: string, sub: string) => {
   return ["All", ...Array.from(new Set(teams))];
 };
 
+/* ==============================
+   FILTER PRODUCTS
+============================== */
 export default function filterProducts(products: any[], filters: any) {
   const {
     selectedSport,
@@ -46,11 +60,11 @@ export default function filterProducts(products: any[], filters: any) {
     // ✅ TEAM
     const teamMatch = selectedTeam === "All" || p.team === selectedTeam;
 
-    // ✅ SEARCH (SAFE FIX)
+    // ✅ SEARCH
     const searchMatch =
       !search || p.name.toLowerCase().includes(search.toLowerCase());
 
-    // ✅ PRICE (SAFE FIX)
+    // ✅ PRICE (FIXED — THIS WAS YOUR BUG)
     const priceMatch =
       (!minPrice || p.price >= minPrice) && (!maxPrice || p.price <= maxPrice);
 

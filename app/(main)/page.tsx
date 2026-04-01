@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   useEffect(() => {
-    document.title = "Saint - Relentless";
+    document.title = "SAINT";
   }, []);
 
   return (

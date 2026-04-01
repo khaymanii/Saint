@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Saint - Relentless",
+  title: "SAINT",
   description: "Sportswear and Gears for the Relentless",
   icons: {
     icon: [

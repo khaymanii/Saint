@@ -1,41 +1,13 @@
-export const SPORTS = ["All Sports", "Football", "Basketball", "NFL"];
-
-export const FOOTBALL_SUBS = [
-  "All",
-  "Club Jerseys",
-  "Country Jerseys",
-  "Boots",
-  "Accessories",
-];
-
-export const BASKETBALL_SUBS = ["All", "Jerseys", "Shoes"];
-
-export const FOOTBALL_FILTERS: Record<string, string[]> = {
-  "Club Jerseys": ["All Clubs", "Real Madrid", "Barcelona"],
-  "Country Jerseys": ["All Countries", "Brazil", "France"],
-  Boots: ["All Boots", "Adidas", "Nike", "Puma"],
-  Accessories: ["All Accessories", "Shin Guards", "Socks"],
-};
-
-export const BASKETBALL_FILTERS: Record<string, string[]> = {
-  Jerseys: ["All Teams", "Lakers", "Warriors", "Bulls"],
-  Shoes: ["All Shoes", "Jordan", "Nike", "Adidas"],
-};
-
 export const PRODUCTS = [
-  // FOOTBALL - CLUB JERSEYS
   {
     id: 1,
-    name: "Japan Blue Dragon Anime Jersey",
+    name: "Japan Blue-Dragon Anime Jersey",
     brand: "Adidas",
     price: 18000,
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: [
-      "/catalogue/Blue Dragon.jpeg",
-      "/catalogue/Blue Dragon Model.webp",
-    ],
+    images: ["/catalogue/Blue Dragon.jpeg"],
     description:
       "The shirt has a white base color with a large, detailed blue dragon graphic on the lower front and sleeves, featuring wave-inspired patterns",
     sizes: ["L", "XL", "XXL"],
@@ -45,7 +17,7 @@ export const PRODUCTS = [
   },
   {
     id: 2,
-    name: "Japan Blue Lock Anime Jersey",
+    name: "Japan Blue-Lock Anime Jersey",
     brand: "Adidas",
     price: 18000,
     sport: "Football",
@@ -59,104 +31,107 @@ export const PRODUCTS = [
     reviews: 180,
     stock: true,
   },
-
-  // FOOTBALL - COUNTRY JERSEYS
   {
     id: 3,
-    name: "Brazil National Jersey",
-    brand: "Nike",
-    price: 79.99,
+    name: "Japan Samurai Anime Jersey",
+    brand: "Adidas",
+    price: 18000,
     sport: "Football",
     sub: "Country Jerseys",
-    team: "Brazil",
+    team: "Japan",
     images: [
-      "https://images.unsplash.com/photo-1556056504-5c7696c4c28d",
-      "https://images.unsplash.com/photo-1575361204480-aadea25e6e68",
+      "/catalogue/Warrior Samurai1.jpeg",
+      "/catalogue/Warrior Samurai.webp",
     ],
     description:
-      "Brazil national team jersey designed with moisture-wicking material for maximum comfort.",
-    sizes: ["S", "M", "L", "XL"],
+      "This jersey is often referred to as a 'Samurai' concept jersey, capturing the power and spirit of the legendary Japanese warriors. ",
+    sizes: ["L", "XL", "XXL"],
+    rating: 4.4,
+    reviews: 180,
+    stock: true,
+  },
+  {
+    id: 4,
+    name: "Tokyo Edition Anime Jersey. ",
+    brand: "Adidas",
+    price: 18000,
+    sport: "Football",
+    sub: "Country Jerseys",
+    team: "Japan",
+    images: ["/catalogue/Tokyo Edition.jpeg"],
+    description:
+      "The jersey has an illustrated collage of iconic Tokyo scenes, including the Tokyo Tower, bustling streets, a subway, and traditional teahouses, creating an urban mosaic effect.",
+    sizes: ["L", "XL", "XXL"],
     rating: 4.6,
     reviews: 210,
     stock: true,
   },
   {
-    id: 4,
-    name: "France World Cup Jersey",
-    brand: "Nike",
-    price: 84.99,
+    id: 5,
+    name: "Japan Dragon Ball Z Vegeta Jersey",
+    brand: "Adidas",
+    price: 18000,
     sport: "Football",
     sub: "Country Jerseys",
-    team: "France",
-    images: [
-      "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90",
-      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55",
-    ],
+    team: "Japan",
+    images: ["/catalogue/Japan National.jpeg"],
     description:
-      "France national team jersey inspired by the World Cup champions.",
-    sizes: ["S", "M", "L", "XL"],
+      "This is a special edition football jersey for the Japan national team, featuring a white and blue color scheme with manga-style graphic prints of the Dragon Ball Z character Vegeta on the front and back. ",
+    sizes: ["L", "XL", "XXL"],
     rating: 4.6,
     reviews: 240,
     stock: true,
   },
-
-  // FOOTBALL - BOOTS
   {
-    id: 5,
-    name: "Predator Elite Football Boots",
+    id: 6,
+    name: "Japan Sakura Jersey",
     brand: "Adidas",
-    price: 199.99,
+    price: 18000,
     sport: "Football",
-    sub: "Boots",
-    team: "Adidas",
-    images: ["https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"],
+    sub: "Country Jerseys",
+    team: "Japan",
+    images: ["/catalogue/Sakura1.jpeg", "/catalogue/Sakura.jpeg"],
     description:
-      "High-performance football boots designed for speed, precision, and control on the pitch.",
-    sizes: ["7", "8", "9", "10", "11"],
+      "This jersey features a predominantly white base color with an eye-catching graphic of pink cherry blossoms (sakura), a traditional Japanese bridge, and a pagoda scene.",
+    sizes: ["L", "XL", "XXL"],
     rating: 4.7,
     reviews: 95,
     stock: true,
   },
-
-  // FOOTBALL - ACCESSORIES
   {
-    id: 6,
-    name: "Football Shin Guards",
-    brand: "Puma",
-    price: 19.99,
+    id: 7,
+    name: "Japan Pink-Dragon Jersey",
+    brand: "Adidas",
+    price: 18000,
     sport: "Football",
-    sub: "Accessories",
-    team: "Shin Guards",
-    images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62"],
+    sub: "Country Jerseys",
+    team: "Japan",
+    images: ["/catalogue/Pink Dragon.jpeg"],
     description:
-      "Lightweight shin guards providing superior protection and comfort.",
-    sizes: ["S", "M", "L"],
+      "This jersey is primarily black and features a large, detailed graphic of a dragon and cherry blossoms in shades of pink and white. ",
+    sizes: ["L", "XL", "XXL"],
     rating: 4.2,
     reviews: 60,
     stock: true,
   },
-
-  // BASKETBALL - SHOES
-  {
-    id: 7,
-    name: "Pro Basketball Shoes",
-    brand: "Jordan",
-    price: 159.99,
-    sport: "Basketball",
-    sub: "Shoes",
-    team: "Jordan",
-    images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff"],
-    description:
-      "High-performance basketball shoes engineered for explosive speed and support.",
-    sizes: ["8", "9", "10", "11", "12"],
-    rating: 4.8,
-    reviews: 320,
-    stock: true,
-  },
-
-  // BASKETBALL - JERSEYS
   {
     id: 8,
+    name: "Japan Katana Jersey",
+    brand: "Adidas",
+    price: 18000,
+    sport: "Football",
+    sub: "Country Jerseys",
+    team: "Japan",
+    images: ["/catalogue/Katana.jpeg"],
+    description:
+      "The white jersey features a striking graphic on the front of a samurai sword piercing a fish.",
+    sizes: ["L", "XL", "XXL"],
+    rating: 4.5,
+    reviews: 120,
+    stock: true,
+  },
+  {
+    id: 9,
     name: "NBA Lakers Jersey",
     brand: "Nike",
     price: 109.99,
@@ -171,10 +146,8 @@ export const PRODUCTS = [
     reviews: 275,
     stock: true,
   },
-
-  // TENNIS
   {
-    id: 9,
+    id: 10,
     name: "Tennis Racket Pro",
     brand: "Wilson",
     price: 249.99,
@@ -188,10 +161,8 @@ export const PRODUCTS = [
     reviews: 110,
     stock: true,
   },
-
-  // RUNNING
   {
-    id: 10,
+    id: 11,
     name: "Adidas Ultraboost Running Shoes",
     brand: "Adidas",
     price: 139.99,

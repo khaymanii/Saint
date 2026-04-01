@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PRODUCTS } from "@/data/shop";
 import ShopBanner from "@/Components/shop/ShopBanner";
 import ShopFilters from "@/Components/shop/ShopFilters";
@@ -57,10 +57,14 @@ export default function Shop() {
   const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
     usePagination(filtered, 12);
 
+  // ✅ Reset page on filter change
+  useEffect(() => {
+    goToPage(1);
+  }, [selectedSport, selectedSub, selectedTeam, search, minPrice, maxPrice]);
+
   return (
     <div className="min-h-screen">
       <ShopBanner />
-
       {/* SEARCH + FILTER */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="flex border rounded-lg bg-white overflow-hidden">
@@ -94,8 +98,7 @@ export default function Shop() {
           />
         </div>
       </div>
-
-      <ShopProduct products={filtered} />
+      <ShopProduct products={paginatedData} />
       <PaginationControls
         currentPage={currentPage}
         totalPages={totalPages}

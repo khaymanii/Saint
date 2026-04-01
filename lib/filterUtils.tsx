@@ -25,7 +25,7 @@ export const getTeams = (sport: string, sub: string) => {
   return ["All", ...Array.from(new Set(teams))];
 };
 
-export default function filterProducts(PRODUCTS: any[], filters: any) {
+export default function filterProducts(products: any[], filters: any) {
   const {
     selectedSport,
     selectedSub,
@@ -35,17 +35,24 @@ export default function filterProducts(PRODUCTS: any[], filters: any) {
     maxPrice,
   } = filters;
 
-  return PRODUCTS.filter((p) => {
+  return products.filter((p) => {
+    // ✅ SPORT
     const sportMatch =
       selectedSport === "All Sports" || p.sport === selectedSport;
 
+    // ✅ SUB
     const subMatch = selectedSub === "All" || p.sub === selectedSub;
 
+    // ✅ TEAM
     const teamMatch = selectedTeam === "All" || p.team === selectedTeam;
 
-    const searchMatch = p.name.toLowerCase().includes(search.toLowerCase());
+    // ✅ SEARCH (SAFE FIX)
+    const searchMatch =
+      !search || p.name.toLowerCase().includes(search.toLowerCase());
 
-    const priceMatch = p.price >= minPrice && p.price <= maxPrice;
+    // ✅ PRICE (SAFE FIX)
+    const priceMatch =
+      (!minPrice || p.price >= minPrice) && (!maxPrice || p.price <= maxPrice);
 
     return sportMatch && subMatch && teamMatch && searchMatch && priceMatch;
   });

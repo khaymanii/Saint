@@ -14,7 +14,7 @@ export function NewArrivals() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRODUCTS.slice(4, 10).map((item) => (
+          {PRODUCTS.slice(4, 16).map((item) => (
             <ShopCard
               key={item.id}
               name={item.name}

@@ -8,6 +8,7 @@ import {
 import { SlidersHorizontal } from "lucide-react";
 import { SPORTS, getSubs, getTeams } from "@/lib/filterUtils";
 import PriceSlider from "./PriceSlider";
+import { useState } from "react";
 
 type Props = {
   state: any;
@@ -23,6 +24,7 @@ export default function ShopFilters({
   resetFilters,
 }: Props) {
   const { tempSport, tempSub, tempTeam, tempMinPrice, tempMaxPrice } = state;
+  const [open, setOpen] = useState(false);
 
   const {
     setTempSport,
@@ -36,14 +38,16 @@ export default function ShopFilters({
     "w-full border border-gray-300 p-2 rounded-md bg-white text-xs focus:outline-none focus:ring-1 focus:ring-[#063c71] focus:border-[#063c71] transition";
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <button className="px-4 border-l flex items-center hover:bg-gray-50 transition">
           <SlidersHorizontal size={18} />
         </button>
       </DialogTrigger>
-
-      <DialogContent className="max-w-md rounded-2xl px-6">
+      <DialogContent
+        aria-describedby={undefined}
+        className="max-w-md rounded-2xl px-6"
+      >
         <DialogHeader>
           <div className="flex justify-between items-center py-4">
             <DialogTitle className="text-lg font-semibold">Filter</DialogTitle>
@@ -104,7 +108,10 @@ export default function ShopFilters({
           />
 
           <button
-            onClick={applyFilters}
+            onClick={() => {
+              applyFilters();
+              setOpen(false);
+            }}
             className="w-full bg-[#063c71] hover:bg-[#052c52] text-white py-3 rounded-md cursor-pointer transition font-medium"
           >
             Apply Filters

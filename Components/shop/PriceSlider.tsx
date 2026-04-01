@@ -13,9 +13,9 @@ export default function PriceSlider({ min, max, setMax }: Props) {
 
       <input
         type="range"
-        min="0"
-        max="100000"
-        value={max}
+        min={0}
+        max={100000}
+        value={max ?? 100000}
         onChange={(e) => setMax(Number(e.target.value))}
         className="w-full"
       />

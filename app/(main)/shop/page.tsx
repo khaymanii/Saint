@@ -58,7 +58,7 @@ export default function Shop() {
   );
 
   const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
-    usePagination(filtered, 12);
+    usePagination(filtered, 16);
 
   return (
     <div className="min-h-screen">

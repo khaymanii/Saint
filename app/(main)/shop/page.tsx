@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { PRODUCTS } from "@/data/shop";
 import ShopBanner from "@/Components/shop/ShopBanner";
 import ShopFilters from "@/Components/shop/ShopFilters";
@@ -36,15 +36,14 @@ export default function Shop() {
     setTempSub("All");
     setTempTeam("All");
     setTempMinPrice(0);
-    setTempMaxPrice(100000); // ← was 300
+    setTempMaxPrice(100000);
     setSelectedSport("All Sports");
     setSelectedSub("All");
     setSelectedTeam("All");
     setMinPrice(0);
-    setMaxPrice(100000); // ← was 300
+    setMaxPrice(100000);
   };
 
-  // ✅ AFTER — stable reference, only recomputes when filters change
   const filtered = useMemo(
     () =>
       filterProducts(PRODUCTS, {
@@ -61,22 +60,9 @@ export default function Shop() {
   const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
     usePagination(filtered, 12);
 
-  console.log("FILTERS:", {
-    selectedSport,
-    selectedSub,
-    selectedTeam,
-    search,
-    minPrice,
-    maxPrice,
-  });
-
-  console.log("TOTAL PRODUCTS:", PRODUCTS.length);
-  console.log("FILTERED:", filtered.length);
-
   return (
     <div className="min-h-screen">
       <ShopBanner />
-      {/* SEARCH + FILTER */}
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="flex border rounded-lg bg-white overflow-hidden">
           <div className="flex items-center gap-2 flex-1 px-3">
@@ -109,7 +95,7 @@ export default function Shop() {
           />
         </div>
       </div>
-      <ShopProduct products={paginatedData} />{" "}
+      <ShopProduct products={paginatedData} />
       <PaginationControls
         currentPage={currentPage}
         totalPages={totalPages}

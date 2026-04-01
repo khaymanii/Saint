@@ -57,7 +57,6 @@ export default function ShopFilters({
         </DialogHeader>
 
         <div className="space-y-5">
-          {/* SPORT */}
           <select
             value={tempSport}
             onChange={(e) => {
@@ -74,7 +73,6 @@ export default function ShopFilters({
             ))}
           </select>
 
-          {/* SUB */}
           {tempSport !== "All Sports" && (
             <select
               value={tempSub}
@@ -87,7 +85,6 @@ export default function ShopFilters({
             </select>
           )}
 
-          {/* TEAM */}
           {tempSub !== "All" && (
             <select
               value={tempTeam}
@@ -100,14 +97,12 @@ export default function ShopFilters({
             </select>
           )}
 
-          {/* PRICE */}
           <PriceSlider
             min={tempMinPrice}
             max={tempMaxPrice}
             setMax={setTempMaxPrice}
           />
 
-          {/* APPLY BUTTON */}
           <button
             onClick={applyFilters}
             className="w-full bg-[#063c71] hover:bg-[#052c52] text-white py-3 rounded-md cursor-pointer transition font-medium"

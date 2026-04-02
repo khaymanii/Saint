@@ -56,7 +56,7 @@ export default function OrderSummary() {
               </div>
             </div>
 
-            <p>${(item.price * item.quantity).toFixed(2)}</p>
+            <p>#{(item.price * item.quantity).toFixed(2)}</p>
           </div>
         ))}
       </div>
@@ -64,12 +64,12 @@ export default function OrderSummary() {
       <div className="space-y-3 border-t pt-4">
         <div className="flex justify-between text-sm">
           <p>Subtotal:</p>
-          <p>${subtotal.toFixed(2)}</p>
+          <p>#{subtotal.toFixed(2)}</p>
         </div>
 
         <div className="flex justify-between text-sm">
           <p>Shipping:</p>
-          <p>{shipping === 0 ? "Free" : `$${shipping}`}</p>
+          <p>{shipping === 0 ? "Free" : `${shipping}`}</p>
         </div>
 
         <div className="flex justify-between font-semibold text-lg border-t pt-3">

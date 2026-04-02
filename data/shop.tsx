@@ -7,7 +7,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Blue Dragon.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce080d000e72b02e41/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "The shirt has a white base color with a large, detailed blue dragon graphic on the lower front and sleeves, featuring wave-inspired patterns",
     sizes: ["L", "XL", "XXL"],
@@ -23,7 +25,10 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Blue Lock.jpeg", "/catalogue/Blue Lock1.jpg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce082c00165fb5bff2/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce083a00101fb8c155/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "The jersey features a royal blue and black base with striking, dynamic graphics of manga panels from the Blue Lock series.",
     sizes: ["L", "XL", "XXL"],
@@ -40,8 +45,8 @@ export const PRODUCTS = [
     sub: "Country Jerseys",
     team: "Japan",
     images: [
-      "/catalogue/Warrior Samurai1.jpeg",
-      "/catalogue/Warrior Samurai.webp",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce06a900131f561e1d/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce06c600070d19ee4e/view?project=69ce05d700314f848db5&mode=admin",
     ],
     description:
       "This jersey is often referred to as a 'Samurai' concept jersey, capturing the power and spirit of the legendary Japanese warriors. ",
@@ -58,7 +63,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Tokyo Edition.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce06d90019c58e6638/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "The jersey has an illustrated collage of iconic Tokyo scenes, including the Tokyo Tower, bustling streets, a subway, and traditional teahouses, creating an urban mosaic effect.",
     sizes: ["L", "XL", "XXL"],
@@ -74,7 +81,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Japan National.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce08b90019b373aad4/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This is a special edition football jersey for the Japan national team, featuring a white and blue color scheme with manga-style graphic prints of the Dragon Ball Z character Vegeta on the front and back. ",
     sizes: ["L", "XL", "XXL"],
@@ -90,7 +99,10 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Sakura1.jpeg", "/catalogue/Sakura.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce06ec002239115984/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce070200328af7d07b/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey features a predominantly white base color with an eye-catching graphic of pink cherry blossoms (sakura), a traditional Japanese bridge, and a pagoda scene.",
     sizes: ["L", "XL", "XXL"],
@@ -106,7 +118,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Pink Dragon.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce0716001af9823d16/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey is primarily black and features a large, detailed graphic of a dragon and cherry blossoms in shades of pink and white. ",
     sizes: ["L", "XL", "XXL"],
@@ -122,7 +136,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Japan",
-    images: ["/catalogue/Katana.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce08d1000de3842b61/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "The white jersey features a striking graphic on the front of a samurai sword piercing a fish.",
     sizes: ["L", "XL", "XXL"],
@@ -139,9 +155,9 @@ export const PRODUCTS = [
     sub: "Country Jerseys",
     team: "Germany",
     images: [
-      "/catalogue/Germany.jpeg",
-      "/catalogue/Germany.webp",
-      "/catalogue/Germany1.webp",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce087c0018ff62e197/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce0897002b7dbfd9cc/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce08a60035e71dbd64/view?project=69ce05d700314f848db5&mode=admin",
     ],
     description:
       "This football jersey combines classic design elements with modern technology and is designed to support the German national team.",
@@ -158,7 +174,10 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "England",
-    images: ["/catalogue/England.webp", "/catalogue/England1.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce085a0004a988b8c8/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce086b00278247e3ce/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "It features a classic white base with a subtle jacquard pattern. The collar is navy with red and white detailing. ",
     sizes: ["L", "XL", "2XL", "3XL"],
@@ -174,7 +193,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Argentina",
-    images: ["/catalogue/Argentina.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce081c00370d2065a3/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey features the traditional white and light blue vertical stripes associated with the Argentina national team. ",
     sizes: ["L", "XL", "2XL"],
@@ -190,7 +211,10 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria.jpeg", "/catalogue/Nigeria.webp"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce0744002085db00cc/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce072d003990fc62d8/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This replica jersey features a smart black base enhanced with swirling flourishes of green and vibrant contrast side panels. ",
     sizes: ["L", "XL", "2XL"],
@@ -206,7 +230,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria 1996.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce07f100115643890a/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey features the traditional Nigerian colors of green and white, with a bold green-and-white design and vintage flair.",
     sizes: ["L", "XL", "2XL"],
@@ -222,7 +248,10 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria Retro1.jpg", "/catalogue/Nigeria Retro.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce078f0036f7f03c5f/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce07b900023d0dc7ad/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey features a retro-inspired design that evokes nostalgia of Nigeria's past glory years, incorporating elements from the 1994 and 1996 kits. ",
     sizes: ["L", "XL", "2XL"],
@@ -238,7 +267,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria Women.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce0758001b9b101a85/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey is primarily white with unique vertical brushstroke-style graphics in various shades of green across the front, sleeve panels, and lower back.",
     sizes: ["L", "XL", "2XL"],
@@ -254,7 +285,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria Retro 1998.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce07a5002088a94dfe/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey features a clean white design with a V-neck collar and green trim, as well as green vertical bands and shoulder stripes. ",
     sizes: ["L", "XL", "2XL"],
@@ -270,7 +303,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria Stadium.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce076f0010377410d2/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This jersey is predominantly white with green and red detailing, symbolizing the team's spirit. It features a unique square neck design.",
     sizes: ["L", "XL", "2XL"],
@@ -286,7 +321,9 @@ export const PRODUCTS = [
     sport: "Football",
     sub: "Country Jerseys",
     team: "Nigeria",
-    images: ["/catalogue/Nigeria Women Home.jpeg"],
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce0eee0017b1079250/view?project=69ce05d700314f848db5&mode=admin",
+    ],
     description:
       "This football jersey, designed by Nike, features a rich, dark green base color with subtle vertical textured striping that adds depth and movement to the fabric.",
     sizes: ["L", "XL", "2XL"],

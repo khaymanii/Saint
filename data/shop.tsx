@@ -11,7 +11,7 @@ export const PRODUCTS = [
       "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69ce080d000e72b02e41/view?project=69ce05d700314f848db5&mode=admin",
     ],
     description:
-      "The shirt has a white base color with a large, detailed blue dragon graphic on the lower front and sleeves, featuring wave-inspired patterns",
+      "This jersey has a white base color with a large, detailed blue dragon graphic on the lower front and sleeves, featuring wave-inspired patterns",
     sizes: ["L", "XL", "XXL"],
     rating: 4.5,
     reviews: 150,

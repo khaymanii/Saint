@@ -29,13 +29,13 @@ export default function CartItem({
           </div>
 
           <div>
-            <p className="font-medium">{item.name}</p>
+            <p className="font-medium text-sm">{item.name}</p>
 
             <p className="text-sm text-gray-500">Size : {item.selectedSize}</p>
           </div>
         </div>
 
-        <p>${item.price}</p>
+        <p>#{item.price}</p>
         <div className="flex items-center justify-between">
           <div className="flex items-center border rounded-full overflow-hidden">
             <button
@@ -56,9 +56,9 @@ export default function CartItem({
           </div>
         </div>
 
-        <p>{item.shipping === 0 ? "FREE" : `$${item.shipping}`}</p>
+        <p>{item.shipping === 0 ? "FREE" : `${item.shipping}`}</p>
 
-        <p>${subtotal}</p>
+        <p>#{subtotal}</p>
 
         <button onClick={() => removeFromCart(item)} className="text-red-500">
           <Trash2 size={18} />
@@ -126,7 +126,7 @@ export default function CartItem({
 
         <div className="flex justify-between items-center mt-4 border-t pt-3 text-sm">
           <p className="text-gray-500">Subtotal</p>
-          <p className="font-semibold text-gray-900">${subtotal.toFixed(2)}</p>
+          <p className="font-semibold text-gray-900">#{subtotal.toFixed(2)}</p>
         </div>
       </div>
     </div>

@@ -59,7 +59,8 @@ export default function WaitlistPage() {
         <h1 className="text-3xl sm:text-4xl font-bold">Join the Waitlist 🚀</h1>
 
         <p className="mt-4 text-gray-700 text-sm sm:text-base">
-          Get early access to exclusive drops, updates, and premium gear.
+          Be the first to access limited drops, early releases, and members-only
+          gear before anyone else.{" "}
         </p>
 
         {/* Form */}
@@ -70,6 +71,7 @@ export default function WaitlistPage() {
             value={form.email}
             onChange={handleChange}
             placeholder="Enter your email"
+            required
             className="w-full px-5 py-3 rounded-md text-gray-900 text-sm border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#063c71]"
           />
 
@@ -79,6 +81,7 @@ export default function WaitlistPage() {
             value={form.phone}
             onChange={handleChange}
             placeholder="Enter your phone number"
+            required
             className="w-full px-5 py-3 rounded-md text-gray-900 text-sm border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#063c71]"
           />
 

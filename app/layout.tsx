@@ -1,5 +1,6 @@
-import { Poppins } from "next/font/google";
+// @ts-ignore: side-effect import lacks type declarations
 import "./globals.css";
+import { Poppins } from "next/font/google";
 import { AuthInit } from "@/Components/providers/AuthInit";
 import { Metadata } from "next";
 

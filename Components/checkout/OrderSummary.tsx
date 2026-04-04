@@ -5,6 +5,7 @@ import { useCartStore } from "@/store/useCartStore";
 import { useCheckoutStore } from "@/store/useCheckoutStore";
 import { useRouter } from "next/navigation";
 import { useHydration } from "@/hooks/useHydration";
+import { formatPrice } from "@/lib/formatPrice";
 
 export default function OrderSummary() {
   const cart = useCartStore((state) => state.cart);
@@ -50,13 +51,15 @@ export default function OrderSummary() {
               <div>
                 <p>{item.name}</p>
 
-                <p className="text-xs text-gray-500">{item.selectedSize}</p>
+                <p className="text-xs text-gray-500">
+                  Size: {item.selectedSize}
+                </p>
 
                 <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
               </div>
             </div>
 
-            <p>#{(item.price * item.quantity).toFixed(2)}</p>
+            <p>{formatPrice(item.price * item.quantity)}</p>
           </div>
         ))}
       </div>
@@ -64,17 +67,17 @@ export default function OrderSummary() {
       <div className="space-y-3 border-t pt-4">
         <div className="flex justify-between text-sm">
           <p>Subtotal:</p>
-          <p>#{subtotal.toFixed(2)}</p>
+          <p>{formatPrice(subtotal)}</p>
         </div>
 
         <div className="flex justify-between text-sm">
           <p>Shipping:</p>
-          <p>{shipping === 0 ? "Free" : `${shipping}`}</p>
+          <p>{shipping === 0 ? "Free" : formatPrice(shipping)}</p>
         </div>
 
         <div className="flex justify-between font-semibold text-lg border-t pt-3">
           <p>Total:</p>
-          <p>${total.toFixed(2)}</p>
+          <p>{formatPrice(total)}</p>
         </div>
       </div>
 

@@ -39,10 +39,9 @@ export default function AccountSidebar() {
 
   return (
     <aside className="w-full lg:w-64 lg:border-r lg:pr-6">
-      {/* Greeting */}
       <div className="mb-6">
         <h2 className="font-semibold text-base sm:text-lg">
-          Hello {user?.displayName || "User"}
+          Hello, {user?.displayName || "User"}
         </h2>
         <p className="text-xs mb-2">{user?.email || "jhanvi@example.com"}</p>
         <p className="text-xs sm:text-sm text-gray-500">

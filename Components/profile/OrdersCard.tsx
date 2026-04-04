@@ -1,3 +1,4 @@
+import { formatPrice } from "@/lib/formatPrice";
 import Image from "next/image";
 
 interface Props {
@@ -58,7 +59,7 @@ export default function OrderCard({ order }: Props) {
 
             {/* RIGHT SIDE */}
             <p className="text-sm font-semibold">
-              ${(item.price * item.quantity).toFixed(2)}
+              {formatPrice(item.price * item.quantity)}
             </p>
           </div>
         ))}
@@ -67,7 +68,7 @@ export default function OrderCard({ order }: Props) {
       {/* TOTAL */}
       <div className="flex justify-between mt-4 border-t pt-3 text-sm font-semibold">
         <p>Total</p>
-        <p>${order.total.toFixed(2)}</p>
+        <p>{formatPrice(order.total)}</p>
       </div>
 
       {/* FOOTER */}

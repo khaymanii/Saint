@@ -172,7 +172,7 @@ export default function ProductPage({
 
       <div className="mt-20">
         <h2 className="text-xl font-semibold mb-6 text-[#063c71]">
-          Similar Gears
+          Recommended Gears
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

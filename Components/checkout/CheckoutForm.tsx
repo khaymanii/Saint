@@ -3,17 +3,28 @@
 import { useCheckoutStore } from "@/store/useCheckoutStore";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import NaijaStates from "naija-state-local-government";
 
 export default function CheckoutForm() {
-  const { register, watch } = useForm();
+  const { register, watch, setValue } = useForm();
   const [saveInfo, setSaveInfo] = useState(true);
   const setFormData = useCheckoutStore((s) => s.setFormData);
+  const [states] = useState(NaijaStates.states());
+  const [lgas, setLgas] = useState<string[]>([]);
 
-  const values = watch();
+  const selectedState = watch("state");
 
   useEffect(() => {
-    setFormData(values);
-  }, [values]);
+    setFormData(watch());
+  }, [watch()]);
+
+  useEffect(() => {
+    if (selectedState) {
+      const stateLgas = NaijaStates.lgas(selectedState);
+      setLgas(stateLgas || []);
+      setValue("city", ""); // reset city
+    }
+  }, [selectedState, setValue]);
 
   return (
     <div>
@@ -61,37 +72,50 @@ export default function CheckoutForm() {
 
         <div>
           <label className="text-sm">
-            Street Address <span className="text-red-500">*</span>
+            State <span className="text-red-500">*</span>
           </label>
-          <input
-            {...register("address")}
-            placeholder="Street Address"
-            type="text"
+
+          <select
+            {...register("state")}
+            required
             className="w-full border px-3 py-2 rounded-md mt-1"
-          />
+          >
+            <option value="">Select State</option>
+            {states.map((state: string) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
           <label className="text-sm">
             Town/City <span className="text-red-500">*</span>
           </label>
-          <input
+
+          <select
             {...register("city")}
-            placeholder="City"
-            required
-            type="text"
             className="w-full border px-3 py-2 rounded-md mt-1"
-          />
+            required
+            disabled={!selectedState}
+          >
+            <option value="">Select City</option>
+            {lgas.map((lga: string) => (
+              <option key={lga} value={lga}>
+                {lga}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
           <label className="text-sm">
-            State <span className="text-red-500">*</span>
+            Street Address <span className="text-red-500">*</span>
           </label>
           <input
-            {...register("state")}
-            placeholder="State"
-            required
+            {...register("address")}
+            placeholder="Street Address"
             type="text"
             className="w-full border px-3 py-2 rounded-md mt-1"
           />

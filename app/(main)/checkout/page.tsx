@@ -2,6 +2,7 @@ import CheckoutForm from "@/Components/checkout/CheckoutForm";
 import OrderSummary from "@/Components/checkout/OrderSummary";
 import { BackButton } from "@/Components/layout/BackButton";
 import { Features } from "@/Components/layout/Features";
+import Link from "next/link";
 
 export default function CheckoutPage() {
   return (
@@ -9,11 +10,18 @@ export default function CheckoutPage() {
       <div className="mb-4">
         <BackButton />
       </div>
-      <p className="text-xs text-gray-500 mb-3">Home • Checkout</p>
+      <p className="text-xs opacity-70 mb-3">
+        <Link href="/" className="hover:underline">
+          Home
+        </Link>{" "}
+        •{" "}
+        <Link href="/checkout" className="hover:underline">
+          Checkout
+        </Link>
+      </p>{" "}
       <h2 className="text-center sm:text-3xl text-2xl text-[#063c71] font-bold mb-10">
         Checkout
       </h2>
-
       <div className="grid lg:grid-cols-2 gap-16">
         <CheckoutForm />
 

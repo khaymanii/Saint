@@ -6,6 +6,7 @@ import { Features } from "@/Components/layout/Features";
 import { db } from "@/firebaseConfig/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -61,8 +62,15 @@ export default function Contact() {
   return (
     <main className="bg-gray-50">
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-xs text-gray-500 mb-3">Home • Contact</p>
-
+        <p className="text-xs opacity-70 mb-3">
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>{" "}
+          •{" "}
+          <Link href="/contact" className="hover:underline">
+            Contact
+          </Link>
+        </p>
         <h1 className="text-2xl sm:text-3xl font-semibold max-w-2xl">
           We support every athlete and sports enthusiast.
         </h1>
@@ -169,6 +177,9 @@ export default function Contact() {
             </p>
             <p>
               <strong>Phone:</strong> +234-8166588402 or +234-9032894161
+            </p>
+            <p>
+              <strong>Whatsapp:</strong> +234-8166588402
             </p>
             <p>
               <strong>Hours:</strong> Mon – Fri, 9am – 5pm

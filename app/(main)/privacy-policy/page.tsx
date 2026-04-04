@@ -88,7 +88,7 @@ export default function PrivacyPolicy() {
           <p>
             If you have any questions, contact us at:
             <br />
-            <span className="font-medium">support@saint.com</span>
+            <span className="font-medium">saintsportx66@gmail.com</span>
           </p>
         </section>
       </div>

@@ -93,14 +93,16 @@ export default function Contact() {
             <Phone className="mx-auto mb-3 text-[#063c71]" />
             <h3 className="text-sm font-semibold">PHONE</h3>
             <p className="text-xs text-gray-600 mt-2">
-              +2348166588402 or +2349032894161
+              +234-8166588402 or +234-9032894161
             </p>
           </div>
 
           <div className="bg-white p-6 rounded-md text-center border">
             <Mail className="mx-auto mb-3 text-[#063c71]" />
             <h3 className="text-sm font-semibold">EMAIL</h3>
-            <p className="text-xs text-gray-600 mt-2">support@saintstore.com</p>
+            <p className="text-xs text-gray-600 mt-2">
+              saintsportx66@gmail.com
+            </p>
           </div>
         </div>
       </section>
@@ -163,10 +165,10 @@ export default function Contact() {
 
           <div className="text-sm text-gray-700 space-y-2">
             <p>
-              <strong>Email:</strong> support@saintstore.com
+              <strong>Email:</strong> saintsportx66@gmail.com
             </p>
             <p>
-              <strong>Phone:</strong> +2348166588402 or +2349032894161
+              <strong>Phone:</strong> +234-8166588402 or +234-9032894161
             </p>
             <p>
               <strong>Hours:</strong> Mon – Fri, 9am – 5pm

@@ -7,6 +7,7 @@ import { Heart, ShoppingCart } from "lucide-react";
 import { slugify } from "@/lib/slugify";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { useHydration } from "@/hooks/useHydration";
+import { formatPrice } from "@/lib/formatPrice";
 
 interface ShopCardProps {
   id: number;
@@ -77,7 +78,9 @@ export function ShopCard({ id, name, brand, price, image }: ShopCardProps) {
           </div>
 
           <div className="flex items-center justify-between mt-2">
-            <div className="text-sm font-semibold text-gray-900">#{price}</div>
+            <div className="text-sm font-semibold text-gray-900">
+              {formatPrice(price)}
+            </div>
 
             <button className="flex text-xs items-center gap-1 bg-[#063c71] text-white p-2 rounded-full hover:bg-[#042a50] transition">
               <ShoppingCart size={16} />

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
 import { useHydration } from "@/hooks/useHydration";
+import { formatPrice } from "@/lib/formatPrice";
 
 export default function CartItem({
   item,
@@ -35,7 +36,7 @@ export default function CartItem({
           </div>
         </div>
 
-        <p>#{item.price}</p>
+        <p>{formatPrice(item.price)}</p>
         <div className="flex items-center justify-between">
           <div className="flex items-center border rounded-full overflow-hidden">
             <button
@@ -56,9 +57,9 @@ export default function CartItem({
           </div>
         </div>
 
-        <p>{item.shipping === 0 ? "FREE" : `${item.shipping}`}</p>
+        <p>{item.shipping === 0 ? "FREE" : `${formatPrice(item.shipping)}`}</p>
 
-        <p>#{subtotal}</p>
+        <p>{formatPrice(subtotal)}</p>
 
         <button onClick={() => removeFromCart(item)} className="text-red-500">
           <Trash2 size={18} />
@@ -90,7 +91,7 @@ export default function CartItem({
             </div>
 
             <p className="text-sm font-semibold text-[#063c71] mt-2">
-              ${item.price}
+              {formatPrice(item.price)}
             </p>
 
             <div className="flex items-center justify-between mt-3">
@@ -126,7 +127,7 @@ export default function CartItem({
 
         <div className="flex justify-between items-center mt-4 border-t pt-3 text-sm">
           <p className="text-gray-500">Subtotal</p>
-          <p className="font-semibold text-gray-900">#{subtotal.toFixed(2)}</p>
+          <p className="font-semibold text-gray-900">{formatPrice(subtotal)}</p>
         </div>
       </div>
     </div>

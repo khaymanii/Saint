@@ -8,6 +8,7 @@ import { slugify } from "@/lib/slugify";
 import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
 import { BackButton } from "@/Components/layout/BackButton";
+import { formatPrice } from "@/lib/formatPrice";
 
 export default function ProductPage({
   params,
@@ -87,7 +88,7 @@ export default function ProductPage({
 
           {/* PRICE */}
           <p className="text-2xl font-bold text-[#063c71] mb-4">
-            #{product.price}
+            {formatPrice(product.price)}
           </p>
 
           {/* DESCRIPTION */}

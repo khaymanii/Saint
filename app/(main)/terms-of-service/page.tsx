@@ -93,7 +93,7 @@ export default function TermsOfService() {
           <p>
             For any questions, contact:
             <br />
-            <span className="font-medium">support@saint.com</span>
+            <span className="font-medium">saintsportx66@gmail.com</span>
           </p>
         </section>
       </div>

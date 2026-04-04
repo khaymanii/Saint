@@ -10,6 +10,7 @@ import { getProtectedRoute } from "@/lib/getProtectedRoute";
 import { useHydration } from "@/hooks/useHydration";
 import { Plus } from "lucide-react";
 import { BackButton } from "@/Components/layout/BackButton";
+import { formatPrice } from "@/lib/formatPrice";
 
 export default function CartPage() {
   const cart = useCartStore((state) => state.cart);
@@ -45,7 +46,15 @@ export default function CartPage() {
         <div className="mb-4">
           <BackButton />
         </div>
-        <p className="text-xs opacity-70 mb-3">Home • Cart</p>
+        <p className="text-xs opacity-70 mb-3">
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>{" "}
+          •{" "}
+          <Link href="/cart" className="hover:underline">
+            Cart
+          </Link>
+        </p>{" "}
         <h1 className="sm:text-3xl text-2xl font-bold text-center text-[#063c71] mb-10">
           Cart
         </h1>
@@ -98,17 +107,17 @@ export default function CartPage() {
         <div className="bg-gray-50 p-6 rounded-lg h-fit mb-20">
           <div className="flex text-sm justify-between mb-3">
             <p>Sub Total</p>
-            <p>#{subTotal}</p>
+            <p>{formatPrice(subTotal)}</p>
           </div>
 
           {/* <div className="flex text-sm justify-between mb-3">
             <p>Shipping</p>
-            <p>#{shipping}</p>
+            <p>{formatPrice(shipping)}</p>
           </div>
 
           <div className="flex justify-between font-semibold text-lg mt-6">
             <p>Grand Total</p>
-            <p>#{total}</p>
+            <p>{formatPrice(total)}</p>
           </div>*/}
 
           <Link href={checkoutHref}>

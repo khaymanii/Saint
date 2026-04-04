@@ -1,4 +1,5 @@
 import { formatPrice } from "@/lib/formatPrice";
+import { getStatusColor } from "@/lib/getStatusColor";
 import Image from "next/image";
 
 interface Props {
@@ -80,7 +81,11 @@ export default function OrderCard({ order }: Props) {
             : ""}
         </p>
 
-        <p className="capitalize text-yellow-500">Status: {order.status}</p>
+        <span
+          className={`capitalize px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.status)} bg-opacity-10`}
+        >
+          Status: {order.status}
+        </span>
       </div>
 
       {/* ADDRESS */}

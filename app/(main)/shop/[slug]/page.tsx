@@ -9,6 +9,7 @@ import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
 import { BackButton } from "@/Components/layout/BackButton";
 import { formatPrice } from "@/lib/formatPrice";
+import Link from "next/link";
 
 export default function ProductPage({
   params,
@@ -36,7 +37,12 @@ export default function ProductPage({
       <div className="mb-4">
         <BackButton />
       </div>
-      <p className="text-gray-400 text-xs mb-8">Shop • {product.name}</p>
+      <p className="text-gray-400 text-xs mb-8">
+        <Link href="/shop" className="hover:underline">
+          Shop
+        </Link>
+        • {product.name}
+      </p>
 
       <div className="grid lg:grid-cols-2 gap-10">
         {/* IMAGES */}

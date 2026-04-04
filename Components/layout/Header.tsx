@@ -34,8 +34,8 @@ export function Header() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [isMobileMenuOpen]);
 
   const linkClasses = (href: string) =>
@@ -59,7 +59,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsMobileMenuOpen((prev) => !prev);
+              }}
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />

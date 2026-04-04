@@ -10,9 +10,7 @@ export default function MainLayout({
   return (
     <div className="flex flex-col min-h-screen" suppressHydrationWarning>
       <Toaster />
-      <Header />
       <main className="grow">{children}</main>
-      <Footer />
     </div>
   );
 }

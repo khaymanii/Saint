@@ -7,6 +7,7 @@ import { Banner } from "@/Components/layout/Banner";
 import { Newsletter } from "@/Components/layout/Newsletter";
 import { Features } from "@/Components/layout/Features";
 import { useEffect } from "react";
+import WaitlistPage from "../(auth)/waitlist/page";
 
 export default function Home() {
   useEffect(() => {
@@ -15,13 +16,14 @@ export default function Home() {
 
   return (
     <div>
-      <Hero />
+      {/*<Hero />
       <Category />
       <Banner />
       <FeaturedProduct />
       <NewArrivals />
       <Newsletter />
-      <Features />
+      <Features />*/}
+      <WaitlistPage />
     </div>
   );
 }

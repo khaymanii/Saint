@@ -13,16 +13,31 @@ export default function CheckoutForm() {
   const [lgas, setLgas] = useState<string[]>([]);
 
   const selectedState = watch("state");
+  const formValues = watch();
 
   useEffect(() => {
-    setFormData(watch());
-  }, [watch()]);
+    setFormData(formValues);
+  }, [formValues]);
 
   useEffect(() => {
     if (selectedState) {
-      const stateLgas = NaijaStates.lgas(selectedState);
-      setLgas(stateLgas || []);
-      setValue("city", ""); // reset city
+      let stateLgas: string | string[] | Record<string, string> | undefined =
+        NaijaStates.lgas(selectedState);
+
+      let lgaArray: string[] = [];
+
+      if (Array.isArray(stateLgas)) {
+        lgaArray = stateLgas;
+      } else if (typeof stateLgas === "string") {
+        lgaArray = (stateLgas as string).match(/[A-Z][a-z]*/g) || [];
+      } else if (typeof stateLgas === "object" && stateLgas !== null) {
+        lgaArray = Object.values(stateLgas as Record<string, string>).flat();
+      }
+
+      lgaArray = Array.from(new Set(lgaArray));
+
+      setLgas(lgaArray);
+      setValue("city", "");
     }
   }, [selectedState, setValue]);
 
@@ -44,6 +59,7 @@ export default function CheckoutForm() {
             required
           />
         </div>
+
         <div>
           <label className="text-sm">
             Phone Number <span className="text-red-500">*</span>
@@ -66,6 +82,25 @@ export default function CheckoutForm() {
             placeholder="Email"
             required
             type="email"
+            className="w-full border px-3 py-2 rounded-md mt-1"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm">
+            Receiver's Name (if different from buyer)
+          </label>
+          <input
+            {...register("receiverName")}
+            placeholder="Receiver's Name (if different from buyer)"
+            className="w-full border px-3 py-2 rounded-md mt-1"
+          />
+        </div>
+        <div>
+          <label className="text-sm">Receiver's Phone</label>
+          <input
+            {...register("receiverPhone")}
+            placeholder="Receiver's Phone (optional)"
             className="w-full border px-3 py-2 rounded-md mt-1"
           />
         </div>
@@ -101,11 +136,12 @@ export default function CheckoutForm() {
             disabled={!selectedState}
           >
             <option value="">Select City</option>
-            {lgas.map((lga: string) => (
-              <option key={lga} value={lga}>
-                {lga}
-              </option>
-            ))}
+            {lgas.length > 0 &&
+              lgas.map((lga: string) => (
+                <option key={lga} value={lga}>
+                  {lga}
+                </option>
+              ))}
           </select>
         </div>
 

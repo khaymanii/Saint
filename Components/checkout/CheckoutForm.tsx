@@ -47,7 +47,7 @@ export default function CheckoutForm() {
         Billing Details
       </h2>
 
-      <form className="space-y-5">
+      <form className="space-y-5 text-xs">
         <div>
           <label className="text-sm">
             Full Name <span className="text-red-500">*</span>
@@ -57,6 +57,7 @@ export default function CheckoutForm() {
             placeholder="Full Name"
             className="w-full border px-3 py-2 rounded-md mt-1"
             required
+            type="text"
           />
         </div>
 
@@ -74,33 +75,11 @@ export default function CheckoutForm() {
         </div>
 
         <div>
-          <label className="text-sm">
-            Email Address <span className="text-red-500">*</span>
-          </label>
+          <label className="text-sm">Alternate Phone Number (optional)</label>
           <input
-            {...register("email")}
-            placeholder="Email"
-            required
-            type="email"
-            className="w-full border px-3 py-2 rounded-md mt-1"
-          />
-        </div>
-
-        <div>
-          <label className="text-sm">
-            Receiver's Name (if different from buyer)
-          </label>
-          <input
-            {...register("receiverName")}
-            placeholder="Receiver's Name (if different from buyer)"
-            className="w-full border px-3 py-2 rounded-md mt-1"
-          />
-        </div>
-        <div>
-          <label className="text-sm">Receiver's Phone</label>
-          <input
-            {...register("receiverPhone")}
-            placeholder="Receiver's Phone (optional)"
+            {...register("alternatePhone")}
+            placeholder="Alternate Phone"
+            type="tel"
             className="w-full border px-3 py-2 rounded-md mt-1"
           />
         </div>

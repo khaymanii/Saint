@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { PRODUCTS } from "@/data/shop";
+import { useProducts } from "@/hooks/useProducts";
 import ShopBanner from "@/Components/shop/ShopBanner";
 import ShopFilters from "@/Components/shop/ShopFilters";
 import ShopProduct from "@/Components/shop/ShopProduct";
@@ -9,6 +10,7 @@ import { Search } from "lucide-react";
 import filterProducts from "@/lib/filterUtils";
 import { usePagination } from "@/hooks/usePagination";
 import PaginationControls from "@/Components/layout/PaginationControls";
+import ShopSkeletonGrid from "@/Components/layout/ShopSkeletonGrid";
 
 export default function Shop() {
   const [selectedSport, setSelectedSport] = useState("All Sports");
@@ -22,6 +24,7 @@ export default function Shop() {
   const [maxPrice, setMaxPrice] = useState(100000);
   const [tempMinPrice, setTempMinPrice] = useState(0);
   const [tempMaxPrice, setTempMaxPrice] = useState(100000);
+  const { products, loading } = useProducts();
 
   const applyFilters = () => {
     setSelectedSport(tempSport);
@@ -46,7 +49,7 @@ export default function Shop() {
 
   const filtered = useMemo(
     () =>
-      filterProducts(PRODUCTS, {
+      filterProducts(products, {
         selectedSport,
         selectedSub,
         selectedTeam,
@@ -54,11 +57,19 @@ export default function Shop() {
         minPrice,
         maxPrice,
       }),
-    [selectedSport, selectedSub, selectedTeam, search, minPrice, maxPrice],
+    [
+      products,
+      selectedSport,
+      selectedSub,
+      selectedTeam,
+      search,
+      minPrice,
+      maxPrice,
+    ],
   );
 
   const { currentPage, totalPages, paginatedData, next, prev, goToPage } =
-    usePagination(filtered, 18);
+    usePagination(filtered, 12);
 
   return (
     <div className="min-h-screen">
@@ -95,7 +106,7 @@ export default function Shop() {
           />
         </div>
       </div>
-      <ShopProduct products={paginatedData} />
+      <ShopProduct products={paginatedData} loading={loading} />
       <PaginationControls
         currentPage={currentPage}
         totalPages={totalPages}

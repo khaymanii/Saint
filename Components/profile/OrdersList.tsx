@@ -6,6 +6,7 @@ import { db } from "@/firebaseConfig/firebase";
 import { useAuthStore } from "@/store/useAuthStore";
 import OrderCard from "./OrdersCard";
 import EmptyOrder from "./EmptyOrder";
+import OrdersSkeletonList from "../layout/OrderSkeletonList";
 
 export default function OrdersList() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -45,7 +46,7 @@ export default function OrdersList() {
   }, [user]);
 
   if (authLoading || loading) {
-    return <p className="text-sm text-gray-500">Loading orders...</p>;
+    return <OrdersSkeletonList />;
   }
 
   return (

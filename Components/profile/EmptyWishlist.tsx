@@ -1,7 +1,5 @@
-import { PRODUCTS } from "@/data/shop";
 import { Heart } from "lucide-react";
 import Link from "next/link";
-import { ShopCard } from "../layout/ShopCard";
 
 export default function EmptyWishlist() {
   return (
@@ -28,21 +26,6 @@ export default function EmptyWishlist() {
             </button>
           </Link>
         </div>
-      </div>
-      <h2 className="sm:text-3xl text-2xl font-bold text-[#063c71] mb-10  mt-30">
-        Recommended Gears
-      </h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        {PRODUCTS.slice(4, 8).map((item) => (
-          <ShopCard
-            key={item.id}
-            name={item.name}
-            brand={item.brand}
-            price={item.price}
-            image={item.images}
-            id={item.id}
-          />
-        ))}
       </div>
     </section>
   );

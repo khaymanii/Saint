@@ -1,7 +1,9 @@
 import { ShopCard } from "./ShopCard";
 import { PRODUCTS } from "@/data/shop";
+import { useProducts } from "@/hooks/useProducts";
 
 export function NewArrivals() {
+  const { products } = useProducts();
   return (
     <section className="py-20 px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -14,7 +16,7 @@ export function NewArrivals() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRODUCTS.slice(4, 16).map((item) => (
+          {products.slice(7, 15).map((item) => (
             <ShopCard
               key={item.id}
               name={item.name}

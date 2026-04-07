@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { ShopCard } from "./ShopCard";
-import { PRODUCTS } from "@/data/shop";
+import { useProducts } from "@/hooks/useProducts";
 
 export function FeaturedProduct() {
+  const { products } = useProducts();
+
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -20,7 +22,7 @@ export function FeaturedProduct() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRODUCTS.slice(0, 4).map((item) => (
+          {products.slice(8, 12).map((item) => (
             <ShopCard
               key={item.id}
               name={item.name}

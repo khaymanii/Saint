@@ -79,30 +79,24 @@ export default function ProductPage({
           </div>
         </div>
 
-        {/* DETAILS */}
         <div className="flex flex-col">
-          {/* TITLE */}
           <h1 className="text-xl sm:text-2xl font-semibold mb-2">
             {product.name}
           </h1>
 
-          {/* RATING */}
           <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
             ⭐ {product.rating}
             <span className="text-green-600 font-medium">In Stock</span>
           </div>
 
-          {/* PRICE */}
           <p className="text-2xl font-bold text-[#063c71] mb-4">
             {formatPrice(product.price)}
           </p>
 
-          {/* DESCRIPTION */}
           <p className="text-gray-600 text-sm mb-6 leading-relaxed">
             {product.description}
           </p>
 
-          {/* SIZE */}
           <div className="mb-6">
             <p className="mb-2 font-medium text-sm">
               Size
@@ -127,9 +121,7 @@ export default function ProductPage({
             </div>
           </div>
 
-          {/* ACTIONS */}
           <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-            {/* QUANTITY */}
             <div className="flex items-center justify-between border rounded-full px-3 py-1 w-full sm:w-fit">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -148,7 +140,6 @@ export default function ProductPage({
               </button>
             </div>
 
-            {/* ADD TO CART */}
             <button
               className={`w-full sm:w-auto bg-[#063c71] text-white px-6 py-3 rounded-md text-sm font-medium transition
         ${
@@ -178,7 +169,7 @@ export default function ProductPage({
 
       <div className="mt-20">
         <h2 className="text-xl font-semibold mb-6 text-[#063c71]">
-          Recommended Gears
+          Recommended Wears
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

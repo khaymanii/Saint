@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useWishlistStore } from "@/store/useWishlistStore";
-import { useCartStore } from "@/store/useCartStore";
 import { slugify } from "@/lib/slugify";
 import Link from "next/link";
+import { formatPrice } from "@/lib/formatPrice";
 
 interface Props {
   id: number;
@@ -52,8 +52,10 @@ export default function WishlistItem({ id, name, price, image }: Props) {
 
       <Link href={`/shop/${slugify(name)}`}>
         <div className="flex items-center justify-between sm:justify-end gap-4">
-          <span className="font-medium text-sm sm:text-base">${price}</span>
-          <button className="bg-[#063c71] text-white px-4 py-2 text-sm rounded-md hover:opacity-90 transition">
+          <span className="font-medium text-sm sm:text-base">
+            {formatPrice(price)}
+          </span>
+          <button className="bg-[#063c71] text-white px-4 py-2 text-sm rounded-md hover:opacity-90 transition cursor-pointer">
             Add to cart
           </button>
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { PRODUCTS } from "@/data/shop";
 import { useProducts } from "@/hooks/useProducts";
 import ShopBanner from "@/Components/shop/ShopBanner";
 import ShopFilters from "@/Components/shop/ShopFilters";
@@ -10,7 +9,6 @@ import { Search } from "lucide-react";
 import filterProducts from "@/lib/filterUtils";
 import { usePagination } from "@/hooks/usePagination";
 import PaginationControls from "@/Components/layout/PaginationControls";
-import ShopSkeletonGrid from "@/Components/layout/ShopSkeletonGrid";
 
 export default function Shop() {
   const [selectedSport, setSelectedSport] = useState("All Sports");

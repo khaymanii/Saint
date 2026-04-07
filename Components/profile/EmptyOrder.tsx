@@ -1,17 +1,13 @@
-"use client";
-
 import { PackageX } from "lucide-react";
 import Link from "next/link";
 
 export default function EmptyOrder() {
   return (
     <div className="flex flex-col items-center justify-center text-center py-16 px-4">
-      {/* Icon */}
       <div className="bg-gray-100 p-4 rounded-full mb-4">
         <PackageX className="w-8 h-8 text-gray-500" />
       </div>
 
-      {/* Title */}
       <h2 className="text-lg font-semibold text-gray-800">No orders yet</h2>
 
       <p className="text-sm text-gray-500 mt-2 max-w-sm">

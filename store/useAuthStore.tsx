@@ -7,7 +7,6 @@ import {
   signOut,
   onAuthStateChanged,
   User,
-  signInWithRedirect,
 } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "@/firebaseConfig/firebase";
@@ -35,7 +34,6 @@ export const useAuthStore = create<AuthState>((set) => ({
       const user = result.user;
 
       const token = await user.getIdToken();
-
       document.cookie = `token=${token}; path=/;`;
 
       const userRef = doc(db, "users", user.uid);
@@ -47,15 +45,15 @@ export const useAuthStore = create<AuthState>((set) => ({
           name: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
-          serverTimestamp,
+          createdAt: serverTimestamp(),
         });
       }
 
       set({ user });
-      return user; // ✅ return user
+      return user;
     } catch (error) {
       console.error("Google login error:", error);
-      return null; // ✅ return null on error
+      return null;
     }
   },
 
@@ -70,14 +68,19 @@ export const useAuthStore = create<AuthState>((set) => ({
     hasInitialized = true;
 
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      set({ user, loading: false });
+      try {
+        set({ user, loading: true });
 
-      // 🔥 THIS IS THE MISSING PIECE
-      if (user?.uid) {
-        const cartStore = useCartStore.getState();
+        if (user?.uid) {
+          const cartStore = useCartStore.getState();
+          await cartStore.mergeGuestCartToUserCart(user.uid);
+          await cartStore.loadCart(user.uid);
+        }
 
-        await cartStore.mergeGuestCartToUserCart(user.uid);
-        await cartStore.loadCart(user.uid);
+        set({ user, loading: false });
+      } catch (error) {
+        console.error("Auth init error:", error);
+        set({ loading: false });
       }
     });
 

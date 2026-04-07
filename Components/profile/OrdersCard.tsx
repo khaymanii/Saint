@@ -27,17 +27,16 @@ interface Props {
 export default function OrderCard({ order }: Props) {
   return (
     <div className="border rounded-md p-4 mb-4">
-      {/* HEADER */}
       <div className="flex items-center justify-between text-xs sm:text-sm mb-3">
-        <p className="font-medium">OrderID ({order.orderId})</p>
+        <p className="font-medium">
+          OrderID <span className="font-bold">({order.orderId})</span>
+        </p>
         <span className="text-yellow-500 capitalize">{order.status}</span>
       </div>
 
-      {/* PRODUCTS LIST */}
       <div className="space-y-4">
         {order.items.map((item, index) => (
           <div key={index} className="flex items-center justify-between gap-4">
-            {/* LEFT SIDE */}
             <div className="flex items-center gap-3">
               <Image
                 src={item.image}
@@ -58,7 +57,6 @@ export default function OrderCard({ order }: Props) {
               </div>
             </div>
 
-            {/* RIGHT SIDE */}
             <p className="text-sm font-semibold">
               {formatPrice(item.price * item.quantity)}
             </p>
@@ -66,13 +64,11 @@ export default function OrderCard({ order }: Props) {
         ))}
       </div>
 
-      {/* TOTAL */}
       <div className="flex justify-between mt-4 border-t pt-3 text-sm font-semibold">
         <p>Total</p>
         <p>{formatPrice(order.total)}</p>
       </div>
 
-      {/* FOOTER */}
       <div className="hidden sm:flex justify-between text-xs text-gray-500 mt-3">
         <p>
           Order Date:{" "}
@@ -88,7 +84,6 @@ export default function OrderCard({ order }: Props) {
         </span>
       </div>
 
-      {/* ADDRESS */}
       <div className="text-xs text-gray-500 mt-2">
         <p>
           {order.address}, {order.city}, {order.state}

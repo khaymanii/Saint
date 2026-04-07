@@ -8,7 +8,10 @@ export default function Breadcrumb() {
         <BackButton />
       </div>
       <p className="text-xs opacity-70 mb-6">
-        <Link href="/">Home</Link> • My Account
+        <Link href="/" className="hover:underline">
+          Home
+        </Link>{" "}
+        • My Account
       </p>
     </div>
   );

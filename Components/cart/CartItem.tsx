@@ -59,13 +59,10 @@ export default function CartItem({
           </div>
         </div>
 
-        {/* ✅ FREE SHIPPING */}
         <p className="text-green-600 font-medium">FREE</p>
 
-        {/* Subtotal */}
         <p>{formatPrice(subtotal)}</p>
 
-        {/* Remove */}
         <button onClick={() => removeFromCart(item)} className="text-red-500">
           <Trash2 size={18} />
         </button>
@@ -128,7 +125,6 @@ export default function CartItem({
           </div>
         </div>
 
-        {/* Subtotal */}
         <div className="flex justify-between items-center mt-4 border-t pt-3 text-sm">
           <p className="text-gray-500">Subtotal</p>
           <p className="font-semibold text-gray-900">{formatPrice(subtotal)}</p>

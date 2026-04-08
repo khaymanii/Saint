@@ -11,6 +11,7 @@ export interface CartItem {
   quantity: number;
   selectedSize: string;
   shipping?: number;
+  createdAt?: number;
 }
 
 export type AddToCartItem = {
@@ -86,11 +87,12 @@ export const useCartStore = create<CartStore>((set, get) => {
           return state;
         } else {
           updatedCart = [
-            ...state.cart,
             {
               ...item,
               quantity: item.quantity || 1,
+              createdAt: Date.now(),
             },
+            ...state.cart,
           ];
 
           toast.success("Gear added to cart 🛍️");

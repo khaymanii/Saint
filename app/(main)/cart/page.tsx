@@ -40,6 +40,10 @@ export default function CartPage() {
     );
   }
 
+  const sortedCart = [...cart].sort(
+    (a, b) => (b.createdAt ?? 0) - (a.createdAt ?? 0),
+  );
+
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       {/* Header */}
@@ -74,7 +78,7 @@ export default function CartPage() {
       </div>
 
       {/* Cart Items */}
-      {cart.map((item) => (
+      {sortedCart.map((item) => (
         <CartItem
           key={`${item.id}-${item.selectedSize}`}
           item={item}

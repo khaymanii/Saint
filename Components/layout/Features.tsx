@@ -16,7 +16,7 @@ export function Features() {
           </h3>
 
           <p className="text-xs text-gray-600 mt-2">
-            Free delivery for all orders over ₦100,000
+            Free delivery for early users
           </p>
         </div>
 

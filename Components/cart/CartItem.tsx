@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
 import { useHydration } from "@/hooks/useHydration";
@@ -16,6 +18,7 @@ export default function CartItem({
 
   return (
     <div className="border-b py-6">
+      {/* DESKTOP VIEW */}
       <div className="hidden md:grid grid-cols-7 items-center">
         <div className="col-span-2 flex items-center gap-4">
           <div className="w-20 h-20 relative bg-gray-100 rounded">
@@ -23,21 +26,20 @@ export default function CartItem({
               src={item.image}
               alt={item.name}
               fill
-              loading="eager"
-              sizes="(max-width: 1024px) 50vw, 25vw"
               className="object-cover rounded-md"
             />
           </div>
 
           <div>
             <p className="font-medium text-sm">{item.name}</p>
-
-            <p className="text-sm text-gray-500">Size : {item.selectedSize}</p>
+            <p className="text-sm text-gray-500">Size: {item.selectedSize}</p>
           </div>
         </div>
 
         <p>{formatPrice(item.price)}</p>
-        <div className="flex items-center justify-between">
+
+        {/* Quantity */}
+        <div className="flex items-center">
           <div className="flex items-center border rounded-full overflow-hidden">
             <button
               onClick={() => decreaseQty(item)}
@@ -57,10 +59,13 @@ export default function CartItem({
           </div>
         </div>
 
-        <p>{item.shipping === 0 ? "FREE" : `${formatPrice(item.shipping)}`}</p>
+        {/* ✅ FREE SHIPPING */}
+        <p className="text-green-600 font-medium">FREE</p>
 
+        {/* Subtotal */}
         <p>{formatPrice(subtotal)}</p>
 
+        {/* Remove */}
         <button onClick={() => removeFromCart(item)} className="text-red-500">
           <Trash2 size={18} />
         </button>
@@ -73,21 +78,19 @@ export default function CartItem({
               src={item.image}
               alt={item.name}
               fill
-              loading="eager"
-              sizes="100px"
               className="object-cover"
             />
           </div>
 
           <div className="flex-1 flex flex-col justify-between">
             <div>
-              <p className="font-semibold text-sm text-gray-900 leading-tight">
-                {item.name}
-              </p>
+              <p className="font-semibold text-sm text-gray-900">{item.name}</p>
 
               <p className="text-xs text-gray-500 mt-1">
                 Size: {item.selectedSize}
               </p>
+
+              <p className="text-xs text-green-600 mt-1">Free Delivery</p>
             </div>
 
             <p className="text-sm font-semibold text-[#063c71] mt-2">
@@ -117,7 +120,7 @@ export default function CartItem({
 
               <button
                 onClick={() => removeFromCart(item)}
-                className="flex items-center gap-1 text-red-500 text-xs font-medium"
+                className="text-red-500"
               >
                 <Trash2 size={14} />
               </button>
@@ -125,6 +128,7 @@ export default function CartItem({
           </div>
         </div>
 
+        {/* Subtotal */}
         <div className="flex justify-between items-center mt-4 border-t pt-3 text-sm">
           <p className="text-gray-500">Subtotal</p>
           <p className="font-semibold text-gray-900">{formatPrice(subtotal)}</p>

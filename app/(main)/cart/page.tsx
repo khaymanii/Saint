@@ -28,9 +28,9 @@ export default function CartPage() {
     0,
   );
 
-  //const shipping = cart.reduce((acc, item) => acc + item.shipping, 0);
-
-  //const total = subTotal + shipping;
+  // ✅ FREE SHIPPING
+  const shipping = 0;
+  const total = subTotal + shipping;
 
   if (cart.length === 0) {
     return (
@@ -42,10 +42,12 @@ export default function CartPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
+      {/* Header */}
       <div>
         <div className="mb-4">
           <BackButton />
         </div>
+
         <p className="text-xs opacity-70 mb-3">
           <Link href="/" className="hover:underline">
             Home
@@ -54,11 +56,14 @@ export default function CartPage() {
           <Link href="/cart" className="hover:underline">
             Cart
           </Link>
-        </p>{" "}
+        </p>
+
         <h1 className="sm:text-3xl text-2xl font-bold text-center text-[#063c71] mb-10">
           Cart
         </h1>
       </div>
+
+      {/* Desktop Header */}
       <div className="hidden md:grid grid-cols-7 bg-[#063c71] text-white p-4 text-sm font-semibold">
         <p className="col-span-2">GEAR</p>
         <p>PRICE</p>
@@ -79,56 +84,42 @@ export default function CartPage() {
         />
       ))}
 
+      {/* Summary */}
       <div className="grid lg:grid-cols-2 gap-10 mt-12">
-        {/*<div>
-          <h3 className="font-semibold mb-2">Discount Codes</h3>
-
-          <p className="text-sm text-gray-500 mb-4">
-            Enter your coupon code if you have one
-          </p>
-
-          <div className="flex flex-col sm:flex-row">
-            <input
-              className="border w-full p-3 sm:rounded-l-md rounded-md mb-3 sm:mb-0 text-xs"
-              placeholder="Coupon code"
-            />
-
-            <button className="bg-[#063c71] text-white px-6 py-3 text-xs sm:rounded-r-md rounded-md cursor-pointer">
-              Apply Coupon
-            </button>
-          </div>
-          <Link href="/shop">
-            <button className="mt-6 text-sm border px-6 py-3 rounded-md w-full sm:w-auto cursor-pointer hover:bg-[#063c71] hover:text-white transition">
-              Continue Shopping
-            </button>
-          </Link>
-        </div>*/}
-
         <div className="bg-gray-50 p-6 rounded-lg h-fit mb-20">
           <div className="flex text-sm justify-between mb-3">
             <p>Sub Total</p>
             <p>{formatPrice(subTotal)}</p>
           </div>
 
-          {/* <div className="flex text-sm justify-between mb-3">
+          {/* ✅ FREE SHIPPING DISPLAY */}
+          <div className="flex text-sm justify-between mb-3">
             <p>Shipping</p>
-            <p>{formatPrice(shipping)}</p>
+            <p className="text-green-600 font-medium">FREE</p>
           </div>
 
+          {/* Total */}
           <div className="flex justify-between font-semibold text-lg mt-6">
-            <p>Grand Total</p>
+            <p>Total</p>
             <p>{formatPrice(total)}</p>
-          </div>*/}
+          </div>
 
+          {/* CTA */}
           <Link href={checkoutHref}>
             <button className="w-full bg-[#063c71] text-white text-sm py-3 mt-6 rounded-md cursor-pointer">
               Proceed To Checkout
             </button>
           </Link>
+
+          {/* 🔥 Conversion Booster */}
+          <p className="text-xs text-green-600 font-medium text-center mt-2">
+            Free delivery on all orders for early users 🚚
+          </p>
+
           <Link href="/shop">
-            <button className="w-full border border-[#063c71] text-[#063c71] text-sm py-3 mt-2 rounded-md cursor-pointer flex items-center justify-center">
+            <button className="w-full border border-[#063c71] text-[#063c71] text-sm py-3 mt-3 rounded-md cursor-pointer flex items-center justify-center">
               Add More Gears
-              <Plus className="w-4 h-4 text-[#063c71] inline-block ml-2" />
+              <Plus className="w-4 h-4 ml-2" />
             </button>
           </Link>
         </div>

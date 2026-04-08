@@ -1,7 +1,7 @@
 "use client";
 
-import { PRODUCTS } from "@/data/shop";
 import { use, useState } from "react";
+import { PRODUCTS } from "@/data/shop";
 import Image from "next/image";
 import { ShopCard } from "@/Components/layout/ShopCard";
 import { slugify } from "@/lib/slugify";
@@ -58,7 +58,6 @@ export default function ProductPage({
             />
           </div>
 
-          {/* THUMBNAILS (SCROLL ON MOBILE) */}
           <div className="flex gap-3 overflow-x-auto scrollbar-hide">
             {product.images.map((img) => (
               <div

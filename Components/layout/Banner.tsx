@@ -21,7 +21,7 @@ export function Banner() {
 
           <div className="relative z-10 max-w-md">
             <span className="uppercase tracking-widest text-sm text-blue-200 font-semibold">
-              New Gears
+              Quality Gears
             </span>
 
             <h1 className="text-2xl md:text-5xl font-bold mt-4 leading-tight">

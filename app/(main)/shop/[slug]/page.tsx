@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { BackButton } from "@/Components/layout/BackButton";
 import { formatPrice } from "@/lib/formatPrice";
 import Link from "next/link";
+import { useProducts } from "@/hooks/useProducts";
 
 export default function ProductPage({
   params,
@@ -22,6 +23,7 @@ export default function ProductPage({
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const addToCart = useCartStore((state) => state.addToCart);
+  const { products, loading } = useProducts();
 
   if (!product)
     return (
@@ -30,7 +32,7 @@ export default function ProductPage({
       </div>
     );
 
-  const related = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 8);
+  const related = products.filter((p) => p.id !== product.id).slice(6, 10);
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
@@ -45,9 +47,7 @@ export default function ProductPage({
       </p>
 
       <div className="grid lg:grid-cols-2 gap-10">
-        {/* IMAGES */}
         <div className="flex flex-col gap-4">
-          {/* MAIN IMAGE */}
           <div className="relative w-full h-80 sm:h-96 overflow-hidden">
             <Image
               src={selectedImage!}

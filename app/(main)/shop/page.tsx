@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { useProducts } from "@/hooks/useProducts";
+import { usePagination } from "@/hooks/usePagination";
 import ShopBanner from "@/Components/shop/ShopBanner";
 import ShopFilters from "@/Components/shop/ShopFilters";
 import ShopProduct from "@/Components/shop/ShopProduct";
 import { Search } from "lucide-react";
 import filterProducts from "@/lib/filterUtils";
-import { usePagination } from "@/hooks/usePagination";
 import PaginationControls from "@/Components/layout/PaginationControls";
 
 export default function Shop() {

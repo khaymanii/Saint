@@ -51,7 +51,6 @@ export function Newsletter() {
           to your inbox.
         </p>
 
-        {/* Form */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
           <input
             type="email"

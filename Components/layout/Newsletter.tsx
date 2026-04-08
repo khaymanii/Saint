@@ -64,7 +64,7 @@ export function Newsletter() {
           <button
             onClick={handleSubscribe}
             disabled={loading}
-            className="bg-[#063c71] text-white font-medium px-4 py-2 text-xs rounded-md hover:bg-[#042a50] transition disabled:opacity-50 cursor-pointer"
+            className="bg-[#063c71] sm:w-1/2 w-full text-white font-medium px-4 py-3 text-xs rounded-md hover:bg-[#042a50] transition disabled:opacity-50 cursor-pointer"
           >
             {loading ? "Joining..." : "Join the Squad"}
           </button>

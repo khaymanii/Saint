@@ -10,16 +10,22 @@ export default function WaitlistPage() {
   const [form, setForm] = useState({
     email: "",
     phone: "",
+    isExistingCustomer: false,
   });
 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+
+    setForm({
+      ...form,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const handleJoin = async () => {
-    const { email, phone } = form;
+    const { email, phone, isExistingCustomer } = form;
 
     // ✅ Phone required
     if (!phone) {
@@ -27,7 +33,7 @@ export default function WaitlistPage() {
       return;
     }
 
-    // ✅ Email optional (only validate if user typed something)
+    // ✅ Email optional
     if (email && !email.includes("@")) {
       toast.error("Enter a valid email");
       return;
@@ -41,12 +47,18 @@ export default function WaitlistPage() {
       await addDoc(collection(db, "waitlist"), {
         email: email || null,
         phone: formattedPhone,
+        isExistingCustomer,
+        segment: isExistingCustomer ? "existing" : "new",
         createdAt: serverTimestamp(),
       });
 
       toast.success("You're on the waitlist! 🎉");
 
-      setForm({ email: "", phone: "" });
+      setForm({
+        email: "",
+        phone: "",
+        isExistingCustomer: false,
+      });
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong");
@@ -94,9 +106,22 @@ export default function WaitlistPage() {
             name="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="Email (optional)"
+            placeholder="Enter your email address"
             className="w-full px-5 py-3 rounded-md text-gray-900 text-sm border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#063c71]"
           />
+
+          <div className="flex items-start gap-3 text-left">
+            <input
+              type="checkbox"
+              name="isExistingCustomer"
+              checked={form.isExistingCustomer}
+              onChange={handleChange}
+              className="mt-1 h-4 w-4 text-[#063c71] border-gray-300 rounded focus:ring-[#063c71]"
+            />
+            <p className="text-xs sm:text-sm">
+              Have you ever bought from SAINT'S SPORTX STORE on WhatsApp before?
+            </p>
+          </div>
 
           <button
             onClick={handleJoin}

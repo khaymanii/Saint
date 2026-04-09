@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 import ProfileInput from "./ProfileInput";
-import { USER } from "@/data/user";
 import { toast } from "sonner";
 
 export default function ProfileInfoForm() {

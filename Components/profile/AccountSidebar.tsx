@@ -41,7 +41,7 @@ export default function AccountSidebar() {
     <aside className="w-full lg:w-64 lg:border-r lg:pr-6">
       <div className="mb-6">
         <h2 className="font-semibold text-base sm:text-lg">
-          Hello, {user?.displayName || "User"}
+          Hello, {user?.fullName || "SAINT"}
         </h2>
         <p className="text-xs mb-2">{user?.email || "jhanvi@example.com"}</p>
         <p className="text-xs sm:text-sm text-gray-500">

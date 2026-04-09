@@ -117,7 +117,7 @@ export default function WaitlistPage() {
               className="mt-1 h-4 w-4 text-[#063c71] border-gray-300 rounded focus:ring-[#063c71]"
             />
             <p className="text-xs sm:text-sm">
-              Have you ever bought from SAINT'S SPORTX STORE on WhatsApp before?
+              Have you ever bought from SAINT'S SPORTX STORE on WhatsApp?
             </p>
           </div>
 

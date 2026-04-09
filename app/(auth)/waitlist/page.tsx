@@ -27,13 +27,11 @@ export default function WaitlistPage() {
   const handleJoin = async () => {
     const { email, phone, isExistingCustomer } = form;
 
-    // ✅ Phone required
     if (!phone) {
       toast.error("Phone number is required");
       return;
     }
 
-    // ✅ Email optional
     if (email && !email.includes("@")) {
       toast.error("Enter a valid email");
       return;

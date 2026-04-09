@@ -50,7 +50,7 @@ export default function WaitlistPage() {
         createdAt: serverTimestamp(),
       });
 
-      toast.success("You're on the waitlist! 🎉");
+      toast.success("Thanks for joining the waitlist! 🎉");
 
       setForm({
         email: "",
@@ -59,7 +59,7 @@ export default function WaitlistPage() {
       });
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong");
+      toast.error("Something went wrong, Try again later.");
     } finally {
       setLoading(false);
     }

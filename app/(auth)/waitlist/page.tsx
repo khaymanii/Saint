@@ -68,7 +68,9 @@ export default function WaitlistPage() {
         createdAt: serverTimestamp(),
       });
 
-      toast.success("Access unlocked soon 🔥");
+      toast.success("Access unlocked 🔥", {
+        description: "Follow us on social media for early drops & updates.",
+      });
 
       setForm({
         email: "",
@@ -91,7 +93,6 @@ export default function WaitlistPage() {
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-50 px-6 py-10">
       <div className="max-w-md w-full">
-        {/* HEADER */}
         <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#063c71]">
           Unlock early access to SAINT
         </h1>
@@ -100,7 +101,6 @@ export default function WaitlistPage() {
           You’re previewing upcoming gears
         </p>
 
-        {/* SHOP CARD STYLE PRODUCT (ONLY ONE) */}
         <div className="mt-6 border rounded-xl overflow-hidden shadow-sm bg-white">
           <div className="relative w-full h-72 bg-gray-100 overflow-hidden">
             {images.map((img, index) => (
@@ -116,7 +116,6 @@ export default function WaitlistPage() {
               />
             ))}
 
-            {/* WISHLIST ICON (inactive for now) */}
             <button
               className="absolute top-3 right-3 bg-white rounded-full p-2 shadow"
               onClick={handleClick}
@@ -125,7 +124,6 @@ export default function WaitlistPage() {
             </button>
           </div>
 
-          {/* PRODUCT INFO */}
           <div className="p-3 flex flex-col gap-2">
             <div>
               <p className="text-sm font-bold text text-[#063c71]">SAINT</p>
@@ -207,24 +205,24 @@ export default function WaitlistPage() {
           </button>
         </div>
 
-        <div className="flex justify-center gap-5 mt-6">
+        <div className="flex justify-center gap-6 mt-6">
           <Link
             href="https://www.linkedin.com/company/saint-sportx"
             target="_blank"
           >
-            <FaLinkedin className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+            <FaLinkedin className="h-6 w-6 text-gray-600 hover:text-[#063c71]" />
           </Link>
 
           <Link href="https://x.com/@saint_sportx" target="_blank">
-            <FaXTwitter className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+            <FaXTwitter className="h-6 w-6 text-gray-600 hover:text-[#063c71]" />
           </Link>
 
           <Link href="https://instagram.com/saint_sportx" target="_blank">
-            <FaInstagram className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+            <FaInstagram className="h-6 w-6 text-gray-600 hover:text-[#063c71]" />
           </Link>
 
           <Link href="https://www.tiktok.com/@saint_sportx" target="_blank">
-            <FaTiktok className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+            <FaTiktok className="h-6 w-6 text-gray-600 hover:text-[#063c71]" />
           </Link>
         </div>
       </div>

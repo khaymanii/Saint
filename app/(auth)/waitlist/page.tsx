@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { FaInstagram, FaTiktok, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const images = [
   "/images/football2.jpg",
@@ -138,7 +139,7 @@ export default function WaitlistPage() {
                 onClick={handleClick}
                 className="bg-[#063c71] text-white text-xs px-3 py-1.5 rounded-full"
               >
-                Get early access
+                ₦ Unlock price{" "}
               </button>
               <button
                 className="flex items-center gap-1 bg-[#063c71] text-white p-2 rounded-full"
@@ -150,7 +151,6 @@ export default function WaitlistPage() {
           </div>
         </div>
 
-        {/* FORM */}
         <div className="mt-6 flex flex-col gap-3">
           <input
             type="tel"
@@ -168,7 +168,6 @@ export default function WaitlistPage() {
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#063c71]"
           />
 
-          {/* YES / NO */}
           <div>
             <p className="text-sm mb-2 font-semibold">
               Have you ever bought from SAINT's Store on WhatsApp?
@@ -199,7 +198,6 @@ export default function WaitlistPage() {
             </div>
           </div>
 
-          {/* CTA */}
           <button
             onClick={handleJoin}
             disabled={loading}
@@ -209,17 +207,25 @@ export default function WaitlistPage() {
           </button>
         </div>
 
-        {/* SOCIALS */}
         <div className="flex justify-center gap-5 mt-6">
-          <a href="#" className="text-gray-600 hover:text-[#063c71]">
-            <FaInstagram />
-          </a>
-          <a href="#" className="text-gray-600 hover:text-[#063c71]">
-            <FaLinkedin />
-          </a>
-          <a href="#" className="text-gray-600 hover:text-[#063c71]">
-            <FaTiktok />
-          </a>
+          <Link
+            href="https://www.linkedin.com/company/saint-sportx"
+            target="_blank"
+          >
+            <FaLinkedin className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+          </Link>
+
+          <Link href="https://x.com/@saint_sportx" target="_blank">
+            <FaXTwitter className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+          </Link>
+
+          <Link href="https://instagram.com/saint_sportx" target="_blank">
+            <FaInstagram className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+          </Link>
+
+          <Link href="https://www.tiktok.com/@saint_sportx" target="_blank">
+            <FaTiktok className="h-5 w-5 text-gray-600 hover:text-[#063c71]" />
+          </Link>
         </div>
       </div>
     </section>

@@ -1,28 +1,40 @@
 "use client";
 
-import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firebaseConfig/firebase";
 import { toast } from "sonner";
 import { formatNigerianPhone } from "@/lib/formatPhone";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Heart, ShoppingCart } from "lucide-react";
+import Link from "next/link";
+import { FaInstagram, FaTiktok, FaLinkedin } from "react-icons/fa";
+
+const images = [
+  "/images/football2.jpg",
+  "/catalogue/Sakura1.jpeg",
+  "/images/basketball1.jpg",
+  "/images/boot.jpg",
+  "/images/boxing2.jpg",
+];
 
 export default function WaitlistPage() {
   const [form, setForm] = useState({
     email: "",
     phone: "",
-    isExistingCustomer: false,
+    isExistingCustomer: null as boolean | null,
   });
 
   const [loading, setLoading] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 2000);
 
-    setForm({
-      ...form,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   const handleJoin = async () => {
     const { email, phone, isExistingCustomer } = form;
@@ -34,6 +46,11 @@ export default function WaitlistPage() {
 
     if (email && !email.includes("@")) {
       toast.error("Enter a valid email");
+      return;
+    }
+
+    if (isExistingCustomer === null) {
+      toast.error("Please select Yes or No");
       return;
     }
 
@@ -50,89 +67,160 @@ export default function WaitlistPage() {
         createdAt: serverTimestamp(),
       });
 
-      toast.success("Thanks for joining the waitlist! 🎉");
+      toast.success("Access unlocked soon 🔥");
 
       setForm({
         email: "",
         phone: "",
-        isExistingCustomer: false,
+        isExistingCustomer: null,
       });
     } catch (error) {
-      console.error(error);
       toast.error("Something went wrong, Try again later.");
     } finally {
       setLoading(false);
     }
   };
 
+  const handleClick = () => {
+    toast.message("Join the waitlist to unlock access 🔒", {
+      description: "Complete the form below to continue.",
+    });
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-50 px-6">
-      <div className="max-w-xl w-full text-center text-[#063c71]">
-        <h1 className="text-3xl sm:text-4xl font-bold">
-          We Started on WhatsApp. Now We’re Leveling Up 🚀
+    <section className="min-h-screen flex items-center justify-center bg-gray-50 px-6 py-10">
+      <div className="max-w-md w-full">
+        {/* HEADER */}
+        <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#063c71]">
+          Unlock early access to SAINT
         </h1>
 
-        <p className="mt-4 text-gray-700 text-sm sm:text-base">
-          You’ve trusted us on WhatsApp — now we’re building something bigger.
-          Join the waitlist to get early access to our website, exclusive drops,
-          and limited gear before anyone else.
+        <p className="text-center text-sm text-gray-600 mt-2">
+          You’re previewing upcoming gears
         </p>
 
-        <p className="mt-3 text-gray-600 text-xs sm:text-sm">
-          Get notified instantly via SMS when we launch and when new drops go
-          live.
-        </p>
+        {/* SHOP CARD STYLE PRODUCT (ONLY ONE) */}
+        <div className="mt-6 border rounded-xl overflow-hidden shadow-sm bg-white">
+          <div className="relative w-full h-72 bg-gray-100 overflow-hidden">
+            {images.map((img, index) => (
+              <Image
+                key={index}
+                src={img}
+                alt="product"
+                fill
+                className={`
+        object-cover absolute transition-opacity duration-700
+        ${index === currentImage ? "opacity-100" : "opacity-0"}
+      `}
+              />
+            ))}
 
-        <div className="mt-8 flex flex-col gap-4">
-          <div className="text-left">
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              required
-              className="w-full px-5 py-3 rounded-md text-gray-900 text-sm border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#063c71]"
-            />
-            <p className="text-xs text-gray-500 mt-1">
-              We’ll only send important updates. No spam.
-            </p>
+            {/* WISHLIST ICON (inactive for now) */}
+            <button
+              className="absolute top-3 right-3 bg-white rounded-full p-2 shadow"
+              onClick={handleClick}
+            >
+              <Heart size={18} className="text-[#063c71]" />
+            </button>
           </div>
+
+          {/* PRODUCT INFO */}
+          <div className="p-3 flex flex-col gap-2">
+            <div>
+              <p className="text-sm font-bold text text-[#063c71]">SAINT</p>
+              <p className="text-xs text-gray-500">
+                Sportswear and gears for the relentless
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between mt-2">
+              <button
+                onClick={handleClick}
+                className="bg-[#063c71] text-white text-xs px-3 py-1.5 rounded-full"
+              >
+                Get early access
+              </button>
+              <button
+                className="flex items-center gap-1 bg-[#063c71] text-white p-2 rounded-full"
+                onClick={handleClick}
+              >
+                <ShoppingCart size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* FORM */}
+        <div className="mt-6 flex flex-col gap-3">
+          <input
+            type="tel"
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            placeholder="Phone number"
+            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#063c71]"
+          />
 
           <input
             type="email"
-            name="email"
             value={form.email}
-            onChange={handleChange}
-            placeholder="Enter your email address"
-            className="w-full px-5 py-3 rounded-md text-gray-900 text-sm border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-[#063c71]"
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            placeholder="Email address"
+            className="w-full px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#063c71]"
           />
 
-          <div className="flex items-start gap-3 text-left">
-            <input
-              type="checkbox"
-              name="isExistingCustomer"
-              checked={form.isExistingCustomer}
-              onChange={handleChange}
-              className="mt-1 h-4 w-4 text-[#063c71] border-gray-300 rounded focus:ring-[#063c71]"
-            />
-            <p className="text-xs sm:text-sm">
-              Have you ever bought from SAINT'S SPORTX STORE on WhatsApp?
+          {/* YES / NO */}
+          <div>
+            <p className="text-sm mb-2 font-semibold">
+              Have you ever bought from SAINT's Store on WhatsApp?
             </p>
+
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  checked={form.isExistingCustomer === true}
+                  onChange={() =>
+                    setForm({ ...form, isExistingCustomer: true })
+                  }
+                />
+                Yes
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  checked={form.isExistingCustomer === false}
+                  onChange={() =>
+                    setForm({ ...form, isExistingCustomer: false })
+                  }
+                />
+                No
+              </label>
+            </div>
           </div>
 
+          {/* CTA */}
           <button
             onClick={handleJoin}
             disabled={loading}
-            className="bg-[#063c71] text-white font-medium px-6 py-3 text-sm rounded-md hover:bg-[#042a50] transition disabled:opacity-50"
+            className="bg-[#063c71] text-white py-3 rounded-md hover:bg-[#042a50] transition disabled:opacity-50"
           >
-            {loading ? "Joining..." : "Get Early Access"}
+            {loading ? "Unlocking..." : "Get Early Access"}
           </button>
         </div>
 
-        <p className="text-xs text-gray-500 mt-4">
-          No spam. Just early access, exclusive drops, and important updates.
-        </p>
+        {/* SOCIALS */}
+        <div className="flex justify-center gap-5 mt-6">
+          <a href="#" className="text-gray-600 hover:text-[#063c71]">
+            <FaInstagram />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-[#063c71]">
+            <FaLinkedin />
+          </a>
+          <a href="#" className="text-gray-600 hover:text-[#063c71]">
+            <FaTiktok />
+          </a>
+        </div>
       </div>
     </section>
   );

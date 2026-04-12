@@ -3,6 +3,7 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import { AuthInit } from "@/Components/providers/AuthInit";
 import { Metadata } from "next";
+import WhatsAppFloat from "@/Components/layout/WhatsappFloat";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,7 +35,10 @@ export default function RootLayout({
         className="antialiased flex flex-col min-h-screen"
         suppressHydrationWarning
       >
-        <AuthInit>{children}</AuthInit>
+        <AuthInit>
+          {children}
+          <WhatsAppFloat />
+        </AuthInit>
       </body>
     </html>
   );

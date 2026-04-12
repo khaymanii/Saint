@@ -178,9 +178,7 @@ export default function Contact() {
             <p>
               <strong>Phone:</strong> +234-8166588402 or +234-9032894161
             </p>
-            <p>
-              <strong>Whatsapp:</strong> +234-8166588402
-            </p>
+
             <p>
               <strong>Hours:</strong> Mon – Fri, 9am – 5pm
             </p>

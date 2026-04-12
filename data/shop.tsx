@@ -389,4 +389,22 @@ export const GOODS = [
     reviews: 410,
     stock: true,
   },
+  {
+    id: 22,
+    name: "Chelsea 97-99 Retro Home Jersey",
+    brand: "Umbro",
+    price: 25000,
+    sport: "Football",
+    sub: "Club Jerseys",
+    team: "Chelsea",
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69dc0045001cb77ab31c/view?project=69ce05d700314f848db5&mode=admin",
+    ],
+    description:
+      "A royal blue jersey featuring subtle vertical pinstripes, a white polo-style collar with yellow and blue trim, and white sleeves with matching trim. ",
+    sizes: ["L", "XL", "2XL", "3XL"],
+    rating: 4.4,
+    reviews: 410,
+    stock: true,
+  },
 ];

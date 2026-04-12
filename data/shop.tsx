@@ -332,3 +332,61 @@ export const PRODUCTS = [
     stock: true,
   },
 ];
+
+export const GOODS = [
+  {
+    id: 19,
+    name: "England 98 Retro Away Jersey",
+    brand: "Umbro",
+    price: 25000,
+    sport: "Football",
+    sub: "Country Jerseys",
+    team: "England",
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69dbf7db000007123260/view?project=69ce05d700314f848db5&mode=admin",
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69dbf840002d7761a3bb/view?project=69ce05d700314f848db5&mode=admin",
+    ],
+    description:
+      "This kit is crafted using lightweight, stretch mesh fabric for comfort. There are red vertical panels running down the sides of the front of the shirt, edged in white piping.",
+    sizes: ["L", "XL", "2XL", "3XL"],
+    rating: 4.8,
+    reviews: 410,
+    stock: true,
+  },
+  {
+    id: 20,
+    name: "Real Madrid 99/2000 Away Jersey",
+    brand: "Adidas",
+    price: 25000,
+    sport: "Football",
+    sub: "Club Jerseys",
+    team: "Real Madrid",
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69dbfbf30020a7f4c6e8/view?project=69ce05d700314f848db5&mode=admin",
+    ],
+    description:
+      "This retro adidas shirt is known for its distinct design from a memorable season where the club won its eighth Champions League title. ",
+    sizes: ["L", "XL", "2XL", "3XL"],
+    rating: 4.6,
+    reviews: 410,
+    stock: true,
+  },
+  {
+    id: 21,
+    name: "Lazio 99/2000 Away Jersey",
+    brand: "Puma",
+    price: 25000,
+    sport: "Football",
+    sub: "Club Jerseys",
+    team: "Lazio",
+    images: [
+      "https://fra.cloud.appwrite.io/v1/storage/buckets/69ce064f001eb106641b/files/69dbfe370005c248930d/view?project=69ce05d700314f848db5&mode=admin",
+    ],
+    description:
+      "This shirt is primarily yellow with light blue panels on the shoulders and light blue and dark blue trim on the V-neck collar and sleeve cuffs. ",
+    sizes: ["L", "XL", "2XL", "3XL"],
+    rating: 4.3,
+    reviews: 410,
+    stock: true,
+  },
+];
